@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraft:items/PEZ_hoe"
+        "layer0": "candycraft:items/pez_axe"
     },
     "display": {
         "thirdperson": {

@@ -264,8 +264,8 @@ public class CCBlocks
 		honeyTorch = new BlockCandyTorch().setLightLevel(0.9375F).setHardness(0.0F).setSoundType(SoundType.WOOD).setTranslationKey("honey_torch").setCreativeTab(CandyCraft.getCandyTab());
 		honeyBlock = new BlockCandyBase(Material.ROCK).setHardness(2.0F).setSoundType(SoundType.STONE).setTranslationKey("honeycomb_block").setCreativeTab(CandyCraft.getCandyTab());
 		honeyLamp = new BlockCandyBase(Material.IRON).setHardness(1.0F).setLightLevel(1.0F).setSoundType(SoundType.GLASS).setTranslationKey("honey_lamp").setCreativeTab(CandyCraft.getCandyTab());
-		PEZOre = new BlockCandyBase(Material.ROCK).setHardness(1.0F).setSoundType(SoundType.STONE).setTranslationKey("PEZ_ore").setHardness(3.0F).setResistance(5.0F).setCreativeTab(CandyCraft.getCandyTab());
-		PEZBlock = new BlockCandyBase(Material.IRON).setHardness(5.0F).setResistance(10.0F).setSoundType(SoundType.METAL).setTranslationKey("PEZ_block").setCreativeTab(CandyCraft.getCandyTab());
+		PEZOre = new BlockCandyBase(Material.ROCK).setHardness(1.0F).setSoundType(SoundType.STONE).setTranslationKey("pez_ore").setHardness(3.0F).setResistance(5.0F).setCreativeTab(CandyCraft.getCandyTab());
+		PEZBlock = new BlockCandyBase(Material.IRON).setHardness(5.0F).setResistance(10.0F).setSoundType(SoundType.METAL).setTranslationKey("pez_block").setCreativeTab(CandyCraft.getCandyTab());
 		grenadine = (BlockCandyLiquid) new BlockCandyLiquid(Material.WATER).setTranslationKey("grenadine");
 		jawBreakerBlock = new BlockCandyBase(Material.ROCK).setBlockUnbreakable().setResistance(6000000.0F).setSoundType(SoundType.STONE).setTranslationKey("jaw_breaker_block").setCreativeTab(CandyCraft.getCandyTab());
 		purpleJellyJump = new BlockJelly(2.1D).setLightLevel(0.8F).setHardness(3.0F).setResistance(2000.0F).setSoundType(SOUND_JELLY_FOOTSTEP).setTranslationKey("purple_trampojelly");

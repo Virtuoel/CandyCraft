@@ -1,5 +1,5 @@
 {
-    "parent": "candycraft:block/PEZ_ore",
+    "parent": "candycraft:block/pez_block",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],
