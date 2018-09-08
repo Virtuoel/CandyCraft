@@ -1,4 +1,6 @@
-package valentin4311.candycraft.client.entity;
+package com.valentin4311.candycraft.client.entity;
+
+import com.valentin4311.candycraft.entity.EntityGummyBall;
 
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -8,7 +10,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.entity.EntityGummyBall;
 
 @SideOnly(Side.CLIENT)
 public class RenderGummyBall extends RenderSnowball

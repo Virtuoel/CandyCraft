@@ -1,6 +1,10 @@
-package valentin4311.candycraft.blocks;
+package com.valentin4311.candycraft.blocks;
 
 import java.util.Random;
+
+import com.valentin4311.candycraft.blocks.fluid.CCFluids;
+import com.valentin4311.candycraft.blocks.tileentity.TileEntityAlchemy;
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -21,9 +25,6 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.blocks.fluid.CCFluids;
-import valentin4311.candycraft.blocks.tileentity.TileEntityAlchemy;
-import valentin4311.candycraft.items.CCItems;
 
 public class BlockAlchemyTable extends BlockContainer
 {

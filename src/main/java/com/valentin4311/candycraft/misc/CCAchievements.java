@@ -1,4 +1,4 @@
-package valentin4311.candycraft.misc;
+package com.valentin4311.candycraft.misc;
 
 public class CCAchievements
 {/*// TODO Advancements!

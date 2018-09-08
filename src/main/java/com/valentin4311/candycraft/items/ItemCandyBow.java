@@ -1,9 +1,10 @@
-package valentin4311.candycraft.items;
+package com.valentin4311.candycraft.items;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
-import valentin4311.candycraft.blocks.CCBlocks;
 
 public class ItemCandyBow extends ItemBow
 {

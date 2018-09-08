@@ -1,4 +1,4 @@
-package valentin4311.candycraft.world.biomes;
+package com.valentin4311.candycraft.world.biomes;
 
 import net.minecraft.world.WorldType;
 import net.minecraft.world.gen.layer.GenLayer;

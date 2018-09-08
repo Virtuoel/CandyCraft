@@ -1,12 +1,13 @@
-package valentin4311.candycraft.client.entity;
+package com.valentin4311.candycraft.client.entity;
 
 import org.lwjgl.opengl.GL11;
+
+import com.valentin4311.candycraft.entity.EntityBunny;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-import valentin4311.candycraft.entity.EntityBunny;
 
 public class LayerBunnyFur implements LayerRenderer
 {

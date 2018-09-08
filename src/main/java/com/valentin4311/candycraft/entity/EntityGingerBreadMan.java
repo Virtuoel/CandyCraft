@@ -1,4 +1,8 @@
-package valentin4311.candycraft.entity;
+package com.valentin4311.candycraft.entity;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.entity.ai.EntityAIAvoidPlayerGinger;
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -30,9 +34,6 @@ import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.entity.ai.EntityAIAvoidPlayerGinger;
-import valentin4311.candycraft.items.CCItems;
 
 public class EntityGingerBreadMan extends EntityVillager implements IMerchant, INpc
 {

@@ -1,4 +1,11 @@
-package valentin4311.candycraft.entity.boss;
+package com.valentin4311.candycraft.entity.boss;
+
+import com.valentin4311.candycraft.CandyCraft;
+import com.valentin4311.candycraft.client.gui.GuiBoss;
+import com.valentin4311.candycraft.entity.EntityJelly;
+import com.valentin4311.candycraft.entity.EntityUtil;
+import com.valentin4311.candycraft.entity.ICandyBoss;
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -15,12 +22,6 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.CandyCraft;
-import valentin4311.candycraft.client.gui.GuiBoss;
-import valentin4311.candycraft.entity.EntityJelly;
-import valentin4311.candycraft.entity.EntityUtil;
-import valentin4311.candycraft.entity.ICandyBoss;
-import valentin4311.candycraft.items.CCItems;
 
 public class EntityJellyQueen extends EntityJelly implements IMob, ICandyBoss
 {

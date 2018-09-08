@@ -1,4 +1,4 @@
-package valentin4311.candycraft.entity.ai;
+package com.valentin4311.candycraft.entity.ai;
 
 import java.util.Iterator;
 import java.util.List;

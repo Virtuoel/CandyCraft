@@ -1,6 +1,9 @@
-package valentin4311.candycraft.blocks.tileentity;
+package com.valentin4311.candycraft.blocks.tileentity;
 
 import java.util.ArrayList;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
@@ -12,8 +15,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.items.CCItems;
 
 public class TileEntityAlchemy extends TileEntity
 {

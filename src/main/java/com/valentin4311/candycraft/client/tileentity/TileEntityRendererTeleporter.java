@@ -1,8 +1,10 @@
-package valentin4311.candycraft.client.tileentity;
+package com.valentin4311.candycraft.client.tileentity;
 
 import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
+
+import com.valentin4311.candycraft.blocks.tileentity.TileEntityTeleporter;
 
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -11,7 +13,6 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.tileentity.TileEntity;
-import valentin4311.candycraft.blocks.tileentity.TileEntityTeleporter;
 
 public class TileEntityRendererTeleporter extends TileEntitySpecialRenderer
 {

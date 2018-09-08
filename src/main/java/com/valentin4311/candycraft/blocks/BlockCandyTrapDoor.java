@@ -1,4 +1,4 @@
-package valentin4311.candycraft.blocks;
+package com.valentin4311.candycraft.blocks;
 
 import net.minecraft.block.BlockTrapDoor;
 import net.minecraft.block.material.Material;

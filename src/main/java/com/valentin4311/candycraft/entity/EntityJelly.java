@@ -1,4 +1,6 @@
-package valentin4311.candycraft.entity;
+package com.valentin4311.candycraft.entity;
+
+import com.valentin4311.candycraft.entity.boss.EntityBossSuguard;
 
 import net.minecraft.entity.EntityBodyHelper;
 import net.minecraft.entity.EntityLiving;
@@ -17,7 +19,6 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import valentin4311.candycraft.entity.boss.EntityBossSuguard;
 
 public class EntityJelly extends EntityLiving
 {

@@ -1,4 +1,4 @@
-package valentin4311.candycraft.blocks.fluid;
+package com.valentin4311.candycraft.blocks.fluid;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;

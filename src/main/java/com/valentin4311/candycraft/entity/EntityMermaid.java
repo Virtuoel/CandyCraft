@@ -1,4 +1,7 @@
-package valentin4311.candycraft.entity;
+package com.valentin4311.candycraft.entity;
+
+import com.valentin4311.candycraft.entity.ai.EntityAICandyArrow;
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -21,8 +24,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import valentin4311.candycraft.entity.ai.EntityAICandyArrow;
-import valentin4311.candycraft.items.CCItems;
 
 public class EntityMermaid extends EntityGolem implements IMob, IRangedAttackMob
 {

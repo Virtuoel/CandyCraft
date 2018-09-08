@@ -1,7 +1,14 @@
-package valentin4311.candycraft.entity;
+package com.valentin4311.candycraft.entity;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import com.valentin4311.candycraft.CandyCraft;
+import com.valentin4311.candycraft.entity.boss.EntityBossBeetle;
+import com.valentin4311.candycraft.entity.boss.EntityBossSuguard;
+import com.valentin4311.candycraft.entity.boss.EntityJellyQueen;
+import com.valentin4311.candycraft.entity.boss.EntityKingSlime;
+import com.valentin4311.candycraft.entity.boss.EntityPEZJelly;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -9,12 +16,6 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import valentin4311.candycraft.CandyCraft;
-import valentin4311.candycraft.entity.boss.EntityBossBeetle;
-import valentin4311.candycraft.entity.boss.EntityBossSuguard;
-import valentin4311.candycraft.entity.boss.EntityJellyQueen;
-import valentin4311.candycraft.entity.boss.EntityKingSlime;
-import valentin4311.candycraft.entity.boss.EntityPEZJelly;
 
 public class CCEntities
 {

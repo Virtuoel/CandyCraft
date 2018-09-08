@@ -1,4 +1,4 @@
-package valentin4311.candycraft.items;
+package com.valentin4311.candycraft.items;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;

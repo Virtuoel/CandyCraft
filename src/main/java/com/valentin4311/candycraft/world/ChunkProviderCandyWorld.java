@@ -1,9 +1,23 @@
-package valentin4311.candycraft.world;
+package com.valentin4311.candycraft.world;
 
 import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ANIMALS;
 
 import java.util.List;
 import java.util.Random;
+
+import com.valentin4311.candycraft.CandyCraftPreferences;
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.world.biomes.CCBiomes;
+import com.valentin4311.candycraft.world.generator.MapGenCandyRavine;
+import com.valentin4311.candycraft.world.generator.WorldGenCandyHouse;
+import com.valentin4311.candycraft.world.generator.WorldGenChewingGumTotem;
+import com.valentin4311.candycraft.world.generator.WorldGenFloatingIsland;
+import com.valentin4311.candycraft.world.generator.WorldGenGeyser;
+import com.valentin4311.candycraft.world.generator.WorldGenHoneyDungeons;
+import com.valentin4311.candycraft.world.generator.WorldGenIceTower;
+import com.valentin4311.candycraft.world.generator.WorldGenUnderGroundVillage;
+import com.valentin4311.candycraft.world.generator.WorldGenWaterTemple;
+import com.valentin4311.candycraft.world.generator.WorldGenWebLakes;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
@@ -27,19 +41,6 @@ import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraftforge.event.terraingen.TerrainGen;
-import valentin4311.candycraft.CandyCraftPreferences;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.world.biomes.CCBiomes;
-import valentin4311.candycraft.world.generator.MapGenCandyRavine;
-import valentin4311.candycraft.world.generator.WorldGenCandyHouse;
-import valentin4311.candycraft.world.generator.WorldGenChewingGumTotem;
-import valentin4311.candycraft.world.generator.WorldGenFloatingIsland;
-import valentin4311.candycraft.world.generator.WorldGenGeyser;
-import valentin4311.candycraft.world.generator.WorldGenHoneyDungeons;
-import valentin4311.candycraft.world.generator.WorldGenIceTower;
-import valentin4311.candycraft.world.generator.WorldGenUnderGroundVillage;
-import valentin4311.candycraft.world.generator.WorldGenWaterTemple;
-import valentin4311.candycraft.world.generator.WorldGenWebLakes;
 
 public class ChunkProviderCandyWorld// implements IChunkGenerator
 {/*

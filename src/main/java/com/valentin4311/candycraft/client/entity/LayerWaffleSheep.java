@@ -1,9 +1,10 @@
-package valentin4311.candycraft.client.entity;
+package com.valentin4311.candycraft.client.entity;
+
+import com.valentin4311.candycraft.entity.EntityWaffleSheep;
 
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-import valentin4311.candycraft.entity.EntityWaffleSheep;
 
 public class LayerWaffleSheep implements LayerRenderer
 {

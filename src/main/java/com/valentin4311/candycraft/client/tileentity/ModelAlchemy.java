@@ -1,4 +1,4 @@
-package valentin4311.candycraft.client.tileentity;
+package com.valentin4311.candycraft.client.tileentity;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

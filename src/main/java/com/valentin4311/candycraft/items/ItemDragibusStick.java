@@ -1,4 +1,6 @@
-package valentin4311.candycraft.items;
+package com.valentin4311.candycraft.items;
+
+import com.valentin4311.candycraft.entity.EntityCandyPig;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -10,7 +12,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.entity.EntityCandyPig;
 
 public class ItemDragibusStick extends Item
 {

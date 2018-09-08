@@ -1,6 +1,9 @@
-package valentin4311.candycraft.entity;
+package com.valentin4311.candycraft.entity;
 
 import javax.annotation.Nullable;
+
+import com.valentin4311.candycraft.entity.ai.EntityAIExplode;
+import com.valentin4311.candycraft.entity.boss.EntityBossBeetle;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -22,8 +25,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import valentin4311.candycraft.entity.ai.EntityAIExplode;
-import valentin4311.candycraft.entity.boss.EntityBossBeetle;
 
 public class EntityNougatGolem extends EntityGolem
 {

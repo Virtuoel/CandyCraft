@@ -1,4 +1,7 @@
-package valentin4311.candycraft.items;
+package com.valentin4311.candycraft.items;
+
+import com.valentin4311.candycraft.entity.EntityCandyCreeper;
+import com.valentin4311.candycraft.misc.CCAchievements;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -6,8 +9,6 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
-import valentin4311.candycraft.entity.EntityCandyCreeper;
-import valentin4311.candycraft.misc.CCAchievements;
 
 public class ItemLollipop extends ItemFood
 {

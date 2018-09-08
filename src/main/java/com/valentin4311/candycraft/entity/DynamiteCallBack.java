@@ -1,9 +1,10 @@
-package valentin4311.candycraft.entity;
+package com.valentin4311.candycraft.entity;
 
 import java.util.Random;
 
+import com.valentin4311.candycraft.event.ServerTick;
+
 import net.minecraft.entity.Entity;
-import valentin4311.candycraft.event.ServerTick;
 
 public class DynamiteCallBack
 {

@@ -1,6 +1,10 @@
-package valentin4311.candycraft.entity;
+package com.valentin4311.candycraft.entity;
 
 import java.util.UUID;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.items.CCItems;
+import com.valentin4311.candycraft.misc.CCAchievements;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityAgeable;
@@ -21,9 +25,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.items.CCItems;
-import valentin4311.candycraft.misc.CCAchievements;
 
 public class EntityCandyWolf extends EntityWolf
 {

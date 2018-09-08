@@ -1,4 +1,4 @@
-package valentin4311.candycraft.blocks;
+package com.valentin4311.candycraft.blocks;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;

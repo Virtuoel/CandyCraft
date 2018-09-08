@@ -1,6 +1,14 @@
-package valentin4311.candycraft.world.generator;
+package com.valentin4311.candycraft.world.generator;
 
 import java.util.Random;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.blocks.tileentity.TileEntityTeleporter;
+import com.valentin4311.candycraft.entity.EntityTornadoJelly;
+import com.valentin4311.candycraft.entity.boss.EntityKingSlime;
+import com.valentin4311.candycraft.entity.boss.EntityPEZJelly;
+import com.valentin4311.candycraft.items.CCItems;
+import com.valentin4311.candycraft.misc.CCEnchantments;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -14,13 +22,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.blocks.tileentity.TileEntityTeleporter;
-import valentin4311.candycraft.entity.EntityTornadoJelly;
-import valentin4311.candycraft.entity.boss.EntityKingSlime;
-import valentin4311.candycraft.entity.boss.EntityPEZJelly;
-import valentin4311.candycraft.items.CCItems;
-import valentin4311.candycraft.misc.CCEnchantments;
 
 public class WorldGenSlimeDungeon extends WorldGenerator
 {

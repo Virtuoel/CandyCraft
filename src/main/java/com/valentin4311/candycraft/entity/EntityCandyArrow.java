@@ -1,4 +1,6 @@
-package valentin4311.candycraft.entity;
+package com.valentin4311.candycraft.entity;
+
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
@@ -9,7 +11,6 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
-import valentin4311.candycraft.items.CCItems;
 
 public class EntityCandyArrow extends EntityArrow implements IProjectile
 {

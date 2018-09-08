@@ -1,10 +1,11 @@
-package valentin4311.candycraft.misc;
+package com.valentin4311.candycraft.misc;
+
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
-import valentin4311.candycraft.items.CCItems;
 
 public class EnchantmentHoneyGlue extends Enchantment
 {

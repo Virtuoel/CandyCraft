@@ -1,4 +1,4 @@
-package valentin4311.candycraft.world.generator;
+package com.valentin4311.candycraft.world.generator;
 
 import net.minecraft.block.Block;
 

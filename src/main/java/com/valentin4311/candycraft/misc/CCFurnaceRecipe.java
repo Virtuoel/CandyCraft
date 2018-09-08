@@ -1,4 +1,4 @@
-package valentin4311.candycraft.misc;
+package com.valentin4311.candycraft.misc;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.items.CCItems;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.items.CCItems;
 
 public class CCFurnaceRecipe
 {

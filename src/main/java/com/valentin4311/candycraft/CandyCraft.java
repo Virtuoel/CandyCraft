@@ -1,7 +1,27 @@
-package valentin4311.candycraft;
+package com.valentin4311.candycraft;
 
 import java.io.File;
 import java.util.ArrayList;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.blocks.fluid.CCFluids;
+import com.valentin4311.candycraft.client.gui.GuiHandlerCandyCraft;
+import com.valentin4311.candycraft.command.WikiCommand;
+import com.valentin4311.candycraft.entity.CCEntities;
+import com.valentin4311.candycraft.event.ClientEventCatcher;
+import com.valentin4311.candycraft.event.ClientTick;
+import com.valentin4311.candycraft.event.ServerEventCatcher;
+import com.valentin4311.candycraft.event.ServerTick;
+import com.valentin4311.candycraft.items.CCItems;
+import com.valentin4311.candycraft.misc.CCAchievements;
+import com.valentin4311.candycraft.misc.CCCreativeTabs;
+import com.valentin4311.candycraft.misc.CCEnchantments;
+import com.valentin4311.candycraft.misc.CCRecipes;
+import com.valentin4311.candycraft.world.TerrainCatcher;
+import com.valentin4311.candycraft.world.WorldProviderCandy;
+import com.valentin4311.candycraft.world.WorldProviderVoid;
+import com.valentin4311.candycraft.world.WorldTypeCandy;
+import com.valentin4311.candycraft.world.biomes.CCBiomes;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -19,25 +39,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.blocks.fluid.CCFluids;
-import valentin4311.candycraft.client.gui.GuiHandlerCandyCraft;
-import valentin4311.candycraft.command.WikiCommand;
-import valentin4311.candycraft.entity.CCEntities;
-import valentin4311.candycraft.event.ClientEventCatcher;
-import valentin4311.candycraft.event.ClientTick;
-import valentin4311.candycraft.event.ServerEventCatcher;
-import valentin4311.candycraft.event.ServerTick;
-import valentin4311.candycraft.items.CCItems;
-import valentin4311.candycraft.misc.CCAchievements;
-import valentin4311.candycraft.misc.CCCreativeTabs;
-import valentin4311.candycraft.misc.CCEnchantments;
-import valentin4311.candycraft.misc.CCRecipes;
-import valentin4311.candycraft.world.TerrainCatcher;
-import valentin4311.candycraft.world.WorldProviderCandy;
-import valentin4311.candycraft.world.WorldProviderVoid;
-import valentin4311.candycraft.world.WorldTypeCandy;
-import valentin4311.candycraft.world.biomes.CCBiomes;
 
 @Mod(modid = "candycraftmod", name = "candycraftmod", version = CandyCraft.VERSION)
 public class CandyCraft

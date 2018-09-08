@@ -1,11 +1,12 @@
-package valentin4311.candycraft.world;
+package com.valentin4311.candycraft.world;
+
+import com.valentin4311.candycraft.blocks.tileentity.TileEntityTeleporter;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.play.server.SPacketSetExperience;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
-import valentin4311.candycraft.blocks.tileentity.TileEntityTeleporter;
 
 public class TeleporterDungeon extends Teleporter
 {

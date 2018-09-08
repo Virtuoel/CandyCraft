@@ -1,6 +1,12 @@
-package valentin4311.candycraft.blocks.tileentity;
+package com.valentin4311.candycraft.blocks.tileentity;
 
 import java.util.Random;
+
+import com.valentin4311.candycraft.CandyCraftPreferences;
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.entity.EntityDragon;
+import com.valentin4311.candycraft.entity.EntityKingBeetle;
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -9,11 +15,6 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
-import valentin4311.candycraft.CandyCraftPreferences;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.entity.EntityDragon;
-import valentin4311.candycraft.entity.EntityKingBeetle;
-import valentin4311.candycraft.items.CCItems;
 
 public class TileEntityEgg extends TileEntity implements ITickable
 {

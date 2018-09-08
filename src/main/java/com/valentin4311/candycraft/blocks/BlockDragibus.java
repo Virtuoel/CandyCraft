@@ -1,7 +1,9 @@
-package valentin4311.candycraft.blocks;
+package com.valentin4311.candycraft.blocks;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
@@ -10,7 +12,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import valentin4311.candycraft.items.CCItems;
 
 public class BlockDragibus extends BlockCrops
 {

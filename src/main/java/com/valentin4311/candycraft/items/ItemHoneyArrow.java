@@ -1,4 +1,7 @@
-package valentin4311.candycraft.items;
+package com.valentin4311.candycraft.items;
+
+import com.valentin4311.candycraft.entity.EntityCandyArrow;
+import com.valentin4311.candycraft.misc.CCEnchantments;
 
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -6,8 +9,6 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import valentin4311.candycraft.entity.EntityCandyArrow;
-import valentin4311.candycraft.misc.CCEnchantments;
 
 public class ItemHoneyArrow extends ItemArrow
 {

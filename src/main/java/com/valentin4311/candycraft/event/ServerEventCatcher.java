@@ -1,4 +1,17 @@
-package valentin4311.candycraft.event;
+package com.valentin4311.candycraft.event;
+
+import com.valentin4311.candycraft.CandyCraft;
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.blocks.tileentity.TileEntityTeleporter;
+import com.valentin4311.candycraft.entity.EntityCandyCreeper;
+import com.valentin4311.candycraft.entity.EntitySuguard;
+import com.valentin4311.candycraft.entity.IEntityLockable;
+import com.valentin4311.candycraft.entity.IEntityPowerMount;
+import com.valentin4311.candycraft.entity.boss.EntityBossSuguard;
+import com.valentin4311.candycraft.entity.boss.EntityJellyQueen;
+import com.valentin4311.candycraft.items.CCItems;
+import com.valentin4311.candycraft.items.ItemBossKey;
+import com.valentin4311.candycraft.misc.CCAchievements;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockJukebox;
@@ -30,18 +43,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
-import valentin4311.candycraft.CandyCraft;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.blocks.tileentity.TileEntityTeleporter;
-import valentin4311.candycraft.entity.EntityCandyCreeper;
-import valentin4311.candycraft.entity.EntitySuguard;
-import valentin4311.candycraft.entity.IEntityLockable;
-import valentin4311.candycraft.entity.IEntityPowerMount;
-import valentin4311.candycraft.entity.boss.EntityBossSuguard;
-import valentin4311.candycraft.entity.boss.EntityJellyQueen;
-import valentin4311.candycraft.items.CCItems;
-import valentin4311.candycraft.items.ItemBossKey;
-import valentin4311.candycraft.misc.CCAchievements;
 
 public class ServerEventCatcher
 {

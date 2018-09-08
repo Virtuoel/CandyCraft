@@ -1,17 +1,18 @@
-package valentin4311.candycraft.world.biomes;
+package com.valentin4311.candycraft.world.biomes;
 
 import java.awt.Color;
 import java.util.Random;
+
+import com.valentin4311.candycraft.entity.EntityCandyCreeper;
+import com.valentin4311.candycraft.entity.EntityCottonCandySpider;
+import com.valentin4311.candycraft.entity.EntitySuguard;
+import com.valentin4311.candycraft.world.generator.WorldGenCaramelTree;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.entity.EntityCandyCreeper;
-import valentin4311.candycraft.entity.EntityCottonCandySpider;
-import valentin4311.candycraft.entity.EntitySuguard;
-import valentin4311.candycraft.world.generator.WorldGenCaramelTree;
 
 public class BiomeGenHellForest extends BiomeGenCandy
 {

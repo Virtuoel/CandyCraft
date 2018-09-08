@@ -1,11 +1,12 @@
-package valentin4311.candycraft.blocks;
+package com.valentin4311.candycraft.blocks;
 
 import java.util.Random;
+
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
-import valentin4311.candycraft.items.CCItems;
 
 public class BlockHoneyOre extends BlockCandyBase
 {

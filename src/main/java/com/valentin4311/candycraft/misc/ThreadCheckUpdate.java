@@ -1,4 +1,4 @@
-package valentin4311.candycraft.misc;
+package com.valentin4311.candycraft.misc;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,10 +10,11 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
+import com.valentin4311.candycraft.CandyCraft;
+import com.valentin4311.candycraft.CandyCraftPreferences;
+import com.valentin4311.candycraft.event.ClientTick;
+
 import net.minecraft.client.Minecraft;
-import valentin4311.candycraft.CandyCraft;
-import valentin4311.candycraft.CandyCraftPreferences;
-import valentin4311.candycraft.event.ClientTick;
 
 public class ThreadCheckUpdate extends Thread
 {

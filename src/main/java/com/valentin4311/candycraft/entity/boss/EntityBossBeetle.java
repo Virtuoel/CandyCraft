@@ -1,4 +1,12 @@
-package valentin4311.candycraft.entity.boss;
+package com.valentin4311.candycraft.entity.boss;
+
+import com.valentin4311.candycraft.CandyCraft;
+import com.valentin4311.candycraft.client.gui.GuiBoss;
+import com.valentin4311.candycraft.entity.EntityBeetle;
+import com.valentin4311.candycraft.entity.EntityGummyBall;
+import com.valentin4311.candycraft.entity.EntityUtil;
+import com.valentin4311.candycraft.entity.ICandyBoss;
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,13 +28,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.CandyCraft;
-import valentin4311.candycraft.client.gui.GuiBoss;
-import valentin4311.candycraft.entity.EntityBeetle;
-import valentin4311.candycraft.entity.EntityGummyBall;
-import valentin4311.candycraft.entity.EntityUtil;
-import valentin4311.candycraft.entity.ICandyBoss;
-import valentin4311.candycraft.items.CCItems;
 
 public class EntityBossBeetle extends EntityGolem implements IMob, ICandyBoss
 {

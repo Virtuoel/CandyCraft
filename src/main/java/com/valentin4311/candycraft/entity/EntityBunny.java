@@ -1,4 +1,6 @@
-package valentin4311.candycraft.entity;
+package com.valentin4311.candycraft.entity;
+
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
@@ -26,7 +28,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import valentin4311.candycraft.items.CCItems;
 
 public class EntityBunny extends EntityAnimal
 {

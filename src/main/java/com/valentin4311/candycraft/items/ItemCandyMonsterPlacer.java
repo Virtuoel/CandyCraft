@@ -1,6 +1,8 @@
-package valentin4311.candycraft.items;
+package com.valentin4311.candycraft.items;
 
 import java.util.List;
+
+import com.valentin4311.candycraft.entity.CCEntities;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
@@ -12,7 +14,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.entity.CCEntities;
 
 public class ItemCandyMonsterPlacer extends ItemMonsterPlacer
 {

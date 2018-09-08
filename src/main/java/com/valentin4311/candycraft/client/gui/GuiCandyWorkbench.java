@@ -1,4 +1,4 @@
-package valentin4311.candycraft.client.gui;
+package com.valentin4311.candycraft.client.gui;
 
 import org.lwjgl.opengl.GL11;
 

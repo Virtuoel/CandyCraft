@@ -1,4 +1,7 @@
-package valentin4311.candycraft.client.entity;
+package com.valentin4311.candycraft.client.entity;
+
+import com.valentin4311.candycraft.entity.EntitySuguard;
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -9,8 +12,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
-import valentin4311.candycraft.entity.EntitySuguard;
-import valentin4311.candycraft.items.CCItems;
 
 // TODO change to how e.g. Vindicator renders held items
 public class LayerSuguardHeldItem extends LayerHeldItem

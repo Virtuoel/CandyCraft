@@ -1,7 +1,11 @@
-package valentin4311.candycraft.entity;
+package com.valentin4311.candycraft.entity;
 
 import java.util.Iterator;
 import java.util.List;
+
+import com.valentin4311.candycraft.entity.ai.EntityAIWaterMate;
+import com.valentin4311.candycraft.entity.boss.EntityBossBeetle;
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -31,9 +35,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import valentin4311.candycraft.entity.ai.EntityAIWaterMate;
-import valentin4311.candycraft.entity.boss.EntityBossBeetle;
-import valentin4311.candycraft.items.CCItems;
 
 public class EntityNessie extends EntityAnimal implements IAnimals, IEntityLockable, IEntityPowerMount
 {

@@ -1,6 +1,9 @@
-package valentin4311.candycraft.blocks;
+package com.valentin4311.candycraft.blocks;
 
 import java.util.Random;
+
+import com.valentin4311.candycraft.CandyCraft;
+import com.valentin4311.candycraft.blocks.tileentity.TileEntitySugarFurnace;
 
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.state.IBlockState;
@@ -15,8 +18,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.CandyCraft;
-import valentin4311.candycraft.blocks.tileentity.TileEntitySugarFurnace;
 
 public class BlockCandyFurnace extends BlockFurnace
 {

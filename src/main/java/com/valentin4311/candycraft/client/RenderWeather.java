@@ -1,4 +1,4 @@
-package valentin4311.candycraft.client;
+package com.valentin4311.candycraft.client;
 
 import java.util.Random;
 

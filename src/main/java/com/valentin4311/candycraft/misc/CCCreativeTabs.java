@@ -1,8 +1,9 @@
-package valentin4311.candycraft.misc;
+package com.valentin4311.candycraft.misc;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import valentin4311.candycraft.blocks.CCBlocks;
 
 public class CCCreativeTabs extends CreativeTabs
 {

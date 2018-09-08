@@ -1,12 +1,13 @@
-package valentin4311.candycraft.client.gui;
+package com.valentin4311.candycraft.client.gui;
+
+import com.valentin4311.candycraft.blocks.tileentity.TileEntitySugarFactory;
+import com.valentin4311.candycraft.blocks.tileentity.TileEntitySugarFurnace;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
-import valentin4311.candycraft.blocks.tileentity.TileEntitySugarFactory;
-import valentin4311.candycraft.blocks.tileentity.TileEntitySugarFurnace;
 
 public class GuiHandlerCandyCraft implements IGuiHandler
 {

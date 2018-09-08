@@ -1,8 +1,10 @@
-package valentin4311.candycraft.blocks;
+package com.valentin4311.candycraft.blocks;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
@@ -20,7 +22,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.items.CCItems;
 
 public class BlockTallCandyGrass extends BlockCandyBush implements IShearable
 {

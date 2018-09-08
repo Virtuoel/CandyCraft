@@ -1,4 +1,7 @@
-package valentin4311.candycraft.client.gui;
+package com.valentin4311.candycraft.client.gui;
+
+import com.valentin4311.candycraft.blocks.tileentity.TileEntitySugarFurnace;
+import com.valentin4311.candycraft.misc.CCFurnaceRecipe;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -6,8 +9,6 @@ import net.minecraft.inventory.ContainerFurnace;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnaceOutput;
 import net.minecraft.item.ItemStack;
-import valentin4311.candycraft.blocks.tileentity.TileEntitySugarFurnace;
-import valentin4311.candycraft.misc.CCFurnaceRecipe;
 
 public class ContainerSugarFurnace extends ContainerFurnace
 {

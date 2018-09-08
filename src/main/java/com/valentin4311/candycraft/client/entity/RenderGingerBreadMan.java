@@ -1,6 +1,8 @@
-package valentin4311.candycraft.client.entity;
+package com.valentin4311.candycraft.client.entity;
 
 import org.lwjgl.opengl.GL11;
+
+import com.valentin4311.candycraft.entity.EntityGingerBreadMan;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderBiped;
@@ -8,7 +10,6 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.entity.EntityGingerBreadMan;
 
 @SideOnly(Side.CLIENT)
 public class RenderGingerBreadMan extends RenderBiped<EntityGingerBreadMan>

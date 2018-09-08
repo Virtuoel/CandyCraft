@@ -1,4 +1,7 @@
-package valentin4311.candycraft.entity;
+package com.valentin4311.candycraft.entity;
+
+import com.valentin4311.candycraft.items.CCItems;
+import com.valentin4311.candycraft.world.biomes.CCBiomes;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -26,8 +29,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import valentin4311.candycraft.items.CCItems;
-import valentin4311.candycraft.world.biomes.CCBiomes;
 
 public class EntitySuguard extends EntityMob
 {

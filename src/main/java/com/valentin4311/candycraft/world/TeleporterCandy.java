@@ -1,8 +1,11 @@
-package valentin4311.candycraft.world;
+package com.valentin4311.candycraft.world;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import com.valentin4311.candycraft.CandyCraft;
+import com.valentin4311.candycraft.misc.CCAchievements;
 
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
@@ -20,8 +23,6 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
-import valentin4311.candycraft.CandyCraft;
-import valentin4311.candycraft.misc.CCAchievements;
 
 public class TeleporterCandy extends Teleporter
 { // TODO replace with modern code

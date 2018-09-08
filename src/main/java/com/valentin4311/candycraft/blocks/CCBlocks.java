@@ -1,6 +1,21 @@
-package valentin4311.candycraft.blocks;
+package com.valentin4311.candycraft.blocks;
 
 import java.lang.reflect.InvocationTargetException;
+
+import com.valentin4311.candycraft.CandyCraft;
+import com.valentin4311.candycraft.blocks.misc.CandyStepSound;
+import com.valentin4311.candycraft.blocks.tileentity.TileEntityAlchemy;
+import com.valentin4311.candycraft.blocks.tileentity.TileEntityCandyChest;
+import com.valentin4311.candycraft.blocks.tileentity.TileEntityEgg;
+import com.valentin4311.candycraft.blocks.tileentity.TileEntitySugarFactory;
+import com.valentin4311.candycraft.blocks.tileentity.TileEntitySugarFurnace;
+import com.valentin4311.candycraft.blocks.tileentity.TileEntityTeleporter;
+import com.valentin4311.candycraft.items.CCItems;
+import com.valentin4311.candycraft.items.ItemCandyBlock;
+import com.valentin4311.candycraft.items.ItemCandyLeaves;
+import com.valentin4311.candycraft.items.ItemCandySlab;
+import com.valentin4311.candycraft.items.ItemCandyWaterLily;
+import com.valentin4311.candycraft.items.ItemPudding;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
@@ -19,20 +34,6 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.registries.GameData;
-import valentin4311.candycraft.CandyCraft;
-import valentin4311.candycraft.blocks.misc.CandyStepSound;
-import valentin4311.candycraft.blocks.tileentity.TileEntityAlchemy;
-import valentin4311.candycraft.blocks.tileentity.TileEntityCandyChest;
-import valentin4311.candycraft.blocks.tileentity.TileEntityEgg;
-import valentin4311.candycraft.blocks.tileentity.TileEntitySugarFactory;
-import valentin4311.candycraft.blocks.tileentity.TileEntitySugarFurnace;
-import valentin4311.candycraft.blocks.tileentity.TileEntityTeleporter;
-import valentin4311.candycraft.items.CCItems;
-import valentin4311.candycraft.items.ItemCandyBlock;
-import valentin4311.candycraft.items.ItemCandyLeaves;
-import valentin4311.candycraft.items.ItemCandySlab;
-import valentin4311.candycraft.items.ItemCandyWaterLily;
-import valentin4311.candycraft.items.ItemPudding;
 
 public class CCBlocks
 {

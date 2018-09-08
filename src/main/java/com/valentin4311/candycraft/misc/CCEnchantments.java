@@ -1,4 +1,4 @@
-package valentin4311.candycraft.misc;
+package com.valentin4311.candycraft.misc;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraftforge.common.config.Configuration;

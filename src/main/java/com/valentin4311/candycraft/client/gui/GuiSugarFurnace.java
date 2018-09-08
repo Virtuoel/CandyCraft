@@ -1,4 +1,6 @@
-package valentin4311.candycraft.client.gui;
+package com.valentin4311.candycraft.client.gui;
+
+import com.valentin4311.candycraft.blocks.tileentity.TileEntitySugarFurnace;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -7,7 +9,6 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.blocks.tileentity.TileEntitySugarFurnace;
 
 @SideOnly(Side.CLIENT)
 public class GuiSugarFurnace extends GuiContainer

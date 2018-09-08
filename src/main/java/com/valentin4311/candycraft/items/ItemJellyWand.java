@@ -1,4 +1,6 @@
-package valentin4311.candycraft.items;
+package com.valentin4311.candycraft.items;
+
+import com.valentin4311.candycraft.entity.EntityGummyBall;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -6,7 +8,6 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
-import valentin4311.candycraft.entity.EntityGummyBall;
 
 public class ItemJellyWand extends ItemWand
 {

@@ -1,16 +1,17 @@
-package valentin4311.candycraft.world.biomes;
+package com.valentin4311.candycraft.world.biomes;
 
 import java.awt.Color;
+
+import com.valentin4311.candycraft.entity.EntityBunny;
+import com.valentin4311.candycraft.entity.EntityCandyPig;
+import com.valentin4311.candycraft.entity.EntityCandyWolf;
+import com.valentin4311.candycraft.entity.EntitySuguard;
+import com.valentin4311.candycraft.entity.EntityWaffleSheep;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.entity.EntityBunny;
-import valentin4311.candycraft.entity.EntityCandyPig;
-import valentin4311.candycraft.entity.EntityCandyWolf;
-import valentin4311.candycraft.entity.EntitySuguard;
-import valentin4311.candycraft.entity.EntityWaffleSheep;
 
 public class BiomeGenMountains extends BiomeGenCandy
 {

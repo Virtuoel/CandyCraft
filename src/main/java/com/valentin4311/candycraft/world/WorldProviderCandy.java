@@ -1,4 +1,7 @@
-package valentin4311.candycraft.world;
+package com.valentin4311.candycraft.world;
+
+import com.valentin4311.candycraft.CandyCraft;
+import com.valentin4311.candycraft.client.ClientProxy;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
@@ -18,8 +21,6 @@ import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.CandyCraft;
-import valentin4311.candycraft.client.ClientProxy;
 
 public class WorldProviderCandy extends WorldProvider
 {

@@ -1,4 +1,4 @@
-package valentin4311.candycraft.entity;
+package com.valentin4311.candycraft.entity;
 
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;

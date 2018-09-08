@@ -1,4 +1,6 @@
-package valentin4311.candycraft.client.gui;
+package com.valentin4311.candycraft.client.gui;
+
+import com.valentin4311.candycraft.blocks.tileentity.TileEntitySugarFactory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -8,7 +10,6 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.blocks.tileentity.TileEntitySugarFactory;
 
 public class ContainerSugarFactory extends Container
 {

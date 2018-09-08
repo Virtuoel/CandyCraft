@@ -1,11 +1,12 @@
-package valentin4311.candycraft.client.gui;
+package com.valentin4311.candycraft.client.gui;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ContainerWorkbench;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import valentin4311.candycraft.blocks.CCBlocks;
 
 public class ContainerCandyWorkbench extends ContainerWorkbench
 {

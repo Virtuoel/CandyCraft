@@ -1,4 +1,6 @@
-package valentin4311.candycraft.entity.ai;
+package com.valentin4311.candycraft.entity.ai;
+
+import com.valentin4311.candycraft.entity.EntityNougatGolem;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
@@ -6,7 +8,6 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathPoint;
 import net.minecraft.world.World;
-import valentin4311.candycraft.entity.EntityNougatGolem;
 
 public class EntityAIExplode extends EntityAIBase
 {

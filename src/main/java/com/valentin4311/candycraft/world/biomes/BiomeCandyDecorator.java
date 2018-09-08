@@ -1,6 +1,9 @@
-package valentin4311.candycraft.world.biomes;
+package com.valentin4311.candycraft.world.biomes;
 
 import java.util.Random;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.world.generator.WorldGenTallCandyGrass;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -14,8 +17,6 @@ import net.minecraft.world.gen.feature.WorldGenReed;
 import net.minecraft.world.gen.feature.WorldGenSand;
 import net.minecraft.world.gen.feature.WorldGenWaterlily;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.world.generator.WorldGenTallCandyGrass;
 
 public class BiomeCandyDecorator
 {

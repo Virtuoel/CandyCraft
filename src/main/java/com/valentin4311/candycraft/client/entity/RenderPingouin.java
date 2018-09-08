@@ -1,6 +1,8 @@
-package valentin4311.candycraft.client.entity;
+package com.valentin4311.candycraft.client.entity;
 
 import org.lwjgl.opengl.GL11;
+
+import com.valentin4311.candycraft.entity.EntityPingouin;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -11,7 +13,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.entity.EntityPingouin;
 
 @SideOnly(Side.CLIENT)
 public class RenderPingouin extends RenderLiving

@@ -1,4 +1,6 @@
-package valentin4311.candycraft.blocks;
+package com.valentin4311.candycraft.blocks;
+
+import com.valentin4311.candycraft.blocks.fluid.CCFluids;
 
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
@@ -8,7 +10,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
-import valentin4311.candycraft.blocks.fluid.CCFluids;
 
 public class BlockCandyLiquid extends BlockFluidClassic
 {

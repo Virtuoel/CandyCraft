@@ -1,6 +1,9 @@
-package valentin4311.candycraft.items;
+package com.valentin4311.candycraft.items;
 
 import java.util.Random;
+
+import com.valentin4311.candycraft.entity.EntityDynamite;
+import com.valentin4311.candycraft.entity.EntityGlueDynamite;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,8 +17,6 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import valentin4311.candycraft.entity.EntityDynamite;
-import valentin4311.candycraft.entity.EntityGlueDynamite;
 
 public class ItemDynamite extends Item
 {

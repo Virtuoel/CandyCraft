@@ -1,4 +1,8 @@
-package valentin4311.candycraft.blocks.tileentity;
+package com.valentin4311.candycraft.blocks.tileentity;
+
+import com.valentin4311.candycraft.CandyCraft;
+import com.valentin4311.candycraft.world.generator.WorldGenSlimeDungeon;
+import com.valentin4311.candycraft.world.generator.WorldGenSuguardDungeon;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,9 +17,6 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.CandyCraft;
-import valentin4311.candycraft.world.generator.WorldGenSlimeDungeon;
-import valentin4311.candycraft.world.generator.WorldGenSuguardDungeon;
 
 public class TileEntityTeleporter extends TileEntity implements ITickable
 {

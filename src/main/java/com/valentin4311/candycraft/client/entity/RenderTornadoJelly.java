@@ -1,6 +1,8 @@
-package valentin4311.candycraft.client.entity;
+package com.valentin4311.candycraft.client.entity;
 
 import org.lwjgl.opengl.GL11;
+
+import com.valentin4311.candycraft.entity.EntityTornadoJelly;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -9,7 +11,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.entity.EntityTornadoJelly;
 
 @SideOnly(Side.CLIENT)
 public class RenderTornadoJelly extends RenderJelly

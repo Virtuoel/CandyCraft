@@ -1,9 +1,10 @@
-package valentin4311.candycraft.blocks;
+package com.valentin4311.candycraft.blocks;
+
+import com.valentin4311.candycraft.blocks.tileentity.TileEntityCandyChest;
 
 import net.minecraft.block.BlockChest;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import valentin4311.candycraft.blocks.tileentity.TileEntityCandyChest;
 
 public class BlockCandyChest extends BlockChest
 {

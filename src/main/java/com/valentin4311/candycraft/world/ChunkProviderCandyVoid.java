@@ -1,4 +1,4 @@
-package valentin4311.candycraft.world;
+package com.valentin4311.candycraft.world;
 
 import java.util.List;
 import java.util.Random;

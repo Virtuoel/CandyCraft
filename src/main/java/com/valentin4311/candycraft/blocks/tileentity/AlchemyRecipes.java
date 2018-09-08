@@ -1,15 +1,16 @@
-package valentin4311.candycraft.blocks.tileentity;
+package com.valentin4311.candycraft.blocks.tileentity;
 
 import java.util.HashMap;
 import java.util.Random;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.items.CCItems;
 
 public class AlchemyRecipes
 {

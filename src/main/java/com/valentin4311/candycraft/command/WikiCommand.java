@@ -1,7 +1,9 @@
-package valentin4311.candycraft.command;
+package com.valentin4311.candycraft.command;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
@@ -11,7 +13,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
-import valentin4311.candycraft.items.CCItems;
 
 public class WikiCommand extends CommandBase
 {

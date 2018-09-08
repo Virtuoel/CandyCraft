@@ -1,6 +1,8 @@
-package valentin4311.candycraft.blocks;
+package com.valentin4311.candycraft.blocks;
 
 import java.util.Random;
+
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -10,7 +12,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import valentin4311.candycraft.items.CCItems;
 
 public class BlockCherry extends Block
 {

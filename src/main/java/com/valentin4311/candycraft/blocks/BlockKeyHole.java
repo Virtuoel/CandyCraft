@@ -1,4 +1,6 @@
-package valentin4311.candycraft.blocks;
+package com.valentin4311.candycraft.blocks;
+
+import com.valentin4311.candycraft.items.ItemBossKey;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -9,7 +11,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import valentin4311.candycraft.items.ItemBossKey;
 
 public class BlockKeyHole extends Block
 {

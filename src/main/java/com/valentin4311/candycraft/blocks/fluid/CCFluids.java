@@ -1,7 +1,8 @@
-package valentin4311.candycraft.blocks.fluid;
+package com.valentin4311.candycraft.blocks.fluid;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
 
 import net.minecraftforge.fluids.FluidRegistry;
-import valentin4311.candycraft.blocks.CCBlocks;
 
 public class CCFluids
 {

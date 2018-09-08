@@ -1,4 +1,4 @@
-package valentin4311.candycraft.blocks.tileentity;
+package com.valentin4311.candycraft.blocks.tileentity;
 
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.math.AxisAlignedBB;

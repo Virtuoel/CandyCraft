@@ -1,12 +1,13 @@
-package valentin4311.candycraft.world.biomes;
+package com.valentin4311.candycraft.world.biomes;
+
+import com.valentin4311.candycraft.entity.EntityBee;
+import com.valentin4311.candycraft.entity.EntityBunny;
+import com.valentin4311.candycraft.entity.EntityCandyPig;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.entity.EntityBee;
-import valentin4311.candycraft.entity.EntityBunny;
-import valentin4311.candycraft.entity.EntityCandyPig;
 
 public class BiomeGenCandyPlains extends BiomeGenCandy
 {

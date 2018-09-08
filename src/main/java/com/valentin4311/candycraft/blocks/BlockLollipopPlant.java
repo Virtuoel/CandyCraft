@@ -1,8 +1,10 @@
-package valentin4311.candycraft.blocks;
+package com.valentin4311.candycraft.blocks;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -23,7 +25,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.items.CCItems;
 
 public class BlockLollipopPlant extends BlockCandyBush implements IGrowable
 {

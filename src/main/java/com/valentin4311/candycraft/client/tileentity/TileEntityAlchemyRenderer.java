@@ -1,13 +1,14 @@
-package valentin4311.candycraft.client.tileentity;
+package com.valentin4311.candycraft.client.tileentity;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
+
+import com.valentin4311.candycraft.blocks.tileentity.TileEntityAlchemy;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import valentin4311.candycraft.blocks.tileentity.TileEntityAlchemy;
 
 public class TileEntityAlchemyRenderer extends TileEntitySpecialRenderer
 {

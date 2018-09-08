@@ -1,4 +1,6 @@
-package valentin4311.candycraft.client.entity;
+package com.valentin4311.candycraft.client.entity;
+
+import com.valentin4311.candycraft.entity.EntityJelly;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
@@ -8,7 +10,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-import valentin4311.candycraft.entity.EntityJelly;
 
 public abstract class RenderJelly extends RenderLiving
 {

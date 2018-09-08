@@ -1,4 +1,7 @@
-package valentin4311.candycraft.entity;
+package com.valentin4311.candycraft.entity;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.entity.boss.EntityBossBeetle;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -26,8 +29,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.entity.boss.EntityBossBeetle;
 
 public class EntityDragon extends EntityGolem implements IEntityLockable, IEntityPowerMount
 {

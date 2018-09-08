@@ -1,10 +1,11 @@
-package valentin4311.candycraft.client.entity;
+package com.valentin4311.candycraft.client.entity;
+
+import com.valentin4311.candycraft.entity.EntityNessie;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
-import valentin4311.candycraft.entity.EntityNessie;
 
 public class ModelNessie extends ModelBase
 {

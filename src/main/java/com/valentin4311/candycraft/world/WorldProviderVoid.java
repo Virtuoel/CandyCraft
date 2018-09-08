@@ -1,4 +1,7 @@
-package valentin4311.candycraft.world;
+package com.valentin4311.candycraft.world;
+
+import com.valentin4311.candycraft.CandyCraft;
+import com.valentin4311.candycraft.world.biomes.CCBiomes;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.MathHelper;
@@ -11,8 +14,6 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.CandyCraft;
-import valentin4311.candycraft.world.biomes.CCBiomes;
 
 public class WorldProviderVoid extends WorldProvider
 {

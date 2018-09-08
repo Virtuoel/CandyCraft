@@ -1,8 +1,10 @@
-package valentin4311.candycraft.blocks;
+package com.valentin4311.candycraft.blocks;
 
 import java.util.Random;
 
 import javax.annotation.Nullable;
+
+import com.valentin4311.candycraft.blocks.tileentity.TileEntityEgg;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDragonEgg;
@@ -19,7 +21,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.blocks.tileentity.TileEntityEgg;
 
 public class BlockEgg extends BlockDragonEgg implements ITileEntityProvider
 {

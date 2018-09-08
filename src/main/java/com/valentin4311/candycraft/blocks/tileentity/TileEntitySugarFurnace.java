@@ -1,4 +1,10 @@
-package valentin4311.candycraft.blocks.tileentity;
+package com.valentin4311.candycraft.blocks.tileentity;
+
+import com.valentin4311.candycraft.blocks.BlockCandyFurnace;
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.client.gui.ContainerSugarFurnace;
+import com.valentin4311.candycraft.items.CCItems;
+import com.valentin4311.candycraft.misc.CCFurnaceRecipe;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,11 +24,6 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.blocks.BlockCandyFurnace;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.client.gui.ContainerSugarFurnace;
-import valentin4311.candycraft.items.CCItems;
-import valentin4311.candycraft.misc.CCFurnaceRecipe;
 
 public class TileEntitySugarFurnace extends TileEntityLockable implements ITickable, ISidedInventory
 {

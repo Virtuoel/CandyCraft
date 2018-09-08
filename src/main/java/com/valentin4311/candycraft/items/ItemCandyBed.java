@@ -1,4 +1,6 @@
-package valentin4311.candycraft.items;
+package com.valentin4311.candycraft.items;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
@@ -14,7 +16,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import valentin4311.candycraft.blocks.CCBlocks;
 
 public class ItemCandyBed extends Item
 {

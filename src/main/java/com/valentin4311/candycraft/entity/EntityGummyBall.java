@@ -1,4 +1,9 @@
-package valentin4311.candycraft.entity;
+package com.valentin4311.candycraft.entity;
+
+import com.valentin4311.candycraft.client.entity.EntityBreakingParticleFX;
+import com.valentin4311.candycraft.entity.boss.EntityBossBeetle;
+import com.valentin4311.candycraft.entity.boss.EntityBossSuguard;
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleBreaking;
@@ -19,10 +24,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.client.entity.EntityBreakingParticleFX;
-import valentin4311.candycraft.entity.boss.EntityBossBeetle;
-import valentin4311.candycraft.entity.boss.EntityBossSuguard;
-import valentin4311.candycraft.items.CCItems;
 
 public class EntityGummyBall extends EntityThrowable
 {

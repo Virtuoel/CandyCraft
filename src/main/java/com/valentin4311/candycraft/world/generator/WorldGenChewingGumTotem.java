@@ -1,6 +1,9 @@
-package valentin4311.candycraft.world.generator;
+package com.valentin4311.candycraft.world.generator;
 
 import java.util.Random;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.world.WorldProviderCandy;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -10,8 +13,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.world.WorldProviderCandy;
 
 public class WorldGenChewingGumTotem extends WorldGenerator
 {

@@ -1,6 +1,10 @@
-package valentin4311.candycraft.blocks;
+package com.valentin4311.candycraft.blocks;
 
 import java.util.Random;
+
+import com.valentin4311.candycraft.CandyCraft;
+import com.valentin4311.candycraft.CandyCraftPreferences;
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,9 +18,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import valentin4311.candycraft.CandyCraft;
-import valentin4311.candycraft.CandyCraftPreferences;
-import valentin4311.candycraft.items.CCItems;
 
 public class BlockSugar extends Block
 {

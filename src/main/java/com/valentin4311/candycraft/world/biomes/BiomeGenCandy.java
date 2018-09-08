@@ -1,7 +1,20 @@
-package valentin4311.candycraft.world.biomes;
+package com.valentin4311.candycraft.world.biomes;
 
 import java.awt.Color;
 import java.util.Random;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.entity.EntityBunny;
+import com.valentin4311.candycraft.entity.EntityCandyCreeper;
+import com.valentin4311.candycraft.entity.EntityCandyPig;
+import com.valentin4311.candycraft.entity.EntityCottonCandySpider;
+import com.valentin4311.candycraft.entity.EntityFish;
+import com.valentin4311.candycraft.entity.EntitySuguard;
+import com.valentin4311.candycraft.entity.EntityWaffleSheep;
+import com.valentin4311.candycraft.world.generator.WorldGenCandyTrees;
+import com.valentin4311.candycraft.world.generator.WorldGenCandyWaterlily;
+import com.valentin4311.candycraft.world.generator.WorldGenSeaweeds;
+import com.valentin4311.candycraft.world.generator.WorldGenTallCandyGrass;
 
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
@@ -15,18 +28,6 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.entity.EntityBunny;
-import valentin4311.candycraft.entity.EntityCandyCreeper;
-import valentin4311.candycraft.entity.EntityCandyPig;
-import valentin4311.candycraft.entity.EntityCottonCandySpider;
-import valentin4311.candycraft.entity.EntityFish;
-import valentin4311.candycraft.entity.EntitySuguard;
-import valentin4311.candycraft.entity.EntityWaffleSheep;
-import valentin4311.candycraft.world.generator.WorldGenCandyTrees;
-import valentin4311.candycraft.world.generator.WorldGenCandyWaterlily;
-import valentin4311.candycraft.world.generator.WorldGenSeaweeds;
-import valentin4311.candycraft.world.generator.WorldGenTallCandyGrass;
 
 public class BiomeGenCandy extends Biome
 {

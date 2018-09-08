@@ -1,4 +1,8 @@
-package valentin4311.candycraft.entity;
+package com.valentin4311.candycraft.entity;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.entity.boss.EntityBossBeetle;
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -21,9 +25,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.entity.boss.EntityBossBeetle;
-import valentin4311.candycraft.items.CCItems;
 
 public class EntityPingouin extends EntityAnimal
 {

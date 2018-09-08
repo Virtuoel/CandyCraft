@@ -1,4 +1,4 @@
-package valentin4311.candycraft.blocks.misc;
+package com.valentin4311.candycraft.blocks.misc;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.util.SoundEvent;

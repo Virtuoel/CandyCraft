@@ -1,4 +1,9 @@
-package valentin4311.candycraft.items;
+package com.valentin4311.candycraft.items;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.blocks.tileentity.TileEntitySugarFactory;
+import com.valentin4311.candycraft.misc.CCAchievements;
+import com.valentin4311.candycraft.misc.CCEnchantments;
 
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -14,10 +19,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.blocks.tileentity.TileEntitySugarFactory;
-import valentin4311.candycraft.misc.CCAchievements;
-import valentin4311.candycraft.misc.CCEnchantments;
 
 public class ItemFork extends Item
 {

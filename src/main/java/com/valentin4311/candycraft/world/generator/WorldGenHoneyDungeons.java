@@ -1,9 +1,12 @@
-package valentin4311.candycraft.world.generator;
+package com.valentin4311.candycraft.world.generator;
 
 import java.util.List;
 import java.util.Random;
 
 import com.google.common.collect.Lists;
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.blocks.tileentity.TileEntityCandyChest;
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -14,9 +17,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.blocks.tileentity.TileEntityCandyChest;
-import valentin4311.candycraft.items.CCItems;
 
 public class WorldGenHoneyDungeons extends WorldGenerator
 {

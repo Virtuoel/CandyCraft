@@ -1,6 +1,8 @@
-package valentin4311.candycraft.client.tileentity;
+package com.valentin4311.candycraft.client.tileentity;
 
 import java.util.Calendar;
+
+import com.valentin4311.candycraft.blocks.tileentity.TileEntityCandyChest;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
@@ -13,7 +15,6 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.blocks.tileentity.TileEntityCandyChest;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityCandyChestRenderer extends TileEntityChestRenderer

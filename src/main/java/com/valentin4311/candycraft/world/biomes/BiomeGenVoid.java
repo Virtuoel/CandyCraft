@@ -1,11 +1,12 @@
-package valentin4311.candycraft.world.biomes;
+package com.valentin4311.candycraft.world.biomes;
 
 import java.awt.Color;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.blocks.CCBlocks;
 
 public class BiomeGenVoid extends Biome
 {

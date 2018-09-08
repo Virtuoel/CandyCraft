@@ -1,4 +1,4 @@
-package valentin4311.candycraft;
+package com.valentin4311.candycraft;
 
 public class CommonProxy
 {

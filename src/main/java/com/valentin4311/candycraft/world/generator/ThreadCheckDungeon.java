@@ -1,10 +1,11 @@
-package valentin4311.candycraft.world.generator;
+package com.valentin4311.candycraft.world.generator;
+
+import com.valentin4311.candycraft.CandyCraft;
+import com.valentin4311.candycraft.blocks.tileentity.TileEntityTeleporter;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import valentin4311.candycraft.CandyCraft;
-import valentin4311.candycraft.blocks.tileentity.TileEntityTeleporter;
 
 public class ThreadCheckDungeon extends Thread
 {

@@ -1,4 +1,13 @@
-package valentin4311.candycraft.event;
+package com.valentin4311.candycraft.event;
+
+import com.valentin4311.candycraft.CandyCraft;
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.client.ClientProxy;
+import com.valentin4311.candycraft.client.gui.GuiBoss;
+import com.valentin4311.candycraft.entity.EntityGummyBall;
+import com.valentin4311.candycraft.entity.ICandyBoss;
+import com.valentin4311.candycraft.entity.IEntityLockable;
+import com.valentin4311.candycraft.entity.IEntityPowerMount;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLiving;
@@ -16,14 +25,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.CandyCraft;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.client.ClientProxy;
-import valentin4311.candycraft.client.gui.GuiBoss;
-import valentin4311.candycraft.entity.EntityGummyBall;
-import valentin4311.candycraft.entity.ICandyBoss;
-import valentin4311.candycraft.entity.IEntityLockable;
-import valentin4311.candycraft.entity.IEntityPowerMount;
 
 @SideOnly(Side.CLIENT)
 public class ClientEventCatcher

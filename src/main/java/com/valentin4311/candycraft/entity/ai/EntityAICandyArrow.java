@@ -1,4 +1,4 @@
-package valentin4311.candycraft.entity.ai;
+package com.valentin4311.candycraft.entity.ai;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;

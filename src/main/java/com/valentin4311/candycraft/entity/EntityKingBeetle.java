@@ -1,4 +1,7 @@
-package valentin4311.candycraft.entity;
+package com.valentin4311.candycraft.entity;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.entity.boss.EntityBossBeetle;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,8 +25,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.entity.boss.EntityBossBeetle;
 
 public class EntityKingBeetle extends EntityGolem implements IEntityPowerMount
 {

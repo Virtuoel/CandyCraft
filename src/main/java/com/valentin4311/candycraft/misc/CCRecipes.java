@@ -1,11 +1,12 @@
-package valentin4311.candycraft.misc;
+package com.valentin4311.candycraft.misc;
+
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.blocks.tileentity.AlchemyRecipes;
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.blocks.tileentity.AlchemyRecipes;
-import valentin4311.candycraft.items.CCItems;
 
 public class CCRecipes
 {

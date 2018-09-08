@@ -1,6 +1,14 @@
-package valentin4311.candycraft.entity.boss;
+package com.valentin4311.candycraft.entity.boss;
 
 import com.sun.jna.platform.win32.WinUser.SIZE;
+import com.valentin4311.candycraft.CandyCraft;
+import com.valentin4311.candycraft.client.entity.EntityBreakingParticleFX;
+import com.valentin4311.candycraft.client.gui.GuiBoss;
+import com.valentin4311.candycraft.entity.EntityJelly;
+import com.valentin4311.candycraft.entity.EntityUtil;
+import com.valentin4311.candycraft.entity.EntityYellowJelly;
+import com.valentin4311.candycraft.entity.ICandyBoss;
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleBreaking;
@@ -18,14 +26,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.CandyCraft;
-import valentin4311.candycraft.client.entity.EntityBreakingParticleFX;
-import valentin4311.candycraft.client.gui.GuiBoss;
-import valentin4311.candycraft.entity.EntityJelly;
-import valentin4311.candycraft.entity.EntityUtil;
-import valentin4311.candycraft.entity.EntityYellowJelly;
-import valentin4311.candycraft.entity.ICandyBoss;
-import valentin4311.candycraft.items.CCItems;
 
 public class EntityKingSlime extends EntityJelly implements IMob, ICandyBoss
 {

@@ -1,7 +1,11 @@
-package valentin4311.candycraft.blocks.tileentity;
+package com.valentin4311.candycraft.blocks.tileentity;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import com.valentin4311.candycraft.CandyCraft;
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.items.CCItems;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -17,9 +21,6 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
-import valentin4311.candycraft.CandyCraft;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.items.CCItems;
 
 public class TileEntitySugarFactory extends TileEntity implements ISidedInventory, ITickable
 {

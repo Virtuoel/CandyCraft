@@ -1,4 +1,7 @@
-package valentin4311.candycraft.entity;
+package com.valentin4311.candycraft.entity;
+
+import com.valentin4311.candycraft.items.CCItems;
+import com.valentin4311.candycraft.misc.CCAchievements;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityCreeper;
@@ -12,8 +15,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import valentin4311.candycraft.items.CCItems;
-import valentin4311.candycraft.misc.CCAchievements;
 
 public class EntityCandyCreeper extends EntityCreeper
 {

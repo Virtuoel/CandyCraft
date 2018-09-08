@@ -1,4 +1,4 @@
-package valentin4311.candycraft.world;
+package com.valentin4311.candycraft.world;
 
 import net.minecraft.world.WorldType;
 import net.minecraftforge.fml.relauncher.Side;

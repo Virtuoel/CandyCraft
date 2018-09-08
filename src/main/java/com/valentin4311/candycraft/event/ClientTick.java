@@ -1,4 +1,9 @@
-package valentin4311.candycraft.event;
+package com.valentin4311.candycraft.event;
+
+import com.valentin4311.candycraft.CandyCraft;
+import com.valentin4311.candycraft.CandyCraftPreferences;
+import com.valentin4311.candycraft.client.gui.GuiBoss;
+import com.valentin4311.candycraft.misc.ThreadCheckUpdate;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
@@ -6,10 +11,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.CandyCraft;
-import valentin4311.candycraft.CandyCraftPreferences;
-import valentin4311.candycraft.client.gui.GuiBoss;
-import valentin4311.candycraft.misc.ThreadCheckUpdate;
 
 public class ClientTick
 {

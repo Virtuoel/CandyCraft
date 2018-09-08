@@ -1,8 +1,9 @@
-package valentin4311.candycraft.world;
+package com.valentin4311.candycraft.world;
+
+import com.valentin4311.candycraft.world.biomes.GenLayerCandyBiomes;
 
 import net.minecraftforge.event.terraingen.WorldTypeEvent.InitBiomeGens;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import valentin4311.candycraft.world.biomes.GenLayerCandyBiomes;
 
 public class TerrainCatcher
 {

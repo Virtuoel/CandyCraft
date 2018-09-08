@@ -1,6 +1,10 @@
-package valentin4311.candycraft.client.gui;
+package com.valentin4311.candycraft.client.gui;
 
 import org.lwjgl.opengl.GL11;
+
+import com.valentin4311.candycraft.entity.ICandyBoss;
+import com.valentin4311.candycraft.entity.IEntityLockable;
+import com.valentin4311.candycraft.entity.IEntityPowerMount;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -17,9 +21,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.entity.ICandyBoss;
-import valentin4311.candycraft.entity.IEntityLockable;
-import valentin4311.candycraft.entity.IEntityPowerMount;
 
 @SideOnly(Side.CLIENT)
 public class GuiBoss extends Gui

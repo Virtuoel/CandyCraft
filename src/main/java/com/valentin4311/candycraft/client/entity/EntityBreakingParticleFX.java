@@ -1,4 +1,4 @@
-package valentin4311.candycraft.client.entity;
+package com.valentin4311.candycraft.client.entity;
 
 import net.minecraft.client.particle.ParticleBreaking;
 import net.minecraft.item.Item;

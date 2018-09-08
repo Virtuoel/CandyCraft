@@ -1,9 +1,10 @@
-package valentin4311.candycraft.client.gui;
+package com.valentin4311.candycraft.client.gui;
+
+import com.valentin4311.candycraft.blocks.tileentity.TileEntitySugarFurnace;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import valentin4311.candycraft.blocks.tileentity.TileEntitySugarFurnace;
 
 public class SlotSugarFuel extends Slot
 {

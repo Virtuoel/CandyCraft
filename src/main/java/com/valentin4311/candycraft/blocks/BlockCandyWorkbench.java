@@ -1,4 +1,6 @@
-package valentin4311.candycraft.blocks;
+package com.valentin4311.candycraft.blocks;
+
+import com.valentin4311.candycraft.client.gui.ContainerCandyWorkbench;
 
 import net.minecraft.block.BlockWorkbench;
 import net.minecraft.block.state.IBlockState;
@@ -10,7 +12,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import valentin4311.candycraft.client.gui.ContainerCandyWorkbench;
 
 public class BlockCandyWorkbench extends BlockWorkbench
 {

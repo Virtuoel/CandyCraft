@@ -1,11 +1,12 @@
-package valentin4311.candycraft.items;
+package com.valentin4311.candycraft.items;
+
+import com.valentin4311.candycraft.blocks.BlockCandyStep;
+import com.valentin4311.candycraft.blocks.CCBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
-import valentin4311.candycraft.blocks.BlockCandyStep;
-import valentin4311.candycraft.blocks.CCBlocks;
 
 public class ItemCandySlab extends ItemSlab
 {

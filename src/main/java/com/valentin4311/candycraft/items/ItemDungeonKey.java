@@ -1,6 +1,11 @@
-package valentin4311.candycraft.items;
+package com.valentin4311.candycraft.items;
 
 import java.util.List;
+
+import com.valentin4311.candycraft.CandyCraftPreferences;
+import com.valentin4311.candycraft.blocks.CCBlocks;
+import com.valentin4311.candycraft.blocks.tileentity.TileEntityTeleporter;
+import com.valentin4311.candycraft.world.generator.ThreadCheckDungeon;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
@@ -17,10 +22,6 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import valentin4311.candycraft.CandyCraftPreferences;
-import valentin4311.candycraft.blocks.CCBlocks;
-import valentin4311.candycraft.blocks.tileentity.TileEntityTeleporter;
-import valentin4311.candycraft.world.generator.ThreadCheckDungeon;
 
 public class ItemDungeonKey extends Item
 {
