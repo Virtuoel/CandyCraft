@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:blocks/sugar_essence_flower"
+        "layer0": "candycraft:blocks/sugar_essence_flower"
     },
     "display": {
         "thirdperson": {

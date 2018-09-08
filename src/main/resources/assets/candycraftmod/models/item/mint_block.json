@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/mint_block",
+    "parent": "candycraft:block/mint_block",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/raspberry_block",
+    "parent": "candycraft:block/raspberry_block",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

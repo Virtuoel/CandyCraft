@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/chocolate_cobblestone_stairs",
+    "parent": "candycraft:block/chocolate_cobblestone_stairs",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

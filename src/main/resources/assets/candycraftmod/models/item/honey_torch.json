@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:blocks/honey_torch"
+        "layer0": "candycraft:blocks/honey_torch"
     },
     "display": {
         "thirdperson": {

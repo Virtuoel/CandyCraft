@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:items/candied_cherry"
+        "layer0": "candycraft:items/candied_cherry"
     },
     "display": {
         "thirdperson": {

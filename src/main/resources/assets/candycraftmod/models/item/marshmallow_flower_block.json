@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:blocks/marshmallow_flower"
+        "layer0": "candycraft:blocks/marshmallow_flower"
     },
     "display": {
         "thirdperson": {

@@ -1,6 +1,6 @@
 {
     "parent": "block/trapdoor_top",
     "textures": {
-        "texture": "candycraftmod:blocks/marshmallow_trapdoor"
+        "texture": "candycraft:blocks/marshmallow_trapdoor"
     }
 }

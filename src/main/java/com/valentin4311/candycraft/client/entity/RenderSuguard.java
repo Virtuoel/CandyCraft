@@ -14,8 +14,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderSuguard extends RenderLiving<EntitySuguard>
 {
-	private static final ResourceLocation suguard = new ResourceLocation("candycraftmod:textures/entity/SuGarde.png");
-	private static final ResourceLocation orangeSuguard = new ResourceLocation("candycraftmod:textures/entity/SuguardeSoldier.png");
+	private static final ResourceLocation suguard = new ResourceLocation("candycraft:textures/entity/SuGarde.png");
+	private static final ResourceLocation orangeSuguard = new ResourceLocation("candycraft:textures/entity/SuguardeSoldier.png");
 
 	public RenderSuguard(RenderManager rm)
 	{

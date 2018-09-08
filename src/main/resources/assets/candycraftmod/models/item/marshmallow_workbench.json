@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/marshmallow_workbench",
+    "parent": "candycraft:block/marshmallow_workbench",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

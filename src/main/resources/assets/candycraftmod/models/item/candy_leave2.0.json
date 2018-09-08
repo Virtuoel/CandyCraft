@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/candy_leaves2.0",
+    "parent": "candycraft:block/candy_leaves2.0",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

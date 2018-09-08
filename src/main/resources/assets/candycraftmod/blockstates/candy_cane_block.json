@@ -1,7 +1,7 @@
 {
     "variants": {
-        "axis=y":  { "model": "candycraftmod:candy_cane_block" },
-        "axis=z":   { "model": "candycraftmod:candy_cane_block", "x": 90 },
-        "axis=x":   { "model": "candycraftmod:candy_cane_block", "x": 90, "y": 90 }
+        "axis=y":  { "model": "candycraft:candy_cane_block" },
+        "axis=z":   { "model": "candycraft:candy_cane_block", "x": 90 },
+        "axis=x":   { "model": "candycraft:candy_cane_block", "x": 90, "y": 90 }
     }
 }

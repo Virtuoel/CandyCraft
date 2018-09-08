@@ -1,8 +1,8 @@
 {
     "ambientocclusion": false,
     "textures": {
-        "particle": "candycraftmod:blocks/dragon_egg",
-        "all": "candycraftmod:blocks/dragon_egg"
+        "particle": "candycraft:blocks/dragon_egg",
+        "all": "candycraft:blocks/dragon_egg"
     },
     "elements": [
         {   "from": [ 6, 15, 6 ],

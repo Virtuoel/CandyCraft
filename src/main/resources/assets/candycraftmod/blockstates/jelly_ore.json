@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "candycraftmod:jelly_ore" }
+        "normal": { "model": "candycraft:jelly_ore" }
     }
 }

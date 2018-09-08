@@ -15,10 +15,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderCandyWolf extends RenderLiving<EntityWolf>
 {
-	private static final ResourceLocation wolfTexture = new ResourceLocation("candycraftmod:textures/entity/wolfCandy.png");
-	private static final ResourceLocation tameTexture = new ResourceLocation("candycraftmod:textures/entity/wolf_tameCandy.png");
-	private static final ResourceLocation angryTexture = new ResourceLocation("candycraftmod:textures/entity/wolf_angryCandy.png");
-	private static final ResourceLocation caramelTexture = new ResourceLocation("candycraftmod:textures/entity/wolf_tameCandy2.png");
+	private static final ResourceLocation wolfTexture = new ResourceLocation("candycraft:textures/entity/wolfCandy.png");
+	private static final ResourceLocation tameTexture = new ResourceLocation("candycraft:textures/entity/wolf_tameCandy.png");
+	private static final ResourceLocation angryTexture = new ResourceLocation("candycraft:textures/entity/wolf_angryCandy.png");
+	private static final ResourceLocation caramelTexture = new ResourceLocation("candycraft:textures/entity/wolf_tameCandy2.png");
 	private static final ResourceLocation collarTexture = new ResourceLocation("textures/entity/wolf/wolf_collar.png");
 
 	public RenderCandyWolf(RenderManager rm, ModelBase par1ModelBase, float par3)

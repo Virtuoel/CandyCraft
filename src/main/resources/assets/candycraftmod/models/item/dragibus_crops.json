@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:blocks/dragibus_crops.3"
+        "layer0": "candycraft:blocks/dragibus_crops.3"
     },
     "display": {
         "thirdperson": {

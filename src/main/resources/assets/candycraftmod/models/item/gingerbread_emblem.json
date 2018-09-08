@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:items/gingerbread_emblem"
+        "layer0": "candycraft:items/gingerbread_emblem"
     },
     "display": {
         "thirdperson": {

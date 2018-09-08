@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:items/licorice_leggings"
+        "layer0": "candycraft:items/licorice_leggings"
     },
     "display": {
         "thirdperson": {

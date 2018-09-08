@@ -1,8 +1,8 @@
 {
     "ambientocclusion": false,
     "textures": {
-        "particle": "candycraftmod:blocks/marshmallow_ladder",
-        "texture": "candycraftmod:blocks/marshmallow_ladder"
+        "particle": "candycraft:blocks/marshmallow_ladder",
+        "texture": "candycraft:blocks/marshmallow_ladder"
     },
     "elements": [
         {   "from": [ 0, 0, 15.2 ],

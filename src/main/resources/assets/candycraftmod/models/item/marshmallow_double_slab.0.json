@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/marshmallow_planks.0",
+    "parent": "candycraft:block/marshmallow_planks.0",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

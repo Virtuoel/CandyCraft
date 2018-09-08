@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:items/chewing_gum_emblem"
+        "layer0": "candycraft:items/chewing_gum_emblem"
     },
     "display": {
         "thirdperson": {

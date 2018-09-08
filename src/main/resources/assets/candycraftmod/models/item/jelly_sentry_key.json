@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:items/jelly_sentry_key"
+        "layer0": "candycraft:items/jelly_sentry_key"
     },
     "display": {
         "thirdperson": {

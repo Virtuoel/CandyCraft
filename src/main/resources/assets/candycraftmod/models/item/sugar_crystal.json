@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:items/sugar_crystal"
+        "layer0": "candycraft:items/sugar_crystal"
     },
     "display": {
         "thirdperson": {

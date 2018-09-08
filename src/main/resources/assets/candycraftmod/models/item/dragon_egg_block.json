@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/dragon_egg_block",
+    "parent": "candycraft:block/dragon_egg_block",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

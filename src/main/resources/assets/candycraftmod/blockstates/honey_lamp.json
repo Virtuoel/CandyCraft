@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "candycraftmod:honey_lamp" }
+        "normal": { "model": "candycraft:honey_lamp" }
     }
 }

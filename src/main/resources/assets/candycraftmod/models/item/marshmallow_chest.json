@@ -1,9 +1,9 @@
 {
     "textures": {
-        "0": "candycraftmod:blocks/chest_side",
-        "1": "candycraftmod:blocks/chest_top",
-        "2": "candycraftmod:blocks/lock_side",
-        "3": "candycraftmod:blocks/lock_top"
+        "0": "candycraft:blocks/chest_side",
+        "1": "candycraft:blocks/chest_top",
+        "2": "candycraft:blocks/lock_side",
+        "3": "candycraft:blocks/lock_top"
     },
     "elements": [
         {

@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:blocks/fraise_tagada_flower"
+        "layer0": "candycraft:blocks/fraise_tagada_flower"
     },
     "display": {
         "thirdperson": {

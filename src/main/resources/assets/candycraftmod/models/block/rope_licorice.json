@@ -1,6 +1,6 @@
 {
     "parent": "block/crop",
     "textures": {
-        "crop": "candycraftmod:blocks/rope_licorice"
+        "crop": "candycraft:blocks/rope_licorice"
     }
 }

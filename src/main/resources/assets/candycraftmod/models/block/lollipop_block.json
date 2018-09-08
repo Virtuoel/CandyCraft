@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "candycraftmod:blocks/lollipop_block"
+        "cross": "candycraft:blocks/lollipop_block"
     }
 }

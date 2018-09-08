@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/PEZ_block",
+    "parent": "candycraft:block/PEZ_block",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

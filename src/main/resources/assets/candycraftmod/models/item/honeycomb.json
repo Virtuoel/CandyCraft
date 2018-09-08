@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:items/honeycomb"
+        "layer0": "candycraft:items/honeycomb"
     },
     "display": {
         "thirdperson": {

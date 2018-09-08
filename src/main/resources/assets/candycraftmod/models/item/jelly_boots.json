@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:items/jelly_boots"
+        "layer0": "candycraft:items/jelly_boots"
     },
     "display": {
         "thirdperson": {

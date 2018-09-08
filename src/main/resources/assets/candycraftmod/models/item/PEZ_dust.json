@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:items/PEZ_dust"
+        "layer0": "candycraft:items/PEZ_dust"
     },
     "display": {
         "thirdperson": {

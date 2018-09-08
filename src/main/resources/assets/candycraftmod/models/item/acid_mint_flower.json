@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:blocks/acid_mint_flower"
+        "layer0": "candycraft:blocks/acid_mint_flower"
     },
     "display": {
         "thirdperson": {

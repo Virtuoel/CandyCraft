@@ -1,7 +1,7 @@
 {
     "textures": {
-        "particle": "candycraftmod:blocks/cherry_block",
-        "all": "candycraftmod:blocks/cherry_block"
+        "particle": "candycraft:blocks/cherry_block",
+        "all": "candycraft:blocks/cherry_block"
     },
 	"elements": [
         {   "from": [ 4.8, 9.6, 4.8 ],

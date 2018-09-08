@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "candycraftmod:blocks/cotton_candy_web"
+        "cross": "candycraft:blocks/cotton_candy_web"
     }
 }

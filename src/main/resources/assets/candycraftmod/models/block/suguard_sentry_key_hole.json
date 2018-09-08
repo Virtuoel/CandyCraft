@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "candycraftmod:blocks/suguard_sentry_key_hole"
+        "all": "candycraft:blocks/suguard_sentry_key_hole"
     }
 }

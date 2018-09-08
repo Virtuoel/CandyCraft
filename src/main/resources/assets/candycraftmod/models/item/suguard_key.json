@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:items/suguard_key"
+        "layer0": "candycraft:items/suguard_key"
     },
     "display": {
         "thirdperson": {

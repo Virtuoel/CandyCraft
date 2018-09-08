@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:items/record_1"
+        "layer0": "candycraft:items/record_1"
     },
     "display": {
         "thirdperson": {

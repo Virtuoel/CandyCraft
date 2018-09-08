@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/nougat_head",
+    "parent": "candycraft:block/nougat_head",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

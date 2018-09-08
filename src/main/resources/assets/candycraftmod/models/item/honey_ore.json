@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/honey_ore",
+    "parent": "candycraft:block/honey_ore",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

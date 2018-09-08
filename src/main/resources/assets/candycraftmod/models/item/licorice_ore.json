@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/licorice_ore",
+    "parent": "candycraft:block/licorice_ore",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

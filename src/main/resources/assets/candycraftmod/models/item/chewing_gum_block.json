@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/chewing_gum_block",
+    "parent": "candycraft:block/chewing_gum_block",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/jelly_boss_key_hole",
+    "parent": "candycraft:block/jelly_boss_key_hole",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

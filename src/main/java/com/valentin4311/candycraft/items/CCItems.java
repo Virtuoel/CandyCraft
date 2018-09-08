@@ -386,7 +386,7 @@ public class CCItems
 		CandyCraft.getItemList().add(item);
 		if (currentSide == Side.CLIENT)
 		{
-			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation("candycraftmod:" + item.getTranslationKey().substring(5), "inventory"));
+			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation("candycraft:" + item.getTranslationKey().substring(5), "inventory"));
 		}
 	}
 }

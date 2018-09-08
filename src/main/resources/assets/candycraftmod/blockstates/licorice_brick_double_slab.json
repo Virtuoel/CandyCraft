@@ -1,6 +1,6 @@
 {
     "variants": {
-        "half=bottom,variant=default": { "model": "candycraftmod:licorice_brick" },
-		"half=top,variant=default": { "model": "candycraftmod:licorice_brick" }
+        "half=bottom,variant=default": { "model": "candycraft:licorice_brick" },
+		"half=top,variant=default": { "model": "candycraft:licorice_brick" }
     }
 }

@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "candycraftmod:blocks/purple_trampojelly"
+        "all": "candycraft:blocks/purple_trampojelly"
     }
 }

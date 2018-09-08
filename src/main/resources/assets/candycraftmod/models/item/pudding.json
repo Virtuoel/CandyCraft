@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/pudding_normal",
+    "parent": "candycraft:block/pudding_normal",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

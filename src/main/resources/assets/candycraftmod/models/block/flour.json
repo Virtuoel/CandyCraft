@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "candycraftmod:blocks/flour"
+        "all": "candycraft:blocks/flour"
     }
 }

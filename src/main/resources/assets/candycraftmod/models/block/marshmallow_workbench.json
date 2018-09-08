@@ -1,8 +1,8 @@
 {
     "parent": "block/cube_bottom_top",
     "textures": {
-        "bottom": "candycraftmod:blocks/marshmallow_planks.0",
-        "top": "candycraftmod:blocks/marshmallow_workbench_top",
-        "side": "candycraftmod:blocks/marshmallow_workbench_side"
+        "bottom": "candycraft:blocks/marshmallow_planks.0",
+        "top": "candycraft:blocks/marshmallow_workbench_top",
+        "side": "candycraft:blocks/marshmallow_workbench_side"
     }
 }

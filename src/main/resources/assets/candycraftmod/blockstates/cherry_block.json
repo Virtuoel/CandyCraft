@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "candycraftmod:cherry_block" }
+        "normal": { "model": "candycraft:cherry_block" }
     }
 }

@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "candycraftmod:nougat_block" }
+        "normal": { "model": "candycraft:nougat_block" }
     }
 }

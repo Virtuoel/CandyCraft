@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "candycraftmod:caramel_brick" }
+        "normal": { "model": "candycraft:caramel_brick" }
     }
 }

@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/jelly_shock_absorber",
+    "parent": "candycraft:block/jelly_shock_absorber",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

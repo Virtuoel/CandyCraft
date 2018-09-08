@@ -1,6 +1,6 @@
 {
     "variants": {
-        "half=bottom,variant=default": { "model": "candycraftmod:half_slab_chocolate_cobblestone" },
-        "half=top,variant=default": { "model": "candycraftmod:upper_slab_chocolate_cobblestone" }
+        "half=bottom,variant=default": { "model": "candycraft:half_slab_chocolate_cobblestone" },
+        "half=top,variant=default": { "model": "candycraft:upper_slab_chocolate_cobblestone" }
     }
 }

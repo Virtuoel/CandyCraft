@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "candycraftmod:marshmallow_workbench" }
+        "normal": { "model": "candycraft:marshmallow_workbench" }
     }
 }

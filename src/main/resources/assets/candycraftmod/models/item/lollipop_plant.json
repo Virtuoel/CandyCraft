@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:blocks/lollipop_stem.2"
+        "layer0": "candycraft:blocks/lollipop_stem.2"
     },
     "display": {
         "thirdperson": {

@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/half_slab_cotton_candy",
+    "parent": "candycraft:block/half_slab_cotton_candy",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

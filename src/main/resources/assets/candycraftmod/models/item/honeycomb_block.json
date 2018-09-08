@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/honeycomb_block",
+    "parent": "candycraft:block/honeycomb_block",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "candycraftmod:nougat_ore" }
+        "normal": { "model": "candycraft:nougat_ore" }
     }
 }

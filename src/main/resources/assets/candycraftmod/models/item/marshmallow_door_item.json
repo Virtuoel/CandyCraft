@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:items/marshmallow_door_item"
+        "layer0": "candycraft:items/marshmallow_door_item"
     },
     "display": {
         "thirdperson": {

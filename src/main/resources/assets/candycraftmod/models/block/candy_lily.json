@@ -1,8 +1,8 @@
 {
     "ambientocclusion": false,
     "textures": {
-        "particle": "candycraftmod:blocks/marshmallow_slice",
-        "texture": "candycraftmod:blocks/marshmallow_slice"
+        "particle": "candycraft:blocks/marshmallow_slice",
+        "texture": "candycraft:blocks/marshmallow_slice"
     },
     "elements": [
         {   "from": [ 0, 0.25, 0 ],

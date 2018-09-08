@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/trampojelly",
+    "parent": "candycraft:block/trampojelly",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

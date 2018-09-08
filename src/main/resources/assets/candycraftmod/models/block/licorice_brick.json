@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "candycraftmod:blocks/licorice_brick"
+        "all": "candycraft:blocks/licorice_brick"
     }
 }

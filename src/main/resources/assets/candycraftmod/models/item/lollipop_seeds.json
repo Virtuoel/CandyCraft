@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:items/lollipop_seeds"
+        "layer0": "candycraft:items/lollipop_seeds"
     },
     "display": {
         "thirdperson": {

@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/marshmallow_trapdoor_bottom",
+    "parent": "candycraft:block/marshmallow_trapdoor_bottom",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

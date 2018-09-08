@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:items/glue_dynamite"
+        "layer0": "candycraft:items/glue_dynamite"
     },
     "display": {
         "thirdperson": {

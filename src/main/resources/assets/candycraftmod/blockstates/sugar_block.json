@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "candycraftmod:sugar_block" }
+        "normal": { "model": "candycraft:sugar_block" }
     }
 }

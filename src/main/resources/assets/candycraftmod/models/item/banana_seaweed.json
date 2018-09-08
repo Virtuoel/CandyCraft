@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:blocks/banana_seaweed"
+        "layer0": "candycraft:blocks/banana_seaweed"
     },
     "display": {
         "thirdperson": {

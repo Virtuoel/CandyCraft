@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/half_slab_ice_cream.0",
+    "parent": "candycraft:block/half_slab_ice_cream.0",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

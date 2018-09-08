@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:items/hot_gummy"
+        "layer0": "candycraft:items/hot_gummy"
     },
     "display": {
         "thirdperson": {

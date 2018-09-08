@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/marshmallow_fence_inventory",
+    "parent": "candycraft:block/marshmallow_fence_inventory",
     "display": {
         "thirdperson": {
             "rotation": [ 0, 0, 180 ],

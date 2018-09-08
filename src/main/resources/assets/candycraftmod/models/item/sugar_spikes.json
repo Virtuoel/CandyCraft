@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:blocks/sugar_spikes"
+        "layer0": "candycraft:blocks/sugar_spikes"
     },
     "display": {
         "thirdperson": {

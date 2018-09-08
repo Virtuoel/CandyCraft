@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "candycraftmod:blocks/jelly_ore"
+        "all": "candycraft:blocks/jelly_ore"
     }
 }

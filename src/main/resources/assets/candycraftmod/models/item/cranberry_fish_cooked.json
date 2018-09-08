@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:items/cranberry_fish_cooked"
+        "layer0": "candycraft:items/cranberry_fish_cooked"
     },
     "display": {
         "thirdperson": {

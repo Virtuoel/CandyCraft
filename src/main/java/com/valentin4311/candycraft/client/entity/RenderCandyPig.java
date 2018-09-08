@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderCandyPig extends RenderLiving<EntityPig>
 {
-	private static final ResourceLocation texture = new ResourceLocation("candycraftmod:textures/entity/CandyPig.png");
+	private static final ResourceLocation texture = new ResourceLocation("candycraft:textures/entity/CandyPig.png");
 
 	public RenderCandyPig(RenderManager renderManager, ModelBase par2ModelBase, float par3)
 	{

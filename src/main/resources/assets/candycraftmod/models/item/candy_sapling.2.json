@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:blocks/candy_sapling.2"
+        "layer0": "candycraft:blocks/candy_sapling.2"
     },
     "display": {
         "thirdperson": {

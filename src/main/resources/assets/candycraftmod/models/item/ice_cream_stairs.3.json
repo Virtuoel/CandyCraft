@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/ice_cream_stairs.3",
+    "parent": "candycraft:block/ice_cream_stairs.3",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

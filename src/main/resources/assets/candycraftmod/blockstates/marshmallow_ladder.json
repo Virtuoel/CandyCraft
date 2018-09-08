@@ -1,8 +1,8 @@
 {
     "variants": {
-        "facing=north": { "model": "candycraftmod:marshmallow_ladder" },
-        "facing=east":  { "model": "candycraftmod:marshmallow_ladder", "y": 90 },
-        "facing=south": { "model": "candycraftmod:marshmallow_ladder", "y": 180 },
-        "facing=west":  { "model": "candycraftmod:marshmallow_ladder", "y": 270 }
+        "facing=north": { "model": "candycraft:marshmallow_ladder" },
+        "facing=east":  { "model": "candycraft:marshmallow_ladder", "y": 90 },
+        "facing=south": { "model": "candycraft:marshmallow_ladder", "y": 180 },
+        "facing=west":  { "model": "candycraft:marshmallow_ladder", "y": 270 }
     }
 }

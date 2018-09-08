@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/caramel_glass_2",
+    "parent": "candycraft:block/caramel_glass_2",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

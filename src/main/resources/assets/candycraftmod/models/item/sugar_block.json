@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/sugar_block",
+    "parent": "candycraft:block/sugar_block",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

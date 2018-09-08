@@ -1,6 +1,6 @@
 {
     "variants": {
-        "axis=z": { "model": "candycraftmod:candy_portal_ew" },
-        "axis=x": { "model": "candycraftmod:candy_portal_ns" }
+        "axis=z": { "model": "candycraft:candy_portal_ew" },
+        "axis=x": { "model": "candycraft:candy_portal_ns" }
     }
 }

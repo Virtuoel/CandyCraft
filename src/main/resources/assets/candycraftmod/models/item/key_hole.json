@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/key_hole",
+    "parent": "candycraft:block/key_hole",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

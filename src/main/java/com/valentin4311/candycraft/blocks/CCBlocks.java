@@ -497,8 +497,8 @@ public class CCBlocks
 				int realMeta = 0;
 				for (int i = 0; i < metaNames.length; i++)
 				{
-					metaNames[i] = new ResourceLocation("candycraftmod:" + name + "." + realMeta);
-					ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), i, new ModelResourceLocation("candycraftmod:" + name + "." + realMeta, "inventory"));
+					metaNames[i] = new ResourceLocation("candycraft:" + name + "." + realMeta);
+					ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), i, new ModelResourceLocation("candycraft:" + name + "." + realMeta, "inventory"));
 					realMeta++;
 					if (realMeta > 3)
 					{
@@ -509,21 +509,21 @@ public class CCBlocks
 			}
 			else if (cl == ItemCandySlab.class)
 			{
-				ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation("candycraftmod:" + name, "inventory"));
+				ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation("candycraft:" + name, "inventory"));
 			}
 			else if (metadataAmount > 0)
 			{
 				ResourceLocation[] metaNames = new ResourceLocation[metadataAmount];
 				for (int i = 0; i < metaNames.length; i++)
 				{
-					metaNames[i] = new ResourceLocation("candycraftmod:" + name + "." + i);
-					ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), i, new ModelResourceLocation("candycraftmod:" + name + "." + i, "inventory"));
+					metaNames[i] = new ResourceLocation("candycraft:" + name + "." + i);
+					ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), i, new ModelResourceLocation("candycraft:" + name + "." + i, "inventory"));
 				}
 				ModelBakery.registerItemVariants(Item.getItemFromBlock(block), metaNames);
 			}
 			else
 			{
-				ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation("candycraftmod:" + name, "inventory"));
+				ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation("candycraft:" + name, "inventory"));
 			}
 		}
 	}
@@ -536,7 +536,7 @@ public class CCBlocks
 
 		if (currentSide == Side.CLIENT)
 		{
-			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation("candycraftmod:" + Item.getItemFromBlock(block).getTranslationKey().substring(5), "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation("candycraft:" + Item.getItemFromBlock(block).getTranslationKey().substring(5), "inventory"));
 		}
 	}
 

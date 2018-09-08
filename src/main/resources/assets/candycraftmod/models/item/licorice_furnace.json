@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/licorice_furnace",
+    "parent": "candycraft:block/licorice_furnace",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

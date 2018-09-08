@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "candycraftmod:blocks/cranberry_spikes"
+        "cross": "candycraft:blocks/cranberry_spikes"
     }
 }

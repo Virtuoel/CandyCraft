@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/cotton_candy_jukebox_empty",
+    "parent": "candycraft:block/cotton_candy_jukebox_empty",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

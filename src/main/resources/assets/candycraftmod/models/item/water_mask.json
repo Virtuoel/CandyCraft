@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "candycraftmod:items/water_mask"
+        "layer0": "candycraft:items/water_mask"
     },
     "display": {
         "thirdperson": {

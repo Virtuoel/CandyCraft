@@ -1,5 +1,5 @@
 {
-    "parent": "candycraftmod:block/jelly_ore",
+    "parent": "candycraft:block/jelly_ore",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],
