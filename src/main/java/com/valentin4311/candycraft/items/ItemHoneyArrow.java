@@ -24,7 +24,7 @@ public class ItemHoneyArrow extends ItemArrow
 		EntityCandyArrow a = new EntityCandyArrow(worldIn);
 		a.setBolt(isBolt);
 		
-		int l2 = EnchantmentHelper.getEnchantmentLevel(CCEnchantments.honeyGlue, stack);
+		int l2 = EnchantmentHelper.getEnchantmentLevel(CCEnchantments.honey_glue, stack);
 		if (l2 > 0)
 		{
 			// TODO Candy Arrow

@@ -9,15 +9,14 @@ import com.valentin4311.candycraft.entity.EntitySuguard;
 import com.valentin4311.candycraft.entity.EntityWaffleSheep;
 
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BiomeGenMountains extends BiomeGenCandy
 {
-	public BiomeGenMountains(Biome.BiomeProperties properties)
+	public BiomeGenMountains()
 	{
-		super(properties);
+		super(new BiomeProperties("Sugar Mountains").setBaseHeight(0.5F).setHeightVariation(0.8F));
 		spawnableCreatureList.add(new SpawnListEntry(EntityCandyWolf.class, 12, 4, 4));
 		spawnableMonsterList.add(new SpawnListEntry(EntitySuguard.class, 4, 4, 4));
 		spawnableCreatureList.add(new SpawnListEntry(EntityCandyPig.class, 8, 4, 6));

@@ -40,21 +40,25 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod(modid = "candycraftmod", name = "candycraftmod", version = CandyCraft.VERSION)
+@Mod(modid = CandyCraft.MODID, name = CandyCraft.NAME, version = CandyCraft.VERSION)
 public class CandyCraft
 {
-	@Instance("candycraftmod")
-	private static CandyCraft modInstance;
-	public static final String VERSION = "Beta 1.3.1";
+	
+	public static final String MODID = "candycraft";
+    public static final String NAME = "CandyCraft";
+    public static final String VERSION = "1.0";
+    
+    @Instance
+	public static CandyCraft instance;
 
-	@SidedProxy(clientSide = "com.valentin4311.candycraftmod.client.ClientProxy", serverSide = "com.valentin4311.candycraftmod.CommonProxy")
+	@SidedProxy(clientSide = "com.valentin4311.candycraft.client.ClientProxy", serverSide = "com.valentin4311.candycraft.CommonProxy")
 	private static CommonProxy proxy;
 	private static ClientTick clientTicker;
 	private static ServerTick serverTicker;
 
 	private static CreativeTabs creativeTab = new CCCreativeTabs("CandyCraft");
 	private static GuiHandlerCandyCraft guiHandler = new GuiHandlerCandyCraft();
-	private static ArrayList<Item> itemList = new ArrayList();
+	private static ArrayList<Item> itemList = new ArrayList<Item>();
 	// Dimension
 	private static WorldTypeCandy candyWorldType = new WorldTypeCandy();
 	private static int candyDimensionID;
@@ -64,7 +68,7 @@ public class CandyCraft
 	private static boolean shouldUpdate = false;
 
 	@EventHandler
-	public void preInitMod(FMLPreInitializationEvent event)
+	public void preInit(FMLPreInitializationEvent event)
 	{
 		boolean isClient = event.getSide() == Side.CLIENT;
 
@@ -91,16 +95,20 @@ public class CandyCraft
 		CCBlocks.doMiningLevel();
 
 		CCItems.registerItems(event.getSide());
+
+		//FlashFyre
+		CCBiomes.registerBiomes();
 	}
 
 	@EventHandler
-	public void initMod(FMLInitializationEvent event)
+	public void init(FMLInitializationEvent event)
 	{
-
-		proxy.init();
-
 		CCRecipes.init();
+		
 	//	CCAchievements.init(); // TODO Advancements
+		
+		//FlashFyre
+		proxy.attachRenderLayers();
 	}
 
 	public void addContentFromConfig(boolean client, File configDirectory)
@@ -119,7 +127,7 @@ public class CandyCraft
 
 		// Entities
 		CCEntities.init();
-		CCEnchantments.init(config);
+		
 		CCBiomes.init();
 
 		config.save();
@@ -152,7 +160,7 @@ public class CandyCraft
 
 	public static CandyCraft getInstance()
 	{
-		return modInstance;
+		return instance;
 	}
 
 	public static boolean isShouldUpdate()

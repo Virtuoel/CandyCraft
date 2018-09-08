@@ -822,7 +822,7 @@ public class WorldGenSlimeDungeon extends WorldGenerator
 			fork.addEnchantment(Enchantments.EFFICIENCY, 5);
 			ItemStack bow = new ItemStack(CCItems.caramelBow, 1);
 			bow.addEnchantment(Enchantments.POWER, 4);
-			bow.addEnchantment(CCEnchantments.honeyGlue, 2);
+			bow.addEnchantment(CCEnchantments.honey_glue, 2);
 			for (int i = 0; i < chest.getSizeInventory(); i++)
 			{
 				ItemStack[] rewards = { new ItemStack(CCItems.sugarCrystal, random.nextInt(8) + 4), new ItemStack(CCItems.licorice, random.nextInt(14) + 8), new ItemStack(CCItems.candyCane, random.nextInt(8) + 3), new ItemStack(CCItems.chocolateCoin, random.nextInt(40) + 16), new ItemStack(CCItems.jumpWand, 1), new ItemStack(CCItems.jellyWand, 1), new ItemStack(CCBlocks.sugarBlock, random.nextInt(7) + 3), new ItemStack(CCItems.PEZ, random.nextInt(12) + 4), new ItemStack(CCItems.gummy, random.nextInt(12) + 6), fork, bow, new ItemStack(CCBlocks.sugarFactory, random.nextInt(2) + 1), new ItemStack(CCItems.lollipopSeeds, random.nextInt(12) + 6), new ItemStack(CCItems.cottonCandy, random.nextInt(3) + 6), new ItemStack(CCItems.cranberryFishCooked, random.nextInt(3) + 6), new ItemStack(CCItems.cranberryScale, random.nextInt(3) + 6), new ItemStack(CCBlocks.dragonEggBlock, 1) };
