@@ -322,7 +322,7 @@ public class WorldGenUnderGroundVillage extends WorldGenerator
 		}
 		for (int p = 0; p < entities.size(); p++)
 		{
-			world.spawnEntityInWorld(entities.get(p));
+			world.spawnEntity(entities.get(p));
 		}
 		for (int i2 = i; i2 < i + 64; i2++)
 		{
@@ -341,7 +341,7 @@ public class WorldGenUnderGroundVillage extends WorldGenerator
 		EntityBossSuguard boss = new EntityBossSuguard(world);
 		boss.setPosition(i + 32, j + 3, k + 32);
 		boss.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(boss)), (IEntityLivingData) null);
-		world.spawnEntityInWorld(boss);
+		world.spawnEntity(boss);
 
 		return true;
 	}
@@ -390,7 +390,7 @@ public class WorldGenUnderGroundVillage extends WorldGenerator
 				EntityPlayerMP player = (EntityPlayerMP) entity1;
 				if (player.inventory.hasItemStack(new ItemStack(CCItems.honeyEmblem)))
 				{
-					player.addChatMessage(new TextComponentString("\2472" + new TextComponentTranslation("Msg.HoneyEmblemFound0").getUnformattedText() + "\2472" + x + " " + y + " " + z + new TextComponentTranslation("Msg.HoneyEmblemFound1").getUnformattedText()));
+					player.sendMessage(new TextComponentString("\2472" + new TextComponentTranslation("Msg.HoneyEmblemFound0").getUnformattedText() + "\2472" + x + " " + y + " " + z + new TextComponentTranslation("Msg.HoneyEmblemFound1").getUnformattedText()));
 				}
 			}
 		}

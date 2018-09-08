@@ -13,15 +13,16 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityMobSpawner;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class WorldGenHoneyDungeons extends WorldGenerator
 {
-	private static final WeightedRandomChestContent[] itemsList = new WeightedRandomChestContent[] { new WeightedRandomChestContent(CCItems.PEZ, 0, 2, 8, 10), new WeightedRandomChestContent(Items.SADDLE, 0, 1, 1, 10), new WeightedRandomChestContent(CCItems.honeyEmblem, 0, 1, 1, 10), new WeightedRandomChestContent(CCItems.honeycomb, 0, 1, 8, 10), new WeightedRandomChestContent(CCItems.honeyHelmet, 0, 1, 1, 10), new WeightedRandomChestContent(CCItems.honeySword, 0, 1, 1, 10), new WeightedRandomChestContent(CCItems.honeyShovel, 0, 1, 1, 10), new WeightedRandomChestContent(CCItems.honeycomb, 0, 1, 4, 10), new WeightedRandomChestContent(CCItems.licorice, 0, 1, 4, 10), new WeightedRandomChestContent(CCItems.lollipop, 0, 1, 15, 10), new WeightedRandomChestContent(Item.getItemFromBlock(CCBlocks.jellyOre), 0, 1, 4, 10), new WeightedRandomChestContent(CCItems.candyCane, 0, 1, 8, 10), new WeightedRandomChestContent(CCItems.honeyShard, 0, 1, 4, 10), new WeightedRandomChestContent(CCItems.caramelBucket, 0, 1, 1, 10), new WeightedRandomChestContent(CCItems.licoricePlate, 0, 1, 1, 1), new WeightedRandomChestContent(CCItems.PEZ, 0, 1, 4, 6), new WeightedRandomChestContent(Item.getItemFromBlock(CCBlocks.honeyTorch), 0, 1, 32, 10) };
-	private final List chestContent = Lists.newArrayList(itemsList);
-
+//	private static final WeightedRandomChestContent[] itemsList = new WeightedRandomChestContent[] { new WeightedRandomChestContent(CCItems.PEZ, 0, 2, 8, 10), new WeightedRandomChestContent(Items.SADDLE, 0, 1, 1, 10), new WeightedRandomChestContent(CCItems.honeyEmblem, 0, 1, 1, 10), new WeightedRandomChestContent(CCItems.honeycomb, 0, 1, 8, 10), new WeightedRandomChestContent(CCItems.honeyHelmet, 0, 1, 1, 10), new WeightedRandomChestContent(CCItems.honeySword, 0, 1, 1, 10), new WeightedRandomChestContent(CCItems.honeyShovel, 0, 1, 1, 10), new WeightedRandomChestContent(CCItems.honeycomb, 0, 1, 4, 10), new WeightedRandomChestContent(CCItems.licorice, 0, 1, 4, 10), new WeightedRandomChestContent(CCItems.lollipop, 0, 1, 15, 10), new WeightedRandomChestContent(Item.getItemFromBlock(CCBlocks.jellyOre), 0, 1, 4, 10), new WeightedRandomChestContent(CCItems.candyCane, 0, 1, 8, 10), new WeightedRandomChestContent(CCItems.honeyShard, 0, 1, 4, 10), new WeightedRandomChestContent(CCItems.caramelBucket, 0, 1, 1, 10), new WeightedRandomChestContent(CCItems.licoricePlate, 0, 1, 1, 1), new WeightedRandomChestContent(CCItems.PEZ, 0, 1, 4, 6), new WeightedRandomChestContent(Item.getItemFromBlock(CCBlocks.honeyTorch), 0, 1, 32, 10) };
+//	private final List chestContent = Lists.newArrayList(itemsList);
+	// TODO chest loot table
 	@Override
 	public boolean generate(World par1World, Random par2Random, BlockPos pos)
 	{
@@ -130,7 +131,8 @@ public class WorldGenHoneyDungeons extends WorldGenerator
 									TileEntityCandyChest tileentitychest = (TileEntityCandyChest) par1World.getTileEntity(new BlockPos(i2, par4, j2));
 									if (tileentitychest != null)
 									{
-										WeightedRandomChestContent.generateChestContents(par2Random, chestContent, tileentitychest, 8);
+										// TODO chest loot table
+									//	WeightedRandomChestContent.generateChestContents(par2Random, chestContent, tileentitychest, 8);
 									}
 									break label101;
 								}
@@ -151,7 +153,7 @@ public class WorldGenHoneyDungeons extends WorldGenerator
 
 			if (tileentitymobspawner != null)
 			{
-				tileentitymobspawner.getSpawnerBaseLogic().setEntityName("candycraftmod.CaramelBee");
+				tileentitymobspawner.getSpawnerBaseLogic().setEntityId(new ResourceLocation("candycraft:caramel_bee"));
 			}
 			else
 			{

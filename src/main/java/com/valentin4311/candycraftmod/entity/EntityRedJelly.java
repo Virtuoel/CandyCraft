@@ -23,7 +23,7 @@ public class EntityRedJelly extends EntityJelly implements IMob
 
 	protected EntityRedJelly createInstance()
 	{
-		return new EntityRedJelly(worldObj);
+		return new EntityRedJelly(world);
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class EntityRedJelly extends EntityJelly implements IMob
 	{
 		int i = getJellySize();
 
-		if (!worldObj.isRemote && i > 1 && getHealth() <= 0.0F)
+		if (!world.isRemote && i > 1 && getHealth() <= 0.0F)
 		{
 			int j = 2 + rand.nextInt(3);
 
@@ -56,7 +56,7 @@ public class EntityRedJelly extends EntityJelly implements IMob
 				EntityRedJelly entityslime = createInstance();
 				entityslime.setJellySize(i / 2);
 				entityslime.setLocationAndAngles(posX + f, posY + 0.5D, posZ + f1, rand.nextFloat() * 360.0F, 0.0F);
-				worldObj.spawnEntityInWorld(entityslime);
+				world.spawnEntity(entityslime);
 			}
 		}
 
@@ -70,9 +70,9 @@ public class EntityRedJelly extends EntityJelly implements IMob
 
 		if (par1EntityPlayer.attackEntityFrom(DamageSource.causeMobDamage(this), 6))
 		{
-			if (!worldObj.isRemote)
+			if (!world.isRemote)
 			{
-				worldObj.createExplosion(this, posX, posY, posZ, 3, false);
+				world.createExplosion(this, posX, posY, posZ, 3, false);
 				setDead();
 			}
 		}

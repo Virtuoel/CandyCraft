@@ -82,7 +82,7 @@ public class ItemCandySlab extends ItemSlab
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack par1ItemStack)
+	public String getTranslationKey(ItemStack par1ItemStack)
 	{
 		return "block." + getComplete(Block.getBlockFromItem(par1ItemStack.getItem())) + "," + getBlockId(Block.getBlockFromItem(par1ItemStack.getItem()));
 	}

@@ -23,8 +23,9 @@ public class ItemDragibusStick extends Item
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand)
 	{
+		ItemStack itemStackIn = playerIn.getHeldItem(hand);
 		if (playerIn.isRiding() && playerIn.getRidingEntity() instanceof EntityCandyPig)
 		{
 			EntityCandyPig entitypig = (EntityCandyPig) playerIn.getRidingEntity();
@@ -33,7 +34,7 @@ public class ItemDragibusStick extends Item
 			{
 				itemStackIn.damageItem(7, playerIn);
 
-				if (itemStackIn.stackSize == 0)
+				if (itemStackIn.getCount() == 0)
 				{
 					ItemStack itemstack = new ItemStack(CCItems.dragibusStick);
 					itemstack.setTagCompound(itemStackIn.getTagCompound());

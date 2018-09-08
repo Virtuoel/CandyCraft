@@ -2,6 +2,7 @@ package com.valentin4311.candycraftmod.blocks;
 
 import java.util.Random;
 
+import com.valentin4311.candycraftmod.blocks.fluid.CCFluids;
 import com.valentin4311.candycraftmod.blocks.tileentity.TileEntityAlchemy;
 import com.valentin4311.candycraftmod.items.CCItems;
 
@@ -18,6 +19,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -29,9 +34,11 @@ public class BlockAlchemyTable extends BlockContainer
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		if (heldItem != null && heldItem.getItem() == CCItems.grenadineBucket)
+		ItemStack grenadineBucket = FluidUtil.getFilledBucket(new FluidStack(CCFluids.grenadineFluid, 1000));
+		FluidStack contained = FluidUtil.getFluidContained(player.getHeldItem(hand));
+		if (contained.getFluid() == CCFluids.grenadineFluid && contained.amount == 1000)
 		{
 			TileEntityAlchemy table = (TileEntityAlchemy) worldIn.getTileEntity(pos);
 
@@ -57,17 +64,17 @@ public class BlockAlchemyTable extends BlockContainer
 			}
 			return false;
 		}
-		else if (heldItem != null && heldItem.getItem() == Items.BUCKET)
+		else if (player.getHeldItem(hand) != null && player.getHeldItem(hand).getItem() == Items.BUCKET)
 		{
 			TileEntityAlchemy table = (TileEntityAlchemy) worldIn.getTileEntity(pos);
 
 			if (table.isTopFilled())
 			{
 				table.setTopFilled(false);
-				heldItem.stackSize--;
-				if (!player.inventory.addItemStackToInventory(new ItemStack(CCItems.grenadineBucket)))
+				player.getHeldItem(hand).shrink(1);
+				if (!player.inventory.addItemStackToInventory(grenadineBucket))
 				{
-					player.dropItem(CCItems.grenadineBucket, 1);
+					player.dropItem(grenadineBucket, false);
 				}
 				if (worldIn.isRemote)
 				{
@@ -78,10 +85,10 @@ public class BlockAlchemyTable extends BlockContainer
 			else if (table.getLiquid() > 0)
 			{
 				table.setLiquid(table.getLiquid() - 1);
-				heldItem.stackSize--;
-				if (!player.inventory.addItemStackToInventory(new ItemStack(CCItems.grenadineBucket)))
+				player.getHeldItem(hand).shrink(1);
+				if (!player.inventory.addItemStackToInventory(grenadineBucket))
 				{
-					player.dropItem(CCItems.grenadineBucket, 1);
+					player.dropItem(grenadineBucket, false);
 				}
 
 				if (worldIn.isRemote)
@@ -92,15 +99,15 @@ public class BlockAlchemyTable extends BlockContainer
 			}
 			return false;
 		}
-		else if (heldItem != null)
+		else if (player.getHeldItem(hand) != null)
 		{
 			TileEntityAlchemy table = (TileEntityAlchemy) worldIn.getTileEntity(pos);
 
-			if (table.isTopFilled() && table.addPotionToRecipes(heldItem))
+			if (table.isTopFilled() && table.addPotionToRecipes(player.getHeldItem(hand)))
 			{
-				if (heldItem.getItem() != CCItems.caramelBucket)
+				if (player.getHeldItem(hand).getItem() != CCItems.caramelBucket)
 				{
-					heldItem.stackSize--;
+					player.getHeldItem(hand).shrink(1);
 				}
 				else
 				{
@@ -135,7 +142,7 @@ public class BlockAlchemyTable extends BlockContainer
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
+	public BlockRenderLayer getRenderLayer()
 	{
 		return BlockRenderLayer.SOLID;
 	}

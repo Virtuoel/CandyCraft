@@ -6,6 +6,7 @@ public class ItemCandyAxe extends ItemAxe
 {
 	public ItemCandyAxe(ToolMaterial material)
 	{
-		super(material);
+		// TODO proper numbers
+		super(material, 8.0F, -3.2F);
 	}
 }

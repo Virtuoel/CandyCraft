@@ -29,7 +29,8 @@ public class CCBiomes
 		candyHellForest = new BiomeGenHellForest(new Biome.BiomeProperties("CaramelForest").setBaseHeight(0.0F).setHeightVariation(0.3F).setWaterColor(0xFFEE33));
 		candyFrostPlains = new BiomeGenFrostPlain(new Biome.BiomeProperties("IceCreamPlains").setBaseHeight(0.05F).setHeightVariation(0.1F).setWaterColor(0xFFFFFF).setSnowEnabled().setTemperature(0.0F).setRainfall(0.5F));
 		candyVoid = new BiomeGenVoid(new Biome.BiomeProperties("CandyCraft Dungeon").setWaterColor(0xFFFF66));
-
+		
+		/*// TODO double check
 		Biome.EXPLORATION_BIOMES_LIST.remove(candyMountains);
 		Biome.EXPLORATION_BIOMES_LIST.remove(candyPlains);
 		Biome.EXPLORATION_BIOMES_LIST.remove(candyForest);
@@ -40,6 +41,6 @@ public class CCBiomes
 		Biome.EXPLORATION_BIOMES_LIST.remove(candyEnchantedForest);
 		Biome.EXPLORATION_BIOMES_LIST.remove(candyHellForest);
 		Biome.EXPLORATION_BIOMES_LIST.remove(candyFrostPlains);
-		Biome.EXPLORATION_BIOMES_LIST.remove(candyVoid);
+		Biome.EXPLORATION_BIOMES_LIST.remove(candyVoid);*/
 	}
 }

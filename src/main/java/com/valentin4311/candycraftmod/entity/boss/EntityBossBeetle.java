@@ -14,6 +14,8 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityTippedArrow;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -30,6 +32,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EntityBossBeetle extends EntityGolem implements IMob, ICandyBoss
 {
 	private static final DataParameter<Boolean> IS_AWAKE = EntityDataManager.<Boolean> createKey(EntityBossBeetle.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Integer> TURN = EntityDataManager.<Integer>createKey(EntityBossBeetle.class, DataSerializers.VARINT);
+
+	// TODO Boss Bar
 	
 	private int coolDown = 100;
 	private int shoot = 0;
@@ -58,14 +63,14 @@ public class EntityBossBeetle extends EntityGolem implements IMob, ICandyBoss
 		int j2 = 1;
 		for (int i2 = 0; i2 < j2; i2++)
 		{
-			EntityGummyBall entity = new EntityGummyBall(worldObj, this, par2 ? 2 : 3);
+			EntityGummyBall entity = new EntityGummyBall(world, this, par2 ? 2 : 3);
 			if (par2)
 			{
 				entity.airState = 3;
 			}
 			entity.beetle = this;
-			playSound("random.bow", 1.0F, 1.0F / (getRNG().nextFloat() * 0.4F + 0.8F));
-			worldObj.spawnEntityInWorld(entity);
+			playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1.0F, 1.0F / (getRNG().nextFloat() * 0.4F + 0.8F));
+			world.spawnEntity(entity);
 		}
 	}
 
@@ -102,7 +107,7 @@ public class EntityBossBeetle extends EntityGolem implements IMob, ICandyBoss
 	{
 		super.entityInit();
 		dataManager.register(IS_AWAKE, false);
-		dataWatcher.addObject(22, new Integer(0));
+		dataManager.register(TURN, 0);
 	}
 
 	@Override
@@ -161,11 +166,11 @@ public class EntityBossBeetle extends EntityGolem implements IMob, ICandyBoss
 	public void onUpdate()
 	{
 		super.onUpdate();
-		if (!getAwake() && !worldObj.isRemote)
+		if (!getAwake() && !world.isRemote)
 		{
 			heal(5.0f);
 		}
-		if (dataWatcher.getWatchableObjectInt(22) > 0 && worldObj.isRemote)
+		if (dataManager.get(TURN) > 0 && world.isRemote)
 		{
 			for (int i = 0; i <= 16; i++)
 			{
@@ -180,12 +185,12 @@ public class EntityBossBeetle extends EntityGolem implements IMob, ICandyBoss
 				{
 					d3 = (MathHelper.cos((ticksExisted + 10) * 0.05F)) + posY + 3.0D;
 				}
-				worldObj.spawnParticle(EnumParticleTypes.FLAME, d1, d3, d2, 0.0D, 0.0D, 0.0D);
+				world.spawnParticle(EnumParticleTypes.FLAME, d1, d3, d2, 0.0D, 0.0D, 0.0D);
 			}
 		}
-		if (!worldObj.isRemote)
+		if (!world.isRemote)
 		{
-			EntityPlayer player = (worldObj.getClosestPlayerToEntity(this, 10.0D));
+			EntityPlayer player = (world.getClosestPlayerToEntity(this, 10.0D));
 			if (player != null)
 			{
 				setAwake(true);
@@ -200,7 +205,7 @@ public class EntityBossBeetle extends EntityGolem implements IMob, ICandyBoss
 			}
 			else
 			{
-				EntityPlayer player2 = EntityUtil.getClosestVulnerablePlayerToEntity(worldObj, this, 48.0D);
+				EntityPlayer player2 = EntityUtil.getClosestVulnerablePlayerToEntity(world, this, 48.0D);
 
 				if (player2 != null)
 				{
@@ -210,7 +215,7 @@ public class EntityBossBeetle extends EntityGolem implements IMob, ICandyBoss
 					if (shoot > 0 && ticksExisted % 2 == 0)
 					{
 						shoot--;
-						EntityGummyBall ball = new EntityGummyBall(worldObj);
+						EntityGummyBall ball = new EntityGummyBall(world);
 						ball.setPosition(posX, posY + 2, posZ);
 						ball.setPowerful(3);
 						ball.airState = 1;
@@ -219,17 +224,17 @@ public class EntityBossBeetle extends EntityGolem implements IMob, ICandyBoss
 						ball.motionZ = ((rand.nextBoolean() ? -1 : 1) * 3 + rand.nextDouble() * 6) / 40;
 						ball.target = player2;
 						ball.beetle = this;
-						worldObj.spawnEntityInWorld(ball);
-						playSound("random.bow", 1.0F, 1.0F / (getRNG().nextFloat() * 0.4F + 0.8F));
+						world.spawnEntity(ball);
+						playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1.0F, 1.0F / (getRNG().nextFloat() * 0.4F + 0.8F));
 					}
-					if (dataWatcher.getWatchableObjectInt(22) <= 0)
+					if (dataManager.get(TURN) <= 0)
 					{
 						coolDown--;
 					}
 					else
 					{
 						turn -= 1;
-						dataWatcher.updateObject(22, turn);
+						dataManager.set(TURN, turn);
 						if (turn < 100)
 						{
 							attackEntityWithRangedAttack(this, true);
@@ -245,7 +250,7 @@ public class EntityBossBeetle extends EntityGolem implements IMob, ICandyBoss
 						else if ((double) getHealth() < 250 && rand.nextInt(10) == 0)
 						{
 							turn = 200;
-							dataWatcher.updateObject(22, turn);
+							dataManager.set(TURN, turn);
 						}
 						else
 						{
@@ -253,12 +258,12 @@ public class EntityBossBeetle extends EntityGolem implements IMob, ICandyBoss
 						}
 					}
 				}
-				else if (worldObj.getClosestPlayerToEntity(this, 48.0D) == null)
+				else if (world.getClosestPlayerToEntity(this, 48.0D) == null)
 				{
 					setAwake(false);
 					shoot = 0;
 					turn = 0;
-					dataWatcher.updateObject(22, turn);
+					dataManager.set(TURN, turn);
 				}
 			}
 		}
@@ -267,7 +272,7 @@ public class EntityBossBeetle extends EntityGolem implements IMob, ICandyBoss
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
-		if (par1DamageSource.getSourceOfDamage() != null && par1DamageSource.getSourceOfDamage() instanceof EntityGummyBall && ((EntityGummyBall) par1DamageSource.getSourceOfDamage()).getPowerful() == 3)
+		if (par1DamageSource.getImmediateSource() != null && par1DamageSource.getImmediateSource() instanceof EntityGummyBall && ((EntityGummyBall) par1DamageSource.getImmediateSource()).getPower() == 3)
 		{
 			par2 = 8;
 			return super.attackEntityFrom(par1DamageSource, par2);
@@ -285,7 +290,7 @@ public class EntityBossBeetle extends EntityGolem implements IMob, ICandyBoss
 	}
 
 	@Override
-	protected SoundEvent getHurtSound()
+	protected SoundEvent getHurtSound(DamageSource damageSourceIn)
 	{
 		return null;
 	}

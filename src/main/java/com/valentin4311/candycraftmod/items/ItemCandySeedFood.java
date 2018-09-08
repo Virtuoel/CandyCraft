@@ -24,21 +24,23 @@ public class ItemCandySeedFood extends ItemSeedFood
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (side != EnumFacing.UP)
+		ItemStack stack = player.getHeldItem(hand);
+		if (facing != EnumFacing.UP)
 		{
 			return EnumActionResult.FAIL;
 		}
-		else if (player.canPlayerEdit(pos.offset(side), side, stack))
+		else if (player.canPlayerEdit(pos.offset(facing), facing, stack))
 		{
-			Block soil = world.getBlockState(pos).getBlock();
+			Block soil = worldIn.getBlockState(pos).getBlock();
 
-			if (soil == CCBlocks.candySoil && world.isAirBlock(pos.up()))
+			if (soil == CCBlocks.candySoil && worldIn.isAirBlock(pos.up()))
 			{
-				player.addStat(CCAchievements.dragibusFarm);
-				world.setBlockState(pos.up(), cropId.getDefaultState());
-				--stack.stackSize;
+				// TODO advancements
+			//	player.addStat(CCAchievements.dragibusFarm);
+				worldIn.setBlockState(pos.up(), cropId.getDefaultState());
+				stack.shrink(1);;
 				return EnumActionResult.SUCCESS;
 			}
 			else

@@ -28,7 +28,7 @@ public class RenderNougatGolem extends RenderLiving
 	protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2)
 	{
 		EntityNougatGolem entity = (EntityNougatGolem) par1EntityLivingBase;
-		float f = entity.getLenght();
+		float f = entity.getHeight();
 		GL11.glScalef(f, f, f);
 	}
 

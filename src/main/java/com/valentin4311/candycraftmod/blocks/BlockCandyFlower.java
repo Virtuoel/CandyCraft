@@ -32,7 +32,7 @@ public class BlockCandyFlower extends BlockCandyBush
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+	public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity)
 	{
 		if (this == CCBlocks.poisonousFlower && entity instanceof EntityLivingBase)
 		{

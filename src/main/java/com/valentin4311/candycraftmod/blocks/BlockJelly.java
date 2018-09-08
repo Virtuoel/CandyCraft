@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -28,9 +29,9 @@ public class BlockJelly extends BlockBreakable
 		setTickRandomly(true);
 		jump = par3;
 	}
-
+	
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
 		float var5 = jump == -1.0D ? 0 : 0.005F;
 		return jump == -1.0D ? super.getCollisionBoundingBox(blockState, worldIn, pos) : JELLY_AABB;
@@ -62,20 +63,20 @@ public class BlockJelly extends BlockBreakable
 			super.onFallenUpon(par1World, pos, par5Entity, par6);
 		}
 	}
-
+	
 	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entity)
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
 		if (jump != -1.0D)
 		{
-			if (entity instanceof EntityLivingBase && (entity.motionY <= 0) && !entity.isSneaking())
+			if (entityIn instanceof EntityLivingBase && (entityIn.motionY <= 0) && !entityIn.isSneaking())
 			{
-				entity.motionY += jump;
+				entityIn.motionY += jump;
 
 				if (jump == 1.0D)
 				{
-					entity.motionX *= Math.abs(entity.motionX) < 0.25D ? 4 : 1;
-					entity.motionZ *= Math.abs(entity.motionZ) < 0.25D ? 4 : 1;
+					entityIn.motionX *= Math.abs(entityIn.motionX) < 0.25D ? 4 : 1;
+					entityIn.motionZ *= Math.abs(entityIn.motionZ) < 0.25D ? 4 : 1;
 				}
 			}
 		}
@@ -95,7 +96,7 @@ public class BlockJelly extends BlockBreakable
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
+	public BlockRenderLayer getRenderLayer()
 	{
 		return BlockRenderLayer.TRANSLUCENT;
 	}

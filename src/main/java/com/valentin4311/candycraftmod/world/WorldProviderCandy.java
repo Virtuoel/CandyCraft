@@ -14,7 +14,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeProvider;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.ChunkGeneratorHell;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.common.util.EnumHelper;
@@ -23,9 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderCandy extends WorldProvider
 {
-	public static final DimensionType CANDY_WORLD = EnumHelper.addEnum(DimensionType.class, "CANDY_WORLD_MOD", new Class[]{Integer.class, String.class, String.class, Class.class}, CandyCraft.getCandyDimensionID(), "Candy Valley", "_candyworld", WorldProviderCandy.class);
-
-	public boolean isHellWorld = true;
+	public static final DimensionType CANDY_WORLD = DimensionType.register("candycraft:candyworld", "_candy_world", CandyCraft.getCandyDimensionID(), WorldProviderCandy.class, false);
 
 	public static int canGenIsland = 0;
 	public static int canGenVillage = 0;
@@ -65,7 +64,7 @@ public class WorldProviderCandy extends WorldProvider
 		{
 			for (int z = -distance; z <= distance; ++z)
 			{
-				Biome biome = world.getBiomeGenForCoords(new BlockPos(playerX + x, 0, playerZ + z));
+				Biome biome = world.getBiome(new BlockPos(playerX + x, 0, playerZ + z));
 				int color = biome.getGrassColorAtPos(new BlockPos(playerX + x, playerY, playerZ + z));
 				r += (color & 0xFF0000) >> 16;
 				g += (color & 0x00FF00) >> 8;
@@ -85,7 +84,7 @@ public class WorldProviderCandy extends WorldProvider
 	@SideOnly(Side.CLIENT)
 	public Vec3d drawCloudsBody(float par1)
 	{
-		float f1 = worldObj.getCelestialAngle(par1);
+		float f1 = world.getCelestialAngle(par1);
 		float f2 = MathHelper.cos(f1 * (float) Math.PI * 2.0F) * 2.0F + 0.5F;
 
 		if (f2 < 0.0F)
@@ -98,8 +97,8 @@ public class WorldProviderCandy extends WorldProvider
 			f2 = 1.0F;
 		}
 
-		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-		int l = WorldProviderCandy.getFogBlendColour(worldObj, MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posY), MathHelper.floor_double(player.posZ));
+		EntityPlayer player = Minecraft.getMinecraft().player;
+		int l = WorldProviderCandy.getFogBlendColour(world, MathHelper.floor(player.posX), MathHelper.floor(player.posY), MathHelper.floor(player.posZ));
 
 		float f3 = ((l >> 16 & 255) / 255.0F) * f2;
 		float f4 = ((l >> 8 & 255) / 255.0F) * f2;
@@ -108,17 +107,18 @@ public class WorldProviderCandy extends WorldProvider
 	}
 
 	@Override
-	public void createBiomeProvider()
+	public void init()
 	{
-		biomeProvider = new BiomeProvider(worldObj.getWorldInfo());// TODO
-		isHellWorld = true;
-		hasNoSky = false;
+		biomeProvider = new BiomeProvider(world.getWorldInfo());// TODO
+		nether = true;
+		hasSkyLight = true;
 	}
 
 	@Override
 	public IChunkGenerator createChunkGenerator()
 	{
-		return new ChunkProviderCandyWorld(worldObj, worldObj.getSeed(), false, "");
+		// TODO Chunk Generator
+		return new ChunkGeneratorHell(world, false, world.getSeed());//new ChunkGeneratorCandyWorld(world, world.getSeed(), false, "");
 	}
 
 	@Override
@@ -139,7 +139,7 @@ public class WorldProviderCandy extends WorldProvider
 	@SideOnly(Side.CLIENT)
 	public Vec3d getFogColor(float par1, float par2)
 	{
-		float f1 = worldObj.getCelestialAngle(par2);
+		float f1 = world.getCelestialAngle(par2);
 		float f2 = MathHelper.cos(f1 * (float) Math.PI * 2.0F) * 2.0F + 0.5F;
 
 		if (f2 < 0.0F)
@@ -152,8 +152,8 @@ public class WorldProviderCandy extends WorldProvider
 			f2 = 1.0F;
 		}
 
-		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-		int l = WorldProviderCandy.getFogBlendColour(worldObj, MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posY), MathHelper.floor_double(player.posZ));
+		EntityPlayer player = Minecraft.getMinecraft().player;
+		int l = WorldProviderCandy.getFogBlendColour(world, MathHelper.floor(player.posX), MathHelper.floor(player.posY), MathHelper.floor(player.posZ));
 		float f3 = ((l >> 16 & 255) / 255.0F) * f2;
 		float f4 = ((l >> 8 & 255) / 255.0F) * f2;
 		float f5 = ((l & 255) / 255.0F) * f2;
@@ -166,7 +166,7 @@ public class WorldProviderCandy extends WorldProvider
 	{
 		return true;
 	}
-
+/*// TODO what's the replacement for these now?
 	@Override
 	public String getWelcomeMessage()
 	{
@@ -178,7 +178,7 @@ public class WorldProviderCandy extends WorldProvider
 	{
 		return "Leaving the Candy Valley";
 	}
-
+*/
 	@Override
 	public boolean isSurfaceWorld()
 	{

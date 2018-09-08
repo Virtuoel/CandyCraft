@@ -82,7 +82,7 @@ public class ServerTick
 			}
 			for (int i = 0; i < dynamiteCallBack.size(); i++)
 			{
-				if (dynamiteCallBack.get(i).entity != null && dynamiteCallBack.get(i).entity.worldObj.provider.getDimension() == world.provider.getDimension())
+				if (dynamiteCallBack.get(i).entity != null && dynamiteCallBack.get(i).entity.world.provider.getDimension() == world.provider.getDimension())
 				{
 					dynamiteCallBack.get(i).reduce(i);
 				}
@@ -92,7 +92,7 @@ public class ServerTick
 
 	public void setTime(World world, long par2)
 	{
-		for (WorldServer worldServer : world.getMinecraftServer().worldServers)
+		for (WorldServer worldServer : world.getMinecraftServer().worlds)
 		{
 			worldServer.setWorldTime(par2);
 		}
@@ -128,11 +128,11 @@ public class ServerTick
 		}
 		if (player.inventory.hasItemStack(new ItemStack(CCItems.cranberryEmblem)))
 		{
-			long i = player.worldObj.getWorldInfo().getWorldTime() + 24000L;
-			if (player.worldObj.getWorldTime() + 1 == (i - i % 24000L))
+			long i = player.world.getWorldInfo().getWorldTime() + 24000L;
+			if (player.world.getWorldTime() + 1 == (i - i % 24000L))
 			{
 				player.heal(200.0F);
-				player.addChatMessage(new TextComponentTranslation("\2472" + I18n.format("Msg.CranberryEmblem")));
+				player.sendMessage(new TextComponentTranslation("\2472" + I18n.format("Msg.CranberryEmblem")));
 			}
 		}
 	}

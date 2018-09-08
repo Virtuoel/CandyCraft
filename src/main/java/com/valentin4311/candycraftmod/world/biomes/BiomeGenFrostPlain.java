@@ -30,7 +30,7 @@ public class BiomeGenFrostPlain extends BiomeGenCandy
 	}
 
 	@Override
-	public WorldGenAbstractTree genBigTreeChance(Random par1Random)
+	public WorldGenAbstractTree getRandomTreeFeature(Random par1Random)
 	{
 		return new WorldGenCandyTrees(false, 4, 2, 2, false);
 	}

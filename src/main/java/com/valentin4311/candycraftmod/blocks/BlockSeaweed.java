@@ -66,9 +66,9 @@ public class BlockSeaweed extends Block implements IShearable
 	{
 		return new BlockStateContainer(this, new IProperty[] { BlockLiquid.LEVEL });
 	}
-
+	
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World par1World, BlockPos pos)
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
 		return null;
 	}
@@ -106,14 +106,14 @@ public class BlockSeaweed extends Block implements IShearable
 			par1World.setBlockState(pos, Blocks.WATER.getDefaultState());
 		}
 	}
-
+	
 	@Override
-	public void neighborChanged(IBlockState state, World par1World, BlockPos pos, Block par5)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
 	{
-		if (!canBlockStay(par1World, pos.getX(), pos.getY(), pos.getZ()))
+		if (!canBlockStay(worldIn, pos.getX(), pos.getY(), pos.getZ()))
 		{
-			dropBlockAsItem(par1World, pos, par1World.getBlockState(pos), 0);
-			par1World.setBlockToAir(pos);
+			dropBlockAsItem(worldIn, pos, worldIn.getBlockState(pos), 0);
+			worldIn.setBlockToAir(pos);
 		}
 	}
 
@@ -139,7 +139,7 @@ public class BlockSeaweed extends Block implements IShearable
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
+	public BlockRenderLayer getRenderLayer()
 	{
 		return BlockRenderLayer.CUTOUT;
 	}

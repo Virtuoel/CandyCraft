@@ -11,6 +11,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -74,24 +75,17 @@ public class BlockCandyLog extends BlockLog
 	}
 
 	@Override
-	protected ItemStack createStackedBlock(IBlockState state)
-	{
-		return new ItemStack(Item.getItemFromBlock(this), 1, ((BlockCandyLog.EnumType) state.getValue(properties)).getMeta());
-	}
-
-	@Override
 	public int damageDropped(IBlockState state)
 	{
 		return ((BlockCandyLog.EnumType) state.getValue(properties)).getMeta();
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item par1, CreativeTabs tab, List par3List)
+	public void getSubBlocks(CreativeTabs tab, NonNullList par3List)
 	{
-		par3List.add(new ItemStack(par1, 1, 0));
-		par3List.add(new ItemStack(par1, 1, 1));
-		par3List.add(new ItemStack(par1, 1, 2));
+		par3List.add(new ItemStack(this, 1, 0));
+		par3List.add(new ItemStack(this, 1, 1));
+		par3List.add(new ItemStack(this, 1, 2));
 	}
 
 	static final class SwitchEnumAxis

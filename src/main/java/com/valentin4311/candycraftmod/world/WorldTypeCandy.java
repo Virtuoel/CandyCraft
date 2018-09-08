@@ -13,7 +13,7 @@ public class WorldTypeCandy extends WorldType
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean getCanBeCreated()
+	public boolean canBeCreated()
 	{
 		return false;
 	}

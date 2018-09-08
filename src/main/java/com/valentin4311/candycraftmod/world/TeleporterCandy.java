@@ -25,7 +25,7 @@ import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 
 public class TeleporterCandy extends Teleporter
-{
+{ // TODO replace with modern code
 	private final WorldServer worldServerInstance;
 	private final Long2ObjectMap<Teleporter.PortalPosition> destinationCoordinateCache = new Long2ObjectOpenHashMap(4096);
 	private final List destinationCoordinateKeys = new ArrayList();
@@ -44,11 +44,12 @@ public class TeleporterCandy extends Teleporter
 		{
 			if (worldServerInstance.provider.getDimension() == CandyCraft.getCandyDimensionID() && par1Entity != null && par1Entity instanceof EntityPlayer)
 			{
-				((EntityPlayer) par1Entity).addStat(CCAchievements.enterCandyWorld);
+				// TODO Advancements
+			//	((EntityPlayer) par1Entity).addStat(CCAchievements.enterCandyWorld);
 			}
 		}
-		int i = MathHelper.floor_double(par1Entity.posX);
-		int k = MathHelper.floor_double(par1Entity.posZ);
+		int i = MathHelper.floor(par1Entity.posX);
+		int k = MathHelper.floor(par1Entity.posZ);
 
 		((EntityLivingBase) par1Entity).addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 300, 30));
 		par1Entity.setLocationAndAngles(i, 300, k, par1Entity.rotationYaw, par1Entity.rotationPitch);
@@ -65,11 +66,11 @@ public class TeleporterCandy extends Teleporter
 	{
 		boolean flag = true;
 		double d0 = -1.0D;
-		int i = MathHelper.floor_double(p_180620_1_.posX);
-		int j = MathHelper.floor_double(p_180620_1_.posZ);
+		int i = MathHelper.floor(p_180620_1_.posX);
+		int j = MathHelper.floor(p_180620_1_.posZ);
 		boolean flag1 = true;
 		Object object = BlockPos.ORIGIN;
-		long k = ChunkPos.chunkXZ2Int(i, j);
+		long k = ChunkPos.asLong(i, j);
 
 		if (destinationCoordinateCache.containsKey(k))
 		{

@@ -85,12 +85,12 @@ public class EntityCandyCreeper extends EntityCreeper
 					playSound(SoundEvents.ENTITY_CREEPER_PRIMED, 1.0F, 0.0F + (60 - counter) / 60.0f);
 				}
 				setLocationAndAngles(posX, posY, posZ, rotationYaw + 1, rotationPitch + 1);
-				if (!worldObj.isRemote && counter <= 0)
+				if (!world.isRemote && counter <= 0)
 				{
-					boolean var2 = worldObj.getGameRules().getBoolean("mobGriefing");
-					worldObj.createExplosion(this, posX, posY, posZ, explosionRadius * 6, var2);
-					worldObj.createExplosion(this, posX, posY, posZ, explosionRadius * 6, var2);
-					worldObj.createExplosion(this, posX, posY, posZ, explosionRadius * 6, var2);
+					boolean var2 = world.getGameRules().getBoolean("mobGriefing");
+					world.createExplosion(this, posX, posY, posZ, explosionRadius * 6, var2);
+					world.createExplosion(this, posX, posY, posZ, explosionRadius * 6, var2);
+					world.createExplosion(this, posX, posY, posZ, explosionRadius * 6, var2);
 					setDead();
 					dropItem(Items.COOKIE, 32);
 				}
@@ -100,17 +100,17 @@ public class EntityCandyCreeper extends EntityCreeper
 			{
 				timeSinceIgnited = fuseTime;
 
-				if (!worldObj.isRemote)
+				if (!world.isRemote)
 				{
-					boolean var2 = worldObj.getGameRules().getBoolean("mobGriefing");
+					boolean var2 = world.getGameRules().getBoolean("mobGriefing");
 
 					if (getPowered())
 					{
-						worldObj.createExplosion(this, posX, posY, posZ, explosionRadius * 2, var2);
+						world.createExplosion(this, posX, posY, posZ, explosionRadius * 2, var2);
 					}
 					else
 					{
-						worldObj.createExplosion(this, posX, posY, posZ, explosionRadius, var2);
+						world.createExplosion(this, posX, posY, posZ, explosionRadius, var2);
 					}
 
 					setDead();
@@ -122,18 +122,19 @@ public class EntityCandyCreeper extends EntityCreeper
 	}
 
 	@Override
-	public boolean processInteract(EntityPlayer par1EntityPlayer, EnumHand hand, ItemStack stackInHand)
+	public boolean processInteract(EntityPlayer par1EntityPlayer, EnumHand hand)
 	{
 		ItemStack var2 = par1EntityPlayer.inventory.getCurrentItem();
-		if (!worldObj.isRemote && var2 != null && var2.getItem() == CCItems.lollipop && !isExploding)
+		if (!world.isRemote && var2 != null && var2.getItem() == CCItems.lollipop && !isExploding)
 		{
-			par1EntityPlayer.addStat(CCAchievements.lollipopCreep);
+			// TODO advancements
+		//	par1EntityPlayer.addStat(CCAchievements.lollipopCreep);
 			isExploding = true;
 			counter = 60;
 			return true;
 		}
 
-		return super.processInteract(par1EntityPlayer, hand, stackInHand);
+		return super.processInteract(par1EntityPlayer, hand);
 	}
 
 	@Override

@@ -42,18 +42,18 @@ public class ClientTick
 				String m2 = m1.replace("*mcVersion*", ClientTick.mcVersion);
 				String m3 = I18n.format("chat.UpdateFound2").replace("*features*", ClientTick.words);
 				String m4 = I18n.format("chat.UpdateFound3").replace("*link*", "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1292999");
-				player.addChatMessage(new TextComponentTranslation("\247a" + m2));
-				player.addChatMessage(new TextComponentTranslation(""));
-				player.addChatMessage(new TextComponentTranslation("\247a" + m3));
-				player.addChatMessage(new TextComponentTranslation(""));
-				player.addChatMessage(new TextComponentTranslation("\247a" + m4));
+				player.sendMessage(new TextComponentTranslation("\247a" + m2));
+				player.sendMessage(new TextComponentTranslation(""));
+				player.sendMessage(new TextComponentTranslation("\247a" + m3));
+				player.sendMessage(new TextComponentTranslation(""));
+				player.sendMessage(new TextComponentTranslation("\247a" + m4));
 			}
 			else
 			{
 				// player.addChatMessage(new TextComponentTranslation("\2476" +
 				// I18n.format("chat.NoUpdate")));
 			}
-			player.addChatMessage(new TextComponentTranslation("This is a test version, bugs, glitch, crash may occurs !"));
+			player.sendMessage(new TextComponentTranslation("This is a test version, bugs, glitch, crash may occurs !"));
 		}
 	}
 
@@ -64,7 +64,7 @@ public class ClientTick
 			bossHealth = new GuiBoss();
 			isDeclared = true;
 		}
-		if (Minecraft.getMinecraft().thePlayer != null && Minecraft.getMinecraft().currentScreen == null)
+		if (Minecraft.getMinecraft().player != null && Minecraft.getMinecraft().currentScreen == null)
 		{
 			((GuiBoss) bossHealth).drawScreen(tick);
 		}

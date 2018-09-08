@@ -111,7 +111,7 @@ public class WorldGenFloatingIsland extends WorldGenerator
 		}
 		for (int i = 0; i < entities.size(); i++)
 		{
-			world.spawnEntityInWorld(entities.get(i));
+			world.spawnEntity(entities.get(i));
 		}
 
 	}

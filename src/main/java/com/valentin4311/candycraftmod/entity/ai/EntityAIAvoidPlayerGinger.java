@@ -60,7 +60,7 @@ public class EntityAIAvoidPlayerGinger extends EntityAIBase
 				return false;
 			}
 
-			closestLivingEntity = theEntity.worldObj.getClosestPlayerToEntity(theEntity, distanceFromEntity);
+			closestLivingEntity = theEntity.world.getClosestPlayerToEntity(theEntity, distanceFromEntity);
 
 			if (closestLivingEntity != null && ((EntityPlayer) closestLivingEntity).inventory.hasItemStack(new ItemStack(CCItems.gingerbreadEmblem)))
 			{
@@ -73,7 +73,7 @@ public class EntityAIAvoidPlayerGinger extends EntityAIBase
 		}
 		else
 		{
-			List list = theEntity.worldObj.getEntitiesWithinAABB(targetEntityClass, theEntity.getEntityBoundingBox().expand(distanceFromEntity, 3.0D, distanceFromEntity));
+			List list = theEntity.world.getEntitiesWithinAABB(targetEntityClass, theEntity.getEntityBoundingBox().expand(distanceFromEntity, 3.0D, distanceFromEntity));
 
 			if (list.isEmpty())
 			{
@@ -89,14 +89,14 @@ public class EntityAIAvoidPlayerGinger extends EntityAIBase
 		{
 			return false;
 		}
-		else if (closestLivingEntity.getDistanceSq(vec3.xCoord, vec3.yCoord, vec3.zCoord) < closestLivingEntity.getDistanceSqToEntity(theEntity))
+		else if (closestLivingEntity.getDistanceSq(vec3.x, vec3.y, vec3.z) < closestLivingEntity.getDistanceSq(theEntity))
 		{
 			return false;
 		}
 		else
 		{
-			entityPathEntity = entityPathNavigate.getPathToXYZ(vec3.xCoord, vec3.yCoord, vec3.zCoord);
-			return entityPathEntity == null ? false : entityPathEntity.isDestinationSame(vec3);
+			entityPathEntity = entityPathNavigate.getPathToXYZ(vec3.x, vec3.y, vec3.z);
+			return entityPathEntity == null;// ? false : entityPathEntity.isDestinationSame(vec3);
 		}
 	}
 
@@ -104,7 +104,7 @@ public class EntityAIAvoidPlayerGinger extends EntityAIBase
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
 	@Override
-	public boolean continueExecuting()
+	public boolean shouldContinueExecuting()
 	{
 		return !entityPathNavigate.noPath();
 	}
@@ -133,7 +133,7 @@ public class EntityAIAvoidPlayerGinger extends EntityAIBase
 	@Override
 	public void updateTask()
 	{
-		if (theEntity.getDistanceSqToEntity(closestLivingEntity) < 49.0D)
+		if (theEntity.getDistanceSq(closestLivingEntity) < 49.0D)
 		{
 			theEntity.getNavigator().setSpeed(nearSpeed);
 		}

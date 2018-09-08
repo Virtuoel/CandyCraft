@@ -6,7 +6,6 @@ import java.util.Map;
 import com.valentin4311.candycraftmod.CandyCraft;
 import com.valentin4311.candycraftmod.blocks.CCBlocks;
 import com.valentin4311.candycraftmod.items.CCItems;
-import com.valentin4311.candycraftmod.misc.CCAchievements;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -27,12 +26,12 @@ public class TileEntitySugarFactory extends TileEntity implements ISidedInventor
 {
 	public boolean advancedMode = false;
 	public boolean checked = false;
-	private ItemStack[] FactoryItemStacks = new ItemStack[2];
+	private ItemStack[] FactoryItemStacks = new ItemStack[] {ItemStack.EMPTY, ItemStack.EMPTY};
 	public int currentTime = 0;
 	private String invName;
 
-	public static Map recipeList = new HashMap();
-	public static Map advancedRecipeList = new HashMap();
+	public static Map<ItemStack, ItemStack> recipeList = new HashMap<ItemStack, ItemStack>();
+	public static Map<ItemStack, ItemStack> advancedRecipeList = new HashMap<ItemStack, ItemStack>();
 
 	public static Map recipes = new HashMap();
 
@@ -75,7 +74,7 @@ public class TileEntitySugarFactory extends TileEntity implements ISidedInventor
 
 			if (b0 >= 0 && b0 < FactoryItemStacks.length)
 			{
-				FactoryItemStacks[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+				FactoryItemStacks[b0] = new ItemStack(nbttagcompound1);
 			}
 		}
 
@@ -134,19 +133,19 @@ public class TileEntitySugarFactory extends TileEntity implements ISidedInventor
 		{
 			ItemStack itemstack;
 
-			if (FactoryItemStacks[i].stackSize <= j)
+			if (FactoryItemStacks[i].getCount() <= j)
 			{
 				itemstack = FactoryItemStacks[i];
-				FactoryItemStacks[i] = null;
+				FactoryItemStacks[i] = ItemStack.EMPTY;
 				return itemstack;
 			}
 			else
 			{
 				itemstack = FactoryItemStacks[i].splitStack(j);
 
-				if (FactoryItemStacks[i].stackSize == 0)
+				if (FactoryItemStacks[i].getCount() == 0)
 				{
-					FactoryItemStacks[i] = null;
+					FactoryItemStacks[i] = ItemStack.EMPTY;
 				}
 
 				return itemstack;
@@ -154,7 +153,7 @@ public class TileEntitySugarFactory extends TileEntity implements ISidedInventor
 		}
 		else
 		{
-			return null;
+			return ItemStack.EMPTY;
 		}
 	}
 
@@ -164,12 +163,12 @@ public class TileEntitySugarFactory extends TileEntity implements ISidedInventor
 		if (FactoryItemStacks[i] != null)
 		{
 			ItemStack itemstack = FactoryItemStacks[i];
-			FactoryItemStacks[i] = null;
+			FactoryItemStacks[i] = ItemStack.EMPTY;
 			return itemstack;
 		}
 		else
 		{
-			return null;
+			return ItemStack.EMPTY;
 		}
 	}
 
@@ -178,15 +177,15 @@ public class TileEntitySugarFactory extends TileEntity implements ISidedInventor
 	{
 		FactoryItemStacks[i] = itemstack;
 
-		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit())
+		if (itemstack != null && itemstack.getCount() > getInventoryStackLimit())
 		{
-			itemstack.stackSize = getInventoryStackLimit();
+			itemstack.setCount(getInventoryStackLimit());
 		}
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
-	{
+	public boolean isUsableByPlayer(EntityPlayer par1EntityPlayer)
+	{/*// TODO advancements
 		if (par1EntityPlayer != null && FactoryItemStacks[1] != null && FactoryItemStacks[1].getItem() == CCItems.honeycomb)
 		{
 			par1EntityPlayer.addStat(CCAchievements.craftHoneyComb);
@@ -194,8 +193,8 @@ public class TileEntitySugarFactory extends TileEntity implements ISidedInventor
 		if (par1EntityPlayer != null && FactoryItemStacks[1] != null && FactoryItemStacks[1].getItem() == CCItems.chocolateCoin)
 		{
 			par1EntityPlayer.addStat(CCAchievements.craftCoins);
-		}
-		return worldObj.getTileEntity(pos) != this ? false : par1EntityPlayer.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64.0D;
+		}*/
+		return world.getTileEntity(pos) != this ? false : par1EntityPlayer.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64.0D;
 	}
 
 	@Override
@@ -203,13 +202,13 @@ public class TileEntitySugarFactory extends TileEntity implements ISidedInventor
 	{
 		if (!checked)
 		{
-			advancedMode = worldObj.getBlockState(pos).getBlock() == CCBlocks.advancedSugarFactory;
+			advancedMode = world.getBlockState(pos).getBlock() == CCBlocks.advancedSugarFactory;
 			checked = true;
 		}
 		if (FactoryItemStacks[0] != null && FactoryItemStacks[0].getItem() != Items.SUGAR)
 		{
 			ItemStack result = new ItemStack(Items.SUGAR, 1);
-			ItemStack base = null;
+			ItemStack base = ItemStack.EMPTY;
 
 			if (FactoryItemStacks[0].getItem() == Items.STICK)
 			{
@@ -236,17 +235,18 @@ public class TileEntitySugarFactory extends TileEntity implements ISidedInventor
 			{
 				result = new ItemStack(Items.GOLD_NUGGET);
 			}
-
-			if (FactoryItemStacks[0].getItem() == CCItems.grenadineBucket)
+			
+			// TODO FIXME Grenadine Bucket
+		/*	if (FactoryItemStacks[0].getItem() == CCItems.grenadineBucket)
 			{
 				base = new ItemStack(Items.BUCKET, 1);
-			}
+			}*/
 			if (FactoryItemStacks[0].getItem() == CCItems.caramelBucket)
 			{
 				base = new ItemStack(Items.BUCKET, 1);
 			}
 
-			if (FactoryItemStacks[0] != null && TileEntitySugarFactory.isItemValid(FactoryItemStacks[0]) && (FactoryItemStacks[1] == null || (FactoryItemStacks[1] != null && FactoryItemStacks[1].stackSize < 64 && FactoryItemStacks[1].getItem() == result.getItem())))
+			if (FactoryItemStacks[0] != null && TileEntitySugarFactory.isItemValid(FactoryItemStacks[0]) && (FactoryItemStacks[1] == null || (FactoryItemStacks[1] != null && FactoryItemStacks[1].getCount() < 64 && FactoryItemStacks[1].getItem() == result.getItem())))
 			{
 				currentTime += advancedMode ? 2 : 1;
 			}
@@ -254,29 +254,29 @@ public class TileEntitySugarFactory extends TileEntity implements ISidedInventor
 			{
 				currentTime = 0;
 			}
-			if (currentTime >= 240 && !worldObj.isRemote)
+			if (currentTime >= 240 && !world.isRemote)
 			{
 
-				if (FactoryItemStacks[1] == null)
+				if (FactoryItemStacks[1] == ItemStack.EMPTY)
 				{
 					FactoryItemStacks[1] = result;
 					currentTime = 0;
 				}
-				else if (FactoryItemStacks[1].stackSize < 64 && result.getItem() == FactoryItemStacks[1].getItem())
+				else if (FactoryItemStacks[1].getCount() < 64 && result.getItem() == FactoryItemStacks[1].getItem())
 				{
-					FactoryItemStacks[1].stackSize++;
+					FactoryItemStacks[1].grow(1);
 					currentTime = 0;
 				}
 
-				if (base == null)
+				if (base == ItemStack.EMPTY)
 				{
-					if (FactoryItemStacks[0].stackSize == 1)
+					if (FactoryItemStacks[0].getCount() == 1)
 					{
-						FactoryItemStacks[0] = null;
+						FactoryItemStacks[0] = ItemStack.EMPTY;
 					}
 					if (FactoryItemStacks[0] != null)
 					{
-						FactoryItemStacks[0].stackSize--;
+						FactoryItemStacks[0].shrink(1);
 					}
 				}
 				else
@@ -364,5 +364,19 @@ public class TileEntitySugarFactory extends TileEntity implements ISidedInventor
 	public ITextComponent getDisplayName()
 	{
 		return hasCustomName() ? new TextComponentString(getName()) : new TextComponentTranslation(getName(), new Object[0]);
+	}
+
+	@Override
+	public boolean isEmpty()
+	{
+		for(ItemStack itemstack : this.FactoryItemStacks)
+		{
+			if(itemstack != null && !itemstack.isEmpty())
+			{
+				return false;
+			}
+		}
+		
+		return true;
 	}
 }

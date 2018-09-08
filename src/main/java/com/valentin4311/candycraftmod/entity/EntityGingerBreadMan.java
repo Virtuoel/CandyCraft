@@ -25,6 +25,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.pathfinding.PathNodeType;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -85,9 +86,9 @@ public class EntityGingerBreadMan extends EntityVillager implements IMerchant, I
 	}
 
 	@Override
-	public void updateAITick()
+	public void updateAITasks()
 	{
-		super.updateAITick();
+		super.updateAITasks();
 		if (getProfession() != 3)
 		{
 			if (getMoveHelper().isUpdating())
@@ -130,7 +131,7 @@ public class EntityGingerBreadMan extends EntityVillager implements IMerchant, I
 			buyingList.add(new MerchantRecipe(new ItemStack(CCItems.PEZ, 10), new ItemStack(CCItems.skyEmblem)));
 			buyingList.add(new MerchantRecipe(new ItemStack(CCItems.PEZ, 20), new ItemStack(CCItems.CD3)));
 		}
-		dataWatcher.updateObject(16, Integer.valueOf(p_70938_1_));
+		super.setProfession(p_70938_1_);
 	}
 
 	@Override
@@ -294,8 +295,8 @@ public class EntityGingerBreadMan extends EntityVillager implements IMerchant, I
 	@Override
 	public EntityVillager createChild(EntityAgeable par1EntityAgeable)
 	{
-		EntityGingerBreadMan entityvillager = new EntityGingerBreadMan(worldObj);
-		entityvillager.onInitialSpawn(worldObj.getDifficultyForLocation(new BlockPos(this)), (IEntityLivingData) null);
+		EntityGingerBreadMan entityvillager = new EntityGingerBreadMan(world);
+		entityvillager.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(this)), (IEntityLivingData) null);
 		return entityvillager;
 	}
 
@@ -312,7 +313,7 @@ public class EntityGingerBreadMan extends EntityVillager implements IMerchant, I
 	}
 
 	@Override
-	protected SoundEvent getHurtSound()
+	protected SoundEvent getHurtSound(DamageSource damageSource)
 	{
 		return SoundEvents.ENTITY_VILLAGER_HURT;
 	}

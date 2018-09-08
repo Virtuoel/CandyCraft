@@ -27,14 +27,15 @@ public class BlockCandyWaterLily extends BlockLilyPad
 	{
 		return Item.getItemFromBlock(CCBlocks.marshmallowSlice);
 	}
-
+	
+	
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (this == CCBlocks.marshmallowFlowerBlock && !world.isRemote)
+		if (this == CCBlocks.marshmallowFlowerBlock && !worldIn.isRemote)
 		{
-			world.setBlockState(pos, CCBlocks.marshmallowSlice.getDefaultState());
-			spawnAsEntity(world, pos, new ItemStack(CCItems.marshmallowFlower, 1, 0));
+			worldIn.setBlockState(pos, CCBlocks.marshmallowSlice.getDefaultState());
+			spawnAsEntity(worldIn, pos, new ItemStack(CCItems.marshmallowFlower, 1, 0));
 		}
 		return this != CCBlocks.marshmallowSlice;
 	}

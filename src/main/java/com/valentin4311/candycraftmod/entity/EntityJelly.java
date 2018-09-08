@@ -1,5 +1,7 @@
 package com.valentin4311.candycraftmod.entity;
 
+import com.valentin4311.candycraftmod.entity.boss.EntityBossSuguard;
+
 import net.minecraft.entity.EntityBodyHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,6 +11,9 @@ import net.minecraft.entity.ai.EntityAIFindEntityNearestPlayer;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
@@ -17,6 +22,7 @@ import net.minecraft.world.World;
 
 public class EntityJelly extends EntityLiving
 {
+	protected static final DataParameter<Byte> SIZE = EntityDataManager.<Byte>createKey(EntityJelly.class, DataSerializers.BYTE);
 	private final EntityBodyHelper bodyHelper;
 	public int slimeJumpDelay = 0;
 	public float squishAmount;
@@ -39,20 +45,20 @@ public class EntityJelly extends EntityLiving
 
 	public int getJellySize()
 	{
-		return dataWatcher.getWatchableObjectByte(16);
+		return dataManager.get(SIZE);
 	}
 
 	protected void setJellySize(int par1)
 	{
-		dataWatcher.updateObject(16, new Byte((byte) par1));
+		dataManager.set(SIZE, (byte) par1);
 		setSize(0.51000005F * par1 + 0.1F, 0.51000005F * par1);
 		setPosition(posX, posY, posZ);
 		setHealth(getMaxHealth());
 		experienceValue = par1;
 	}
-
+/*// TODO ????
 	@Override
-	public void onDataWatcherUpdate(int dataID)
+	public void ondataManagerUpdate(int dataID)
 	{
 		if (dataID == 16)
 		{
@@ -67,9 +73,9 @@ public class EntityJelly extends EntityLiving
 			}
 		}
 
-		super.onDataWatcherUpdate(dataID);
+		super.ondataManagerUpdate(dataID);
 	}
-
+*/
 	@Override
 	public void onUpdate()
 	{
@@ -91,7 +97,6 @@ public class EntityJelly extends EntityLiving
 				float f1 = rand.nextFloat() * 0.5F + 0.5F;
 				float f2 = MathHelper.sin(f) * i * 0.5F * f1;
 				float f3 = MathHelper.cos(f) * i * 0.5F * f1;
-				World world = worldObj;
 				EnumParticleTypes enumparticletypes = EnumParticleTypes.CRIT_MAGIC;
 				double d0 = posX + f2;
 				double d1 = posZ + f3;
@@ -172,9 +177,9 @@ public class EntityJelly extends EntityLiving
 	protected void entityInit()
 	{
 		super.entityInit();
-		dataWatcher.addObject(16, new Byte((byte) 1));
+		dataManager.register(SIZE, (byte) 1);
 	}
-
+	/*// TODO sound events
 	@Override
 	protected SoundEvent getHurtSound()
 	{
@@ -186,7 +191,7 @@ public class EntityJelly extends EntityLiving
 	{
 		return "mob.slime." + (getJellySize() > 1 ? "big" : "small");
 	}
-
+*/
 	@Override
 	protected SoundEvent getAmbientSound()
 	{
@@ -250,7 +255,7 @@ public class EntityJelly extends EntityLiving
 		 * Returns whether an in-progress EntityAIBase should continue executing
 		 */
 		@Override
-		public boolean continueExecuting()
+		public boolean shouldContinueExecuting()
 		{
 			EntityLivingBase entitylivingbase = field_179466_a.getAttackTarget();
 			return entitylivingbase == null ? false : (!entitylivingbase.isEntityAlive() ? false : --field_179465_b > 0);
@@ -395,7 +400,7 @@ public class EntityJelly extends EntityLiving
 			if (isAwake())
 			{
 				speed = p_179921_1_;
-				update = true;
+				this.action = EntityMoveHelper.Action.MOVE_TO;
 			}
 		}
 
@@ -409,13 +414,13 @@ public class EntityJelly extends EntityLiving
 				entity.renderYawOffset = entity.rotationYaw;
 			}
 
-			if (!update)
+			if (this.action != EntityMoveHelper.Action.MOVE_TO)
 			{
 				entity.setMoveForward(0.0F);
 			}
 			else
 			{
-				update = false;
+				this.action = EntityMoveHelper.Action.WAIT;
 
 				if (entity.onGround)
 				{

@@ -4,29 +4,28 @@ import java.util.Random;
 
 import com.valentin4311.candycraftmod.blocks.tileentity.TileEntityEgg;
 
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.tileentity.TileEntity;
 
-public class RenderEgg extends TileEntitySpecialRenderer
+public class RenderEgg extends TileEntitySpecialRenderer<TileEntityEgg>
 {
 	@Override
-	public void renderTileEntityAt(TileEntity var1, double var2, double var4, double var6, float var8, int i)
+	public void render(TileEntityEgg te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
 	{
 		GlStateManager.pushMatrix();
-		GlStateManager.translate(var2 + 0.5D, var4 + 0.8D, var6 + 0.5D);
-		renderLight((TileEntityEgg) var1, var8);
+		GlStateManager.translate(x + 0.5D, y + 0.8D, z + 0.5D);
+		renderLight(te, partialTicks);
 		GlStateManager.popMatrix();
 	}
 
 	protected void renderLight(TileEntityEgg var1, float par2)
 	{
 		Tessellator tessellator = Tessellator.getInstance();
-		VertexBuffer worldrenderer = tessellator.getBuffer();
+		BufferBuilder worldrenderer = tessellator.getBuffer();
 		RenderHelper.disableStandardItemLighting();
 		float f = (200 - var1.timeLeft + par2) / 200.0F;
 		float f1 = 0.0F;

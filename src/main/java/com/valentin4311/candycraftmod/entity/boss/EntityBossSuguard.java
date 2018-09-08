@@ -22,9 +22,13 @@ import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
@@ -35,6 +39,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityBossSuguard extends EntityGolem implements IMob, ICandyBoss, IRangedAttackMob
 {
+	private static final DataParameter<Boolean> AWAKE = EntityDataManager.<Boolean>createKey(EntityBossSuguard.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Integer> STATS = EntityDataManager.<Integer>createKey(EntityBossSuguard.class, DataSerializers.VARINT);
+
+	// TODO Boss Bar
+	
 	private EntityAICandyArrow aiArrowAttack = new EntityAICandyArrow(this, 1.0D, 20, 30, 15.0F);
 	private int counter = 300;
 
@@ -54,22 +63,22 @@ public class EntityBossSuguard extends EntityGolem implements IMob, ICandyBoss, 
 
 	public boolean getAwake()
 	{
-		return dataWatcher.getWatchableObjectByte(21) == 1 ? true : false;
+		return dataManager.get(AWAKE);
 	}
 
 	public void setAwake(boolean p)
 	{
-		dataWatcher.updateObject(21, p ? (byte) 1 : (byte) 0);
+		dataManager.set(AWAKE, p);
 	}
 
 	public int getStats()
 	{
-		return dataWatcher.getWatchableObjectInt(19);
+		return dataManager.get(STATS);
 	}
 
 	public void setStats(int par1)
 	{
-		dataWatcher.updateObject(19, par1);
+		dataManager.set(STATS, par1);
 	}
 
 	@Override
@@ -79,7 +88,7 @@ public class EntityBossSuguard extends EntityGolem implements IMob, ICandyBoss, 
 	}
 
 	@Override
-	protected SoundEvent getHurtSound()
+	protected SoundEvent getHurtSound(DamageSource damageSource)
 	{
 		return null;
 	}
@@ -108,8 +117,8 @@ public class EntityBossSuguard extends EntityGolem implements IMob, ICandyBoss, 
 	protected void entityInit()
 	{
 		super.entityInit();
-		dataWatcher.addObject(19, new Integer(0));
-		dataWatcher.addObject(21, new Byte((byte) 0));
+		dataManager.register(STATS, 0);
+		dataManager.register(AWAKE, false);
 	}
 
 	@Override
@@ -135,7 +144,7 @@ public class EntityBossSuguard extends EntityGolem implements IMob, ICandyBoss, 
 		{
 			return false;
 		}
-		if (!getAwake() && !worldObj.isRemote && par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer)
+		if (!getAwake() && !world.isRemote && par1DamageSource.getTrueSource() != null && par1DamageSource.getTrueSource() instanceof EntityPlayer)
 		{
 			setAwake(true);
 		}
@@ -146,12 +155,12 @@ public class EntityBossSuguard extends EntityGolem implements IMob, ICandyBoss, 
 	public void onUpdate()
 	{
 		super.onUpdate();
-		if (!getAwake() && !worldObj.isRemote)
+		if (!getAwake() && !world.isRemote)
 		{
 			heal(5.0f);
 		}
 
-		if (!worldObj.isRemote)
+		if (!world.isRemote)
 		{
 			if (!getAwake())
 			{
@@ -171,9 +180,9 @@ public class EntityBossSuguard extends EntityGolem implements IMob, ICandyBoss, 
 					setStats(rand.nextInt(3) + 1);
 				}
 
-				EntityPlayer player = EntityUtil.getClosestVulnerablePlayerToEntity(worldObj, this, 48.0D);
+				EntityPlayer player = EntityUtil.getClosestVulnerablePlayerToEntity(world, this, 48.0D);
 
-				if (player != null && getDistanceToEntity(player) < 3)
+				if (player != null && getDistance(player) < 3)
 				{
 					for (int i = 0; i < 5; i++)
 					{
@@ -185,7 +194,7 @@ public class EntityBossSuguard extends EntityGolem implements IMob, ICandyBoss, 
 					setAttackTarget(player);
 					aiArrowAttack.attackTarget = player;
 				}
-				else if (worldObj.getClosestPlayerToEntity(this, 48.0D) == null)
+				else if (world.getClosestPlayerToEntity(this, 48.0D) == null)
 				{
 					setAwake(false);
 				}
@@ -275,17 +284,19 @@ public class EntityBossSuguard extends EntityGolem implements IMob, ICandyBoss, 
 		}
 		for (int i2 = 0; i2 < j2; i2++)
 		{
-			EntityCandyArrow entityarrow = new EntityCandyArrow(worldObj, this, par1EntityLivingBase, 1.6F, 14 - worldObj.getDifficulty().getDifficultyId() * 4);
-			entityarrow.maxTick = 80;
+			EntityCandyArrow entityarrow = new EntityCandyArrow(world, this);
+			entityarrow.shoot(this, this.rotationPitch, this.rotationYaw, 0.0F, 1.6F, 14 - world.getDifficulty().getId() * 4);
+			// TODO Candy Arrow ???
+		//	entityarrow.maxTick = 80;
 			int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, getHeldItem(EnumHand.MAIN_HAND));
 			int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, getHeldItem(EnumHand.MAIN_HAND));
-			entityarrow.setDamage(par2 * 3.0F + rand.nextGaussian() * 0.25D + worldObj.getDifficulty().getDifficultyId() * 0.11F);
+			entityarrow.setDamage(par2 * 3.0F + rand.nextGaussian() * 0.25D + world.getDifficulty().getId() * 0.11F);
 
 			if (i > 0)
 			{
 				entityarrow.setDamage(entityarrow.getDamage() + i * 0.5D + 0.5D);
 			}
-			if (getDistanceToEntity(par1EntityLivingBase) < 3)
+			if (getDistance(par1EntityLivingBase) < 3)
 			{
 				j = 2;
 			}
@@ -300,11 +311,12 @@ public class EntityBossSuguard extends EntityGolem implements IMob, ICandyBoss, 
 			}
 			if (getStats() == 2)
 			{
-				entityarrow.slow = 1;
+				// TODO arrow
+			//	entityarrow.slow = 1;
 			}
 
-			playSound("random.bow", 1.0F, 1.0F / (getRNG().nextFloat() * 0.4F + 0.8F));
-			worldObj.spawnEntityInWorld(entityarrow);
+			playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1.0F, 1.0F / (getRNG().nextFloat() * 0.4F + 0.8F));
+			world.spawnEntity(entityarrow);
 		}
 	}
 
@@ -312,5 +324,11 @@ public class EntityBossSuguard extends EntityGolem implements IMob, ICandyBoss, 
 	public boolean isNonBoss()
 	{
 		return false;
+	}
+
+	@Override
+	public void setSwingingArms(boolean swingingArms)
+	{
+		
 	}
 }

@@ -3,9 +3,13 @@ package com.valentin4311.candycraftmod.items;
 import java.util.List;
 
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemEmblem extends Item
 {
@@ -17,12 +21,13 @@ public class ItemEmblem extends Item
 		setMaxStackSize(1);
 		attr = desc;
 	}
-
+	
+	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
 		String str = "\2472" + I18n.format("Desc." + attr);
-		par3List.add(str.replaceAll("Format error: ", ""));
-		par3List.add("\247a" + I18n.format("Desc.Emblem"));
+		tooltip.add(str.replaceAll("Format error: ", ""));
+		tooltip.add("\247a" + I18n.format("Desc.Emblem"));
 	}
 }

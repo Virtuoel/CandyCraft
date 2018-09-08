@@ -1,6 +1,9 @@
 package com.valentin4311.candycraftmod.entity;
 
+import javax.annotation.Nullable;
+
 import com.valentin4311.candycraftmod.entity.ai.EntityAIExplode;
+import com.valentin4311.candycraftmod.entity.boss.EntityBossBeetle;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -15,6 +18,9 @@ import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
@@ -22,33 +28,35 @@ import net.minecraft.world.World;
 
 public class EntityNougatGolem extends EntityGolem
 {
+	private static final DataParameter<Float> HEIGHT = EntityDataManager.<Float>createKey(EntityNougatGolem.class, DataSerializers.FLOAT);
+	
 	public EntityNougatGolem(World par1World)
 	{
 		super(par1World);
-		setSize(0.65F, getLenght());
+		setSize(0.65F, getHeight());
 		setHealth(20);
 		tasks.addTask(1, new EntityAIExplode(this, 1.0D, false));
 		tasks.addTask(6, new EntityAIWander(this, 0.6D));
 		tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
 		tasks.addTask(8, new EntityAILookIdle(this));
 		targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
-		targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLiving.class, 0, false, true, IMob.mobSelector));
+		targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLiving.class, 0, false, true, IMob.MOB_SELECTOR));
 	}
 
-	public float getLenght()
+	public float getHeight()
 	{
-		return dataWatcher.getWatchableObjectFloat(16);
+		return dataManager.get(HEIGHT);
 	}
 
-	public void setLenght(float par1)
+	public void setHeight(float par1)
 	{
-		setSize(getLenght(), getLenght());
-		dataWatcher.updateObject(16, Float.valueOf((par1)));
+		setSize(getHeight(), getHeight());
+		dataManager.set(HEIGHT, par1);
 	}
 
 	public boolean isTop()
 	{
-		return riddenByEntity == null;
+		return getControllingPassenger() == null;
 	}
 
 	public boolean isBase()
@@ -69,7 +77,7 @@ public class EntityNougatGolem extends EntityGolem
 	}
 
 	@Override
-	protected SoundEvent getHurtSound()
+	protected SoundEvent getHurtSound(DamageSource damageSource)
 	{
 		return null;
 	}
@@ -89,10 +97,10 @@ public class EntityNougatGolem extends EntityGolem
 	@Override
 	public void onLivingUpdate()
 	{
-		if (isTop() && getLenght() != 0.8F)
+		if (isTop() && getHeight() != 0.8F)
 		{
-			setLenght(0.8F);
-			setSize(0.65F, getLenght());
+			setHeight(0.8F);
+			setSize(0.65F, getHeight());
 		}
 		if (isBase())
 		{
@@ -101,10 +109,10 @@ public class EntityNougatGolem extends EntityGolem
 
 			while (!last.isTop())
 			{
-				height += last.getLenght();
-				if (last.riddenByEntity != null)
+				height += last.getHeight();
+				if (last.getControllingPassenger() instanceof EntityNougatGolem)
 				{
-					last = (EntityNougatGolem) last.riddenByEntity;
+					last = (EntityNougatGolem) last.getControllingPassenger();
 				}
 				else
 				{
@@ -136,13 +144,20 @@ public class EntityNougatGolem extends EntityGolem
 	protected void entityInit()
 	{
 		super.entityInit();
-		dataWatcher.addObject(16, new Float(rand.nextFloat() / 10 + 0.65F));
+		dataManager.register(HEIGHT, rand.nextFloat() / 10.0F + 0.65F);
 	}
-
+	
+	@Override
+	@Nullable
+	public Entity getControllingPassenger()
+	{
+		return this.getPassengers().isEmpty() ? null : (Entity) this.getPassengers().get(0);
+	}
+	
 	@Override
 	public double getMountedYOffset()
 	{
-		return getLenght();
+		return getHeight();
 	}
 
 	@Override
@@ -154,22 +169,23 @@ public class EntityNougatGolem extends EntityGolem
 	@Override
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
-		if (!worldObj.isRemote && par1DamageSource.isExplosion())
+		if (!world.isRemote && par1DamageSource.isExplosion())
 		{
 			return false;
 		}
-		if (!worldObj.isRemote && getHealth() - par2 <= 0)
+		if (!world.isRemote && getHealth() - par2 <= 0)
 		{
+			Entity riddenByEntity = getControllingPassenger();
 			if (getRidingEntity() != null && riddenByEntity != null)
 			{
-				riddenByEntity.getRidingEntity() = null;
+				riddenByEntity.dismountRidingEntity();
 				riddenByEntity.setPosition(posX, posY + 2.0D, posZ);
 				riddenByEntity = null;
 				return super.attackEntityFrom(par1DamageSource, par2);
 			}
 			if (isBase() && riddenByEntity != null)
 			{
-				riddenByEntity.getRidingEntity() = null;
+				riddenByEntity.dismountRidingEntity();
 				riddenByEntity.setPosition(posX, posY + 2.0D, posZ);
 				return super.attackEntityFrom(par1DamageSource, par2);
 			}
@@ -181,21 +197,21 @@ public class EntityNougatGolem extends EntityGolem
 	public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
 	{
 		super.writeEntityToNBT(par1NBTTagCompound);
-		par1NBTTagCompound.setFloat("lenght", getLenght());
+		par1NBTTagCompound.setFloat("lenght", getHeight());
 	}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
 	{
 		super.readEntityFromNBT(par1NBTTagCompound);
-		setLenght(par1NBTTagCompound.getFloat("lenght"));
+		setHeight(par1NBTTagCompound.getFloat("lenght"));
 	}
 
 	@Override
 	public IEntityLivingData onInitialSpawn(DifficultyInstance instance, IEntityLivingData par1EntityLivingData)
 	{
 		super.onInitialSpawn(instance, par1EntityLivingData);
-		setLenght(rand.nextFloat() / 10 + 0.65F);
+		setHeight(rand.nextFloat() / 10 + 0.65F);
 		return par1EntityLivingData;
 	}
 }

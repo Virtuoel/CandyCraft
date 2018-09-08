@@ -8,6 +8,7 @@ import com.valentin4311.candycraftmod.blocks.tileentity.TileEntityTeleporter;
 import com.valentin4311.candycraftmod.world.TeleporterDungeon;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockCactus;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -69,33 +70,33 @@ public class BlockTeleporter extends BlockContainer
 	{
 		return par1World.getBlockState(pos.down()).isOpaqueCube();
 	}
-
+	
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		TileEntityTeleporter tileentityportal = (TileEntityTeleporter) world.getTileEntity(pos);
-		if (!world.isRemote && player.getRidingEntity() == null && player.getControllingPassenger() == null && player instanceof EntityPlayerMP && tileentityportal.generated)
+		TileEntityTeleporter tileentityportal = (TileEntityTeleporter) worldIn.getTileEntity(pos);
+		if (!worldIn.isRemote && playerIn.getRidingEntity() == null && playerIn.getControllingPassenger() == null && playerIn instanceof EntityPlayerMP && tileentityportal.generated)
 		{
-			EntityPlayerMP mp_player = (EntityPlayerMP) player;
-			player.setPositionAndUpdate(tileentityportal.x, tileentityportal.y, tileentityportal.z);
-			if (world.provider.getDimension() != CandyCraft.getDungeonDimensionID())
+			EntityPlayerMP mp_player = (EntityPlayerMP) playerIn;
+			playerIn.setPositionAndUpdate(tileentityportal.x, tileentityportal.y, tileentityportal.z);
+			if (worldIn.provider.getDimension() != CandyCraft.getDungeonDimensionID())
 			{
-				mp_player.mcServer.getPlayerList().transferPlayerToDimension(mp_player, CandyCraft.getDungeonDimensionID(), new TeleporterDungeon(mp_player.mcServer.worldServerForDimension(CandyCraft.getDungeonDimensionID()), tileentityportal));
+				mp_player.server.getPlayerList().transferPlayerToDimension(mp_player, CandyCraft.getDungeonDimensionID(), new TeleporterDungeon(mp_player.server.getWorld(CandyCraft.getDungeonDimensionID()), tileentityportal));
 			}
 			else
 			{
-				mp_player.mcServer.getPlayerList().transferPlayerToDimension(mp_player, tileentityportal.dim, new TeleporterDungeon(mp_player.mcServer.worldServerForDimension(tileentityportal.dim), tileentityportal));
+				mp_player.server.getPlayerList().transferPlayerToDimension(mp_player, tileentityportal.dim, new TeleporterDungeon(mp_player.server.getWorld(tileentityportal.dim), tileentityportal));
 			}
 		}
 		return true;
 	}
-
+	
 	@Override
-	public void neighborChanged(IBlockState state, World par1World, BlockPos pos, Block par5)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
 	{
-		if (!canPlaceBlockAt(par1World, pos))
+		if (!worldIn.getBlockState(pos.down()).isOpaqueCube())
 		{
-			par1World.setBlockToAir(pos);
+			worldIn.setBlockToAir(pos);
 		}
 	}
 
@@ -145,7 +146,7 @@ public class BlockTeleporter extends BlockContainer
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
+	public BlockRenderLayer getRenderLayer()
 	{
 		return BlockRenderLayer.CUTOUT;
 	}

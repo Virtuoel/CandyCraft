@@ -3,12 +3,15 @@ package com.valentin4311.candycraftmod.items;
 import java.util.List;
 
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemGrenadineCandy extends ItemFood
 {
@@ -107,13 +110,14 @@ public class ItemGrenadineCandy extends ItemFood
 	{
 		return stack.getTagCompound() != null ? stack.getTagCompound().getInteger("MetaSystem") : 0;
 	}
-
+	
+	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
-		par3List.add("");
-		par3List.add("\2476" + I18n.format("Gui.GrenadineCandy.Potion"));
-		String metaString = String.valueOf(par1ItemStack.getItemDamage());
+		tooltip.add("");
+		tooltip.add("\2476" + I18n.format("Gui.GrenadineCandy.Potion"));
+		String metaString = String.valueOf(stack.getItemDamage());
 		if (metaString.length() < 8)
 		{
 			metaString = "0" + metaString;
@@ -152,7 +156,7 @@ public class ItemGrenadineCandy extends ItemFood
 			{
 				if (tabl[l] != null && tabl[l].getPotion() != null)
 				{
-					par3List.add((tabl[l].getPotion().isBadEffect() ? "\247c" : "\247a") + I18n.format(tabl[l].getPotion().getName()) + (tabl[l].getAmplifier() != 0 ? " " + I18n.format("enchantment.level." + (tabl[l].getAmplifier() + 1)) : "")
+					tooltip.add((tabl[l].getPotion().isBadEffect() ? "\247c" : "\247a") + I18n.format(tabl[l].getPotion().getName()) + (tabl[l].getAmplifier() != 0 ? " " + I18n.format("enchantment.level." + (tabl[l].getAmplifier() + 1)) : "")
 							+ (tabl[l].getPotion().isInstant() ? ""
 									: " (" + Potion.getPotionDurationString(tabl[l],
 											1.0F/* TODO Check duration factor */) + ")"));

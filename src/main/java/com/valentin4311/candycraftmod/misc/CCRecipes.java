@@ -15,6 +15,7 @@ public class CCRecipes
 		new AlchemyRecipes();
 
 		GameRegistry.addSmelting(CCBlocks.licoriceOre, new ItemStack(CCItems.licorice), 2);
+		/*// TODO JSON Recipes
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.SUGAR, 4), new ItemStack(CCBlocks.sugarBlock));
 		GameRegistry.addShapelessRecipe(new ItemStack(CCBlocks.marshmallowPlanks, 4, 0), new ItemStack(CCBlocks.marshmallowLog, 1, 0));
 		GameRegistry.addShapelessRecipe(new ItemStack(CCBlocks.marshmallowPlanks, 4, 1), new ItemStack(CCBlocks.marshmallowLog, 1, 1));
@@ -129,5 +130,6 @@ public class CCRecipes
 		GameRegistry.addRecipe(new ItemStack(CCBlocks.iceCreamHalfStep3, 6), "PPP", 'P', new ItemStack(CCBlocks.iceCream, 1, 3));
 		GameRegistry.addRecipe(new ItemStack(CCItems.honeyBolt, 1), "  P", " P ", "C  ", 'P', new ItemStack(CCItems.honeyShard), 'C', new ItemStack(CCItems.candyCane));
 		GameRegistry.addRecipe(new ItemStack(CCItems.caramelCrossbow, 1), "P  ", " C ", "  C", 'P', new ItemStack(CCItems.caramelBow), 'C', new ItemStack(CCBlocks.caramelBlock));
+		*/
 	}
 }

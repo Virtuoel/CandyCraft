@@ -14,16 +14,22 @@ import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class EntityPEZJelly extends EntityJelly implements IBossDisplayData, IMob, ICandyBoss
+public class EntityPEZJelly extends EntityJelly implements IMob, ICandyBoss
 {
-	public boolean isAwake = false;
-
+	private static final DataParameter<Boolean> IS_AWAKE = EntityDataManager.<Boolean>createKey(EntityPEZJelly.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Integer> STATS = EntityDataManager.<Integer>createKey(EntityPEZJelly.class, DataSerializers.VARINT);
+	
+	// TODO Boss Bar
+	
 	public EntityPEZJelly(World par1World)
 	{
 		super(par1World);
@@ -41,7 +47,7 @@ public class EntityPEZJelly extends EntityJelly implements IBossDisplayData, IMo
 	@Override
 	protected void jump()
 	{
-		if (isAwake)
+		if (isAwake())
 		{
 			super.jump();
 		}
@@ -50,38 +56,38 @@ public class EntityPEZJelly extends EntityJelly implements IBossDisplayData, IMo
 	@Override
 	public boolean isAwake()
 	{
-		return isAwake;
+		return getAwake();
 	}
 
-	public byte getAwake()
+	public boolean getAwake()
 	{
-		return dataWatcher.getWatchableObjectByte(21);
+		return this.dataManager.get(IS_AWAKE).booleanValue();
 	}
 
-	public void setAwake()
+	public void setAwake(boolean p)
 	{
-		dataWatcher.updateObject(21, isAwake ? (byte) 1 : (byte) 0);
+		this.dataManager.set(IS_AWAKE, p);
 	}
 
 	public int getStats()
 	{
-		return dataWatcher.getWatchableObjectInt(19);
+		return dataManager.get(STATS);
 	}
 
 	public void setStats(int par1)
 	{
-		dataWatcher.updateObject(19, par1);
+		dataManager.set(STATS, par1);
 	}
 
 	protected EntityPEZJelly createInstance()
 	{
-		return new EntityPEZJelly(worldObj);
+		return new EntityPEZJelly(world);
 	}
 
 	@Override
 	public void setJellySize(int par1)
 	{
-		dataWatcher.updateObject(16, new Byte((byte) par1));
+		dataManager.set(SIZE, (byte) par1);
 		setSize(0.6F * par1, 0.6F * par1);
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(par1 * 20);
 		setHealth(getMaxHealth());
@@ -99,8 +105,7 @@ public class EntityPEZJelly extends EntityJelly implements IBossDisplayData, IMo
 	{
 		super.writeEntityToNBT(par1NBTTagCompound);
 		par1NBTTagCompound.setInteger("CurrentStat", getStats());
-		par1NBTTagCompound.setBoolean("Awake", isAwake);
-		setAwake();
+		par1NBTTagCompound.setBoolean("Awake", isAwake());
 	}
 
 	@Override
@@ -108,8 +113,7 @@ public class EntityPEZJelly extends EntityJelly implements IBossDisplayData, IMo
 	{
 		super.readEntityFromNBT(par1NBTTagCompound);
 		setStats(par1NBTTagCompound.getInteger("CurrentStat"));
-		isAwake = par1NBTTagCompound.getBoolean("Awake");
-		setAwake();
+		setAwake(par1NBTTagCompound.getBoolean("Awake"));
 	}
 
 	@Override
@@ -117,16 +121,15 @@ public class EntityPEZJelly extends EntityJelly implements IBossDisplayData, IMo
 	{
 		int i = getJellySize();
 
-		if (!worldObj.isRemote && i > 1 && getHealth() <= 0.0F)
+		if (!world.isRemote && i > 1 && getHealth() <= 0.0F)
 		{
-			worldObj.createExplosion(this, posX, posY, posZ, 3, false);
+			world.createExplosion(this, posX, posY, posZ, 3, false);
 
 			EntityPEZJelly slime = createInstance();
 			slime.setJellySize(i - 1);
-			slime.isAwake = false;
-			slime.setAwake();
+			slime.setAwake(false);
 			slime.setLocationAndAngles(posX, posY + 0.5D, posZ, rand.nextFloat() * 360.0F, 0.0F);
-			worldObj.spawnEntityInWorld(slime);
+			world.spawnEntity(slime);
 		}
 
 		super.setDead();
@@ -136,9 +139,8 @@ public class EntityPEZJelly extends EntityJelly implements IBossDisplayData, IMo
 	protected void entityInit()
 	{
 		super.entityInit();
-		dataWatcher.addObject(19, new Integer(0));
-		dataWatcher.addObject(20, new Integer(100));
-		dataWatcher.addObject(21, new Byte((byte) 0));
+		dataManager.register(IS_AWAKE, false);
+		dataManager.register(STATS, 0);
 	}
 
 	@Override
@@ -146,7 +148,7 @@ public class EntityPEZJelly extends EntityJelly implements IBossDisplayData, IMo
 	{
 		int i = getJellySize();
 
-		if (canEntityBeSeen(par1EntityPlayer) && getDistanceSqToEntity(par1EntityPlayer) < 0.6D * i * 0.6D * i && par1EntityPlayer.attackEntityFrom(DamageSource.causeMobDamage(this), getJellySize()))
+		if (canEntityBeSeen(par1EntityPlayer) && getDistanceSq(par1EntityPlayer) < 0.6D * i * 0.6D * i && par1EntityPlayer.attackEntityFrom(DamageSource.causeMobDamage(this), getJellySize()))
 		{
 			playSound(SoundEvents.ENTITY_SLIME_ATTACK, 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
 		}
@@ -167,7 +169,7 @@ public class EntityPEZJelly extends EntityJelly implements IBossDisplayData, IMo
 				motionY = 3;
 			}
 		}
-		if (!worldObj.isRemote)
+		if (!world.isRemote)
 		{
 			if (getHealth() <= getMaxHealth() / 2.0F && getHealth() > getMaxHealth() / 4.0F)
 			{
@@ -188,7 +190,7 @@ public class EntityPEZJelly extends EntityJelly implements IBossDisplayData, IMo
 	@Override
 	public void onUpdate()
 	{
-		if (!isAwake && !worldObj.isRemote)
+		if (!isAwake() && !world.isRemote)
 		{
 			heal(5.0f);
 		}
@@ -202,23 +204,22 @@ public class EntityPEZJelly extends EntityJelly implements IBossDisplayData, IMo
 		{
 			return false;
 		}
-		if (!isAwake && !worldObj.isRemote && par1DamageSource.getEntity() != null)
+		if (!isAwake() && !world.isRemote && par1DamageSource.getTrueSource() != null)
 		{
 			motionY = 2;
-			isAwake = true;
-			setAwake();
+			setAwake(true);
 
 		}
-		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer && par2 > 1 && !((EntityPlayer) par1DamageSource.getEntity()).capabilities.isCreativeMode)
+		if (par1DamageSource.getTrueSource() != null && par1DamageSource.getTrueSource() instanceof EntityPlayer && par2 > 1 && !((EntityPlayer) par1DamageSource.getTrueSource()).capabilities.isCreativeMode)
 		{
-			double d0 = par1DamageSource.getEntity().posX - posX;
+			double d0 = par1DamageSource.getTrueSource().posX - posX;
 			double d1;
 
-			for (d1 = par1DamageSource.getEntity().posZ - posZ; d0 * d0 + d1 * d1 < 1.0E-4D; d1 = (Math.random() - Math.random()) * 0.01D)
+			for (d1 = par1DamageSource.getTrueSource().posZ - posZ; d0 * d0 + d1 * d1 < 1.0E-4D; d1 = (Math.random() - Math.random()) * 0.01D)
 			{
 				d0 = (Math.random() - Math.random()) * 0.01D;
 			}
-			((EntityPlayer) par1DamageSource.getEntity()).knockBack(this, 2.0F, -d0, -d1);
+			((EntityPlayer) par1DamageSource.getTrueSource()).knockBack(this, 2.0F, -d0, -d1);
 		}
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
@@ -226,14 +227,14 @@ public class EntityPEZJelly extends EntityJelly implements IBossDisplayData, IMo
 	@Override
 	protected void updateAITasks()
 	{
-		if (!isAwake)
+		if (!isAwake())
 		{
 			motionX = 0;
 			motionZ = 0;
 		}
-		EntityPlayer entityplayer = EntityUtil.getClosestVulnerablePlayerToEntity(worldObj, this, 48.0D);
+		EntityPlayer entityplayer = EntityUtil.getClosestVulnerablePlayerToEntity(world, this, 48.0D);
 
-		if (entityplayer != null && isAwake)
+		if (entityplayer != null && isAwake())
 		{
 			faceEntity(entityplayer, 10.0F, 20.0F);
 
@@ -249,9 +250,9 @@ public class EntityPEZJelly extends EntityJelly implements IBossDisplayData, IMo
 				isJumping = true;
 				if (rand.nextInt(5) == 0)
 				{
-					EntityTornadoJelly slime = new EntityTornadoJelly(worldObj);
+					EntityTornadoJelly slime = new EntityTornadoJelly(world);
 					slime.setPosition(posX, posY, posZ);
-					worldObj.spawnEntityInWorld(slime);
+					world.spawnEntity(slime);
 				}
 
 				if (makesSoundOnJump())
@@ -272,12 +273,11 @@ public class EntityPEZJelly extends EntityJelly implements IBossDisplayData, IMo
 				}
 			}
 		}
-		else if (!worldObj.isRemote && entityplayer == null && (worldObj.getClosestPlayerToEntity(this, 48.0D) == null || (worldObj.getClosestPlayerToEntity(this, 48.0D) != null && worldObj.getClosestPlayerToEntity(this, 48.0D) == getAttackTarget())))
+		else if (!world.isRemote && entityplayer == null && (world.getClosestPlayerToEntity(this, 48.0D) == null || (world.getClosestPlayerToEntity(this, 48.0D) != null && world.getClosestPlayerToEntity(this, 48.0D) == getAttackTarget())))
 		{
 			motionX = 0;
 			motionZ = 0;
-			isAwake = false;
-			setAwake();
+			setAwake(false);
 		}
 	}
 

@@ -25,10 +25,9 @@ public class ItemWiki extends Item
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public ActionResult<ItemStack> onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, EnumHand hand)
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
-		if (par2World.isRemote)
+		if (worldIn.isRemote)
 		{
 			try
 			{
@@ -43,7 +42,7 @@ public class ItemWiki extends Item
 				e.printStackTrace();
 			}
 		}
-		return new ActionResult(EnumActionResult.SUCCESS, par1ItemStack);
+		return new ActionResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}
 
 	@SideOnly(Side.CLIENT)

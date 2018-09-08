@@ -39,7 +39,7 @@ public class EntitySuguard extends EntityMob
 		super(par1World);
 		setSize(0.5F, 0.90F);
 		tasks.addTask(1, new EntityAISwimming(this));
-		tasks.addTask(4, new AISuguardAttack(EntityPlayer.class));
+		tasks.addTask(4, new AISuguardAttack());
 		tasks.addTask(5, new EntityAIWander(this, 0.2F));
 		tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		tasks.addTask(6, new EntityAILookIdle(this));
@@ -60,7 +60,7 @@ public class EntitySuguard extends EntityMob
 	}
 
 	@Override
-	protected SoundEvent getHurtSound()
+	protected SoundEvent getHurtSound(DamageSource damageSource)
 	{
 		return null;
 	}
@@ -76,13 +76,13 @@ public class EntitySuguard extends EntityMob
 	{
 		Object par1EntityLivingData1 = super.onInitialSpawn(instance, par1EntityLivingData);
 
-		if (worldObj.rand.nextInt(50) == 0)
+		if (world.rand.nextInt(50) == 0)
 		{
-			EntityBee bee = new EntityBee(worldObj);
+			EntityBee bee = new EntityBee(world);
 			bee.setLocationAndAngles(posX, posY, posZ, rotationYaw, 0.0F);
 			bee.isAngry = true;
 			bee.onInitialSpawn(instance, (IEntityLivingData) null);
-			worldObj.spawnEntityInWorld(bee);
+			world.spawnEntity(bee);
 			this.startRiding(bee);
 		}
 		return (IEntityLivingData) par1EntityLivingData1;
@@ -118,8 +118,8 @@ public class EntitySuguard extends EntityMob
 		{
 			if (par1Entity.getEntityBoundingBox().maxY > getEntityBoundingBox().minY && par1Entity.getEntityBoundingBox().minY < getEntityBoundingBox().maxY)
 			{
-				boolean var2 = worldObj.getGameRules().getBoolean("mobGriefing");
-				worldObj.createExplosion(this, posX, posY, posZ, 2, var2);
+				boolean var2 = world.getGameRules().getBoolean("mobGriefing");
+				world.createExplosion(this, posX, posY, posZ, 2, var2);
 				setDead();
 				return true;
 			}
@@ -132,7 +132,7 @@ public class EntitySuguard extends EntityMob
 				{
 					double var4 = par1Entity.posX - posX;
 					double var6 = par1Entity.posZ - posZ;
-					float var8 = MathHelper.sqrt_double(var4 * var4 + var6 * var6);
+					float var8 = MathHelper.sqrt(var4 * var4 + var6 * var6);
 					motionX = var4 / var8 * 0.5D * 0.800000011920929D + motionX * 0.20000000298023224D;
 					motionZ = var6 / var8 * 0.5D * 0.800000011920929D + motionZ * 0.20000000298023224D;
 					motionY = 0.6000000059604645D;
@@ -156,7 +156,7 @@ public class EntitySuguard extends EntityMob
 		}
 		if (isWet())
 		{
-			attackEntityFrom(DamageSource.drown, 1);
+			attackEntityFrom(DamageSource.DROWN, 1);
 		}
 		if (rand.nextInt(30) == 0)
 		{
@@ -164,14 +164,14 @@ public class EntitySuguard extends EntityMob
 			{
 				for (int var1 = 0; var1 < 5; ++var1)
 				{
-					worldObj.spawnParticle(EnumParticleTypes.FLAME, posX + (rand.nextDouble() - 0.5D) * width * 2, posY + rand.nextDouble() * height, posZ + (rand.nextDouble() - 0.5D) * width * 2, 0.0D, 0.0D, 0.0D);
+					world.spawnParticle(EnumParticleTypes.FLAME, posX + (rand.nextDouble() - 0.5D) * width * 2, posY + rand.nextDouble() * height, posZ + (rand.nextDouble() - 0.5D) * width * 2, 0.0D, 0.0D, 0.0D);
 				}
 			}
 			else
 			{
 				for (int var1 = 0; var1 < 2; ++var1)
 				{
-					worldObj.spawnParticle(EnumParticleTypes.CLOUD, posX + (rand.nextDouble() - 0.5D) * width, posY + rand.nextDouble() * height, posZ + (rand.nextDouble() - 0.5D) * width, 0.0D, 0.0D, 0.0D);
+					world.spawnParticle(EnumParticleTypes.CLOUD, posX + (rand.nextDouble() - 0.5D) * width, posY + rand.nextDouble() * height, posZ + (rand.nextDouble() - 0.5D) * width, 0.0D, 0.0D, 0.0D);
 				}
 			}
 		}
@@ -209,9 +209,9 @@ public class EntitySuguard extends EntityMob
 	protected void dropEquipment(boolean p_82160_1_, int p_82160_2_)
 	{}
 
-	class AISuguardTarget extends EntityAINearestAttackableTarget
+	class AISuguardTarget extends EntityAINearestAttackableTarget<EntityPlayer>
 	{
-		public AISuguardTarget(Class p_i45818_2_)
+		public AISuguardTarget(Class<EntityPlayer> p_i45818_2_)
 		{
 			super(EntitySuguard.this, p_i45818_2_, true);
 		}
@@ -219,7 +219,7 @@ public class EntitySuguard extends EntityMob
 		@Override
 		public boolean shouldExecute()
 		{
-			if (isAngry || taskOwner.worldObj.getBiomeGenForCoords(new BlockPos((int) taskOwner.posX, 0, (int) taskOwner.posZ)) == CCBiomes.candyHellForest)
+			if (isAngry || taskOwner.world.getBiome(new BlockPos((int) taskOwner.posX, 0, (int) taskOwner.posZ)) == CCBiomes.candyHellForest)
 			{
 				return super.shouldExecute();
 			}
@@ -229,25 +229,25 @@ public class EntitySuguard extends EntityMob
 
 	class AISuguardAttack extends EntityAIAttackMelee
 	{
-		public AISuguardAttack(Class p_i45819_2_)
+		public AISuguardAttack()
 		{
-			super(EntitySuguard.this, p_i45819_2_, 1.0D, true);
+			super(EntitySuguard.this, 1.0D, true);
 		}
 
 		@Override
-		public boolean continueExecuting()
+		public boolean shouldContinueExecuting()
 		{
 			if (getRNG().nextBoolean())
 			{
 				setJumping(true);
 			}
-			return super.continueExecuting();
+			return super.shouldContinueExecuting();
 		}
 
 		@Override
-		protected double func_179512_a(EntityLivingBase p_179512_1_)
+		protected double getAttackReachSqr(EntityLivingBase attackTarget)
 		{
-			return 4.0F + p_179512_1_.width;
+			return 4.0F + attackTarget.width;
 		}
 	}
 }

@@ -26,7 +26,7 @@ public class EntityAIWaterMate extends EntityAIBase
 	public EntityAIWaterMate(EntityAnimal p_i1619_1_, double p_i1619_2_)
 	{
 		theAnimal = p_i1619_1_;
-		theWorld = p_i1619_1_.worldObj;
+		theWorld = p_i1619_1_.world;
 		moveSpeed = p_i1619_2_;
 		setMutexBits(3);
 	}
@@ -43,10 +43,10 @@ public class EntityAIWaterMate extends EntityAIBase
 		{
 			EntityAnimal entityanimal1 = (EntityAnimal) iterator.next();
 
-			if (theAnimal.canMateWith(entityanimal1) && theAnimal.getDistanceSqToEntity(entityanimal1) < d0)
+			if (theAnimal.canMateWith(entityanimal1) && theAnimal.getDistanceSq(entityanimal1) < d0)
 			{
 				entityanimal = entityanimal1;
-				d0 = theAnimal.getDistanceSqToEntity(entityanimal1);
+				d0 = theAnimal.getDistanceSq(entityanimal1);
 			}
 		}
 
@@ -59,11 +59,11 @@ public class EntityAIWaterMate extends EntityAIBase
 
 		if (entityageable != null)
 		{
-			EntityPlayer entityplayer = theAnimal.getPlayerInLove();
+			EntityPlayer entityplayer = theAnimal.getLoveCause();
 
-			if (entityplayer == null && targetMate.getPlayerInLove() != null)
+			if (entityplayer == null && targetMate.getLoveCause() != null)
 			{
-				entityplayer = targetMate.getPlayerInLove();
+				entityplayer = targetMate.getLoveCause();
 			}
 
 			if (entityplayer != null)
@@ -77,7 +77,7 @@ public class EntityAIWaterMate extends EntityAIBase
 			targetMate.resetInLove();
 			entityageable.setGrowingAge(-24000);
 			entityageable.setLocationAndAngles(theAnimal.posX, theAnimal.posY, theAnimal.posZ, 0.0F, 0.0F);
-			theWorld.spawnEntityInWorld(entityageable);
+			theWorld.spawnEntity(entityageable);
 			Random random = theAnimal.getRNG();
 
 			for (int i = 0; i < 7; ++i)
@@ -90,7 +90,7 @@ public class EntityAIWaterMate extends EntityAIBase
 
 			if (theWorld.getGameRules().getBoolean("doMobLoot"))
 			{
-				theWorld.spawnEntityInWorld(new EntityXPOrb(theWorld, theAnimal.posX, theAnimal.posY, theAnimal.posZ, random.nextInt(7) + 1));
+				theWorld.spawnEntity(new EntityXPOrb(theWorld, theAnimal.posX, theAnimal.posY, theAnimal.posZ, random.nextInt(7) + 1));
 			}
 		}
 	}
@@ -107,7 +107,7 @@ public class EntityAIWaterMate extends EntityAIBase
 	{
 		++spawnBabyDelay;
 
-		if (spawnBabyDelay >= 60 && theAnimal.getDistanceSqToEntity(targetMate) < 9.0D)
+		if (spawnBabyDelay >= 60 && theAnimal.getDistanceSq(targetMate) < 9.0D)
 		{
 			spawnBaby();
 		}
@@ -128,13 +128,13 @@ public class EntityAIWaterMate extends EntityAIBase
 	}
 
 	@Override
-	public boolean continueExecuting()
+	public boolean shouldContinueExecuting()
 	{
 		return targetMate.isEntityAlive() && targetMate.isInLove() && spawnBabyDelay < 60 && isInWater(theAnimal) && isInWater(targetMate);
 	}
 
 	public boolean isInWater(Entity entity)
 	{
-		return entity.worldObj.handleMaterialAcceleration(entity.getEntityBoundingBox().expand(0.0D, -0.4000000238418579D, 0.0D), Material.WATER, entity);
+		return entity.world.handleMaterialAcceleration(entity.getEntityBoundingBox().expand(0.0D, -0.4000000238418579D, 0.0D), Material.WATER, entity);
 	}
 }

@@ -6,10 +6,10 @@ import org.lwjgl.opengl.GL11;
 
 import com.valentin4311.candycraftmod.blocks.tileentity.TileEntityTeleporter;
 
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.tileentity.TileEntity;
@@ -19,7 +19,7 @@ public class TileEntityRendererTeleporter extends TileEntitySpecialRenderer
 	private static int[][] color = new int[][] { { 255, 128, 0, 255, 0, 0 }, { 0, 0, 255, 0, 128, 255 } };
 
 	@Override
-	public void renderTileEntityAt(TileEntity var1, double var2, double var4, double var6, float var8, int i)
+	public void render(TileEntity var1, double var2, double var4, double var6, float var8, int i, float alpha)
 	{
 		GL11.glPushMatrix();
 		GL11.glTranslated(var2 + 0.5D, var4 + 0.1D, var6 + 0.5D);
@@ -30,7 +30,7 @@ public class TileEntityRendererTeleporter extends TileEntitySpecialRenderer
 	public void renderLight(TileEntityTeleporter var1, float par2)
 	{
 		Tessellator tessellator = Tessellator.getInstance();
-		VertexBuffer worldrenderer = tessellator.getBuffer();
+		BufferBuilder worldrenderer = tessellator.getBuffer();
 		RenderHelper.disableStandardItemLighting();
 		float f = ((var1.tickExisted) + par2) / 200.0F;
 		float f1 = 0.0F;

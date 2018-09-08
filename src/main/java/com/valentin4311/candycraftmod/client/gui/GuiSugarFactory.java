@@ -28,7 +28,7 @@ public class GuiSugarFactory extends GuiContainer
 	protected void drawGuiContainerForegroundLayer(int par1, int par2)
 	{
 		String s = furnaceInventory.advancedMode ? I18n.format("Gui.AdvancedSugarFactory") : I18n.format("Gui.SugarFactory");
-		drawCenteredString(fontRendererObj, s, xSize / 2, 12, 0xffffff);
+		drawCenteredString(fontRenderer, s, xSize / 2, 12, 0xffffff);
 	}
 
 	@Override

@@ -25,15 +25,16 @@ public class ItemCandyWaterLily extends ItemBlock
 	{
 		super(par1);
 	}
-
+	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
+		ItemStack itemStackIn = playerIn.getHeldItem(handIn);
 		RayTraceResult raytraceresult = rayTrace(worldIn, playerIn, true);
 
 		if (raytraceresult == null)
 		{
-			return new ActionResult(EnumActionResult.PASS, itemStackIn);
+			return new ActionResult<ItemStack>(EnumActionResult.PASS, itemStackIn);
 		}
 		else
 		{
@@ -43,12 +44,12 @@ public class ItemCandyWaterLily extends ItemBlock
 
 				if (!worldIn.isBlockModifiable(playerIn, blockpos) || !playerIn.canPlayerEdit(blockpos.offset(raytraceresult.sideHit), raytraceresult.sideHit, itemStackIn))
 				{
-					return new ActionResult(EnumActionResult.FAIL, itemStackIn);
+					return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
 				}
 
 				if (!playerIn.canPlayerEdit(blockpos.offset(raytraceresult.sideHit), raytraceresult.sideHit, itemStackIn))
 				{
-					return new ActionResult(EnumActionResult.FAIL, itemStackIn);
+					return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
 				}
 
 				BlockPos blockpos1 = blockpos.up();
@@ -60,7 +61,7 @@ public class ItemCandyWaterLily extends ItemBlock
 					// lilies
 					BlockSnapshot blocksnapshot = BlockSnapshot.getBlockSnapshot(worldIn, blockpos1);
 					worldIn.setBlockState(blockpos1, Blocks.WATERLILY.getDefaultState());
-					if (net.minecraftforge.event.ForgeEventFactory.onPlayerBlockPlace(playerIn, blocksnapshot, net.minecraft.util.EnumFacing.UP).isCanceled())
+					if (net.minecraftforge.event.ForgeEventFactory.onPlayerBlockPlace(playerIn, blocksnapshot, net.minecraft.util.EnumFacing.UP, handIn).isCanceled())
 					{
 						blocksnapshot.restore(true, false);
 						return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
@@ -70,12 +71,12 @@ public class ItemCandyWaterLily extends ItemBlock
 
 					if (!playerIn.capabilities.isCreativeMode)
 					{
-						--itemStackIn.stackSize;
+						itemStackIn.shrink(1);
 					}
 
 					playerIn.addStat(StatList.getObjectUseStats(this));
 					worldIn.playSound(playerIn, blockpos, SoundEvents.BLOCK_WATERLILY_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-					return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
+					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
 				}
 			}
 

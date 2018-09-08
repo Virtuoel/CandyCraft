@@ -87,7 +87,7 @@ public class EntityAICandyArrow extends EntityAIBase
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
 	@Override
-	public boolean continueExecuting()
+	public boolean shouldContinueExecuting()
 	{
 		return shouldExecute() || !entityHost.getNavigator().noPath();
 	}
@@ -123,7 +123,7 @@ public class EntityAICandyArrow extends EntityAIBase
 
 		if (d0 <= (double) field_82642_h + 20 && field_75318_f >= 20)
 		{
-			entityHost.getNavigator().clearPathEntity();
+			entityHost.getNavigator().clearPath();
 		}
 		else
 		{
@@ -140,7 +140,7 @@ public class EntityAICandyArrow extends EntityAIBase
 				return;
 			}
 
-			f = MathHelper.sqrt_double(d0) / field_96562_i;
+			f = MathHelper.sqrt(d0) / field_96562_i;
 			float f1 = f;
 
 			if (f < 0.1F)
@@ -154,12 +154,12 @@ public class EntityAICandyArrow extends EntityAIBase
 			}
 
 			rangedAttackEntityHost.attackEntityWithRangedAttack(attackTarget, f1);
-			rangedAttackTime = MathHelper.floor_float(f * (maxRangedAttackTime - field_96561_g) + field_96561_g);
+			rangedAttackTime = MathHelper.floor(f * (maxRangedAttackTime - field_96561_g) + field_96561_g);
 		}
 		else if (rangedAttackTime < 0)
 		{
-			f = MathHelper.sqrt_double(d0) / field_96562_i;
-			rangedAttackTime = MathHelper.floor_float(f * (maxRangedAttackTime - field_96561_g) + field_96561_g);
+			f = MathHelper.sqrt(d0) / field_96562_i;
+			rangedAttackTime = MathHelper.floor(f * (maxRangedAttackTime - field_96561_g) + field_96561_g);
 		}
 	}
 }

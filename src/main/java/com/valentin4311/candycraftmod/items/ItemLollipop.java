@@ -22,29 +22,30 @@ public class ItemLollipop extends ItemFood
 	{
 		if (par2EntityLiving instanceof EntityLivingBase)
 		{
-			double d0 = par2EntityPlayer.worldObj.rand.nextGaussian() * 0.02D;
-			double d1 = par2EntityPlayer.worldObj.rand.nextGaussian() * 0.02D;
-			double d2 = par2EntityPlayer.worldObj.rand.nextGaussian() * 0.02D;
+			double d0 = par2EntityPlayer.world.rand.nextGaussian() * 0.02D;
+			double d1 = par2EntityPlayer.world.rand.nextGaussian() * 0.02D;
+			double d2 = par2EntityPlayer.world.rand.nextGaussian() * 0.02D;
 
-			if (!par2EntityLiving.worldObj.isRemote)
+			if (!par2EntityLiving.world.isRemote)
 			{
 				if (par2EntityLiving instanceof EntityCandyCreeper)
 				{
-					par2EntityPlayer.addStat(CCAchievements.lollipopCreep);
+					// TODO advancements
+				//	par2EntityPlayer.addStat(CCAchievements.lollipopCreep);
 				}
 				par2EntityLiving.heal(1);
 			}
 
 			if (par2EntityLiving.getHealth() < par2EntityLiving.getMaxHealth())
 			{
-				par2EntityLiving.worldObj.spawnParticle(EnumParticleTypes.HEART, par2EntityLiving.posX + par2EntityPlayer.worldObj.rand.nextFloat() * par2EntityLiving.width * 2.0F - par2EntityLiving.width, par2EntityLiving.posY + 0.5D + par2EntityPlayer.worldObj.rand.nextFloat() * par2EntityLiving.height, par2EntityLiving.posZ + par2EntityPlayer.worldObj.rand.nextFloat() * par2EntityLiving.width * 2.0F - par2EntityLiving.width, d0, d1, d2);
+				par2EntityLiving.world.spawnParticle(EnumParticleTypes.HEART, par2EntityLiving.posX + par2EntityPlayer.world.rand.nextFloat() * par2EntityLiving.width * 2.0F - par2EntityLiving.width, par2EntityLiving.posY + 0.5D + par2EntityPlayer.world.rand.nextFloat() * par2EntityLiving.height, par2EntityLiving.posZ + par2EntityPlayer.world.rand.nextFloat() * par2EntityLiving.width * 2.0F - par2EntityLiving.width, d0, d1, d2);
 			}
 			else
 			{
-				par2EntityLiving.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, par2EntityLiving.posX + par2EntityPlayer.worldObj.rand.nextFloat() * par2EntityLiving.width * 2.0F - par2EntityLiving.width, par2EntityLiving.posY + 0.5D + par2EntityPlayer.worldObj.rand.nextFloat() * par2EntityLiving.height, par2EntityLiving.posZ + par2EntityPlayer.worldObj.rand.nextFloat() * par2EntityLiving.width * 2.0F - par2EntityLiving.width, d0, d1, d2);
+				par2EntityLiving.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, par2EntityLiving.posX + par2EntityPlayer.world.rand.nextFloat() * par2EntityLiving.width * 2.0F - par2EntityLiving.width, par2EntityLiving.posY + 0.5D + par2EntityPlayer.world.rand.nextFloat() * par2EntityLiving.height, par2EntityLiving.posZ + par2EntityPlayer.world.rand.nextFloat() * par2EntityLiving.width * 2.0F - par2EntityLiving.width, d0, d1, d2);
 			}
 
-			par1ItemStack.stackSize--;
+			par1ItemStack.shrink(1);
 			return true;
 		}
 		else

@@ -9,11 +9,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 
-public class ChunkProviderCandyVoid implements IChunkGenerator
-{
+public class ChunkProviderCandyVoid// implements IChunkProvider
+{/*
 	private Random rand;
 	private World worldObj;
 
@@ -106,5 +106,8 @@ public class ChunkProviderCandyVoid implements IChunkGenerator
 
 	@Override
 	public void recreateStructures(Chunk p_180514_1_, int p_180514_2_, int p_180514_3_)
-	{}
+	{
+		
+	}
+	*/
 }

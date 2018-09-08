@@ -42,11 +42,11 @@ public class EntityCottonCandySpider extends EntitySpider
 			{
 				byte b0 = 0;
 
-				if (worldObj.getDifficulty() == EnumDifficulty.NORMAL)
+				if (world.getDifficulty() == EnumDifficulty.NORMAL)
 				{
 					b0 = 7;
 				}
-				else if (worldObj.getDifficulty() == EnumDifficulty.HARD)
+				else if (world.getDifficulty() == EnumDifficulty.HARD)
 				{
 					b0 = 15;
 				}

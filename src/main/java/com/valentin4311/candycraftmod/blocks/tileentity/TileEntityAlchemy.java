@@ -44,7 +44,7 @@ public class TileEntityAlchemy extends TileEntity
 
 	public boolean addPotionToRecipes(ItemStack stack)
 	{
-		if (stack != null && !worldObj.isRemote)
+		if (stack != null && !world.isRemote)
 		{
 			if (AlchemyRecipes.recipeList.containsKey(stack.getItem()))
 			{
@@ -53,9 +53,9 @@ public class TileEntityAlchemy extends TileEntity
 				if (recipes.size() >= 4)
 				{
 					float f = 0.7F;
-					double d0 = worldObj.rand.nextFloat() * f + (1.0F - f) * 0.5D;
-					double d1 = worldObj.rand.nextFloat() * f + (1.0F - f) * 0.2D + 0.6D;
-					double d2 = worldObj.rand.nextFloat() * f + (1.0F - f) * 0.5D;
+					double d0 = world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
+					double d1 = world.rand.nextFloat() * f + (1.0F - f) * 0.2D + 0.6D;
+					double d2 = world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
 					ItemStack itemstack1 = new ItemStack(CCItems.sugarPill);
 
 					String meta = "";
@@ -77,9 +77,9 @@ public class TileEntityAlchemy extends TileEntity
 					itemstack1.setTagCompound(new NBTTagCompound());
 					itemstack1.getTagCompound().setInteger("MetaSystem", i);
 
-					EntityItem entityitem = new EntityItem(worldObj, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, itemstack1);
+					EntityItem entityitem = new EntityItem(world, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, itemstack1);
 					entityitem.setPickupDelay(10);
-					worldObj.spawnEntityInWorld(entityitem);
+					world.spawnEntity(entityitem);
 					setTopFilled(false);
 					if (getLiquid() > 0)
 					{
@@ -103,9 +103,9 @@ public class TileEntityAlchemy extends TileEntity
 		NBTTagCompound nbttagcompound = new NBTTagCompound();
 		writeToNBT(nbttagcompound);
 		newTable.readFromNBT(nbttagcompound);
-		worldObj.setBlockState(pos, Blocks.STONE.getDefaultState());
-		worldObj.setBlockState(pos, CCBlocks.alchemyTable.getDefaultState());
-		worldObj.setTileEntity(pos, newTable);
+		world.setBlockState(pos, Blocks.STONE.getDefaultState());
+		world.setBlockState(pos, CCBlocks.alchemyTable.getDefaultState());
+		world.setTileEntity(pos, newTable);
 	}
 
 	public int getIngredientsCount()
@@ -155,7 +155,7 @@ public class TileEntityAlchemy extends TileEntity
 		{
 			if (par1NBTTagCompound.hasKey("StackContent" + i) && par1NBTTagCompound.getCompoundTag("StackContent" + i) != null)
 			{
-				recipes.add(ItemStack.loadItemStackFromNBT(par1NBTTagCompound.getCompoundTag("StackContent" + i)));
+				recipes.add(new ItemStack(par1NBTTagCompound.getCompoundTag("StackContent" + i)));
 			}
 		}
 	}

@@ -26,50 +26,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockCandyPortal extends BlockPortal
 {
-	public void travelToDimension(int par1, Entity ent, World world)
-	{
-		if (!world.isRemote && !ent.isDead)
-		{
-			world.theProfiler.startSection("changeDimension");
-			MinecraftServer minecraftserver = world.getMinecraftServer();
-			int j = ent.dimension;
-			WorldServer worldserver = minecraftserver.worldServerForDimension(j);
-			WorldServer worldserver1 = minecraftserver.worldServerForDimension(par1);
-			ent.dimension = par1;
-
-			if (j == CandyCraft.getCandyDimensionID() && par1 == CandyCraft.getCandyDimensionID())
-			{
-				worldserver1 = minecraftserver.worldServerForDimension(0);
-				ent.dimension = 0;
-			}
-
-			world.removeEntity(ent);
-			ent.isDead = false;
-			world.theProfiler.startSection("reposition");
-			minecraftserver.getPlayerList().transferEntityToWorld(ent, j, worldserver, worldserver1, new TeleporterCandy(minecraftserver.worldServerForDimension(CandyCraft.getCandyDimensionID())));
-			world.theProfiler.endStartSection("reloading");
-			Entity entity = EntityList.createEntityByName(EntityList.getEntityString(ent), worldserver1);
-
-			if (entity != null)
-			{
-				entity.copyDataFromOld(ent);
-				if (j == 1 && par1 == 1)
-				{
-					BlockPos chunkcoordinates = worldserver1.getSpawnPoint();
-					entity.setLocationAndAngles(chunkcoordinates.getX(), chunkcoordinates.getY(), chunkcoordinates.getZ(), entity.rotationYaw, entity.rotationPitch);
-				}
-
-				worldserver1.spawnEntityInWorld(entity);
-			}
-
-			ent.isDead = true;
-			world.theProfiler.endSection();
-			worldserver.resetUpdateEntityTick();
-			worldserver1.resetUpdateEntityTick();
-			world.theProfiler.endSection();
-		}
-	}
-
 	@Override
 	public void updateTick(World par1World, BlockPos pos, IBlockState state, Random par5Random)
 	{}
@@ -101,30 +57,30 @@ public class BlockCandyPortal extends BlockPortal
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(World par1World, BlockPos pos, IBlockState state, Entity par5Entity)
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
-		if (par5Entity.getRidingEntity() == null && !par5Entity.isBeingRidden() && par5Entity instanceof EntityPlayerMP)
+		if (entityIn.getRidingEntity() == null && !entityIn.isBeingRidden() && entityIn instanceof EntityPlayerMP)
 		{
-			EntityPlayerMP player = (EntityPlayerMP) par5Entity;
-			if (par1World.provider.getDimension() != CandyCraft.getCandyDimensionID())
+			EntityPlayerMP player = (EntityPlayerMP) entityIn;
+			if (worldIn.provider.getDimension() != CandyCraft.getCandyDimensionID())
 			{
-				player.mcServer.getPlayerList().transferPlayerToDimension(player, CandyCraft.getCandyDimensionID(), new TeleporterCandy(player.mcServer.worldServerForDimension(CandyCraft.getCandyDimensionID())));
+				player.server.getPlayerList().transferPlayerToDimension(player, CandyCraft.getCandyDimensionID(), new TeleporterCandy(player.server.getWorld(CandyCraft.getCandyDimensionID())));
 			}
 			else
 			{
-				player.mcServer.getPlayerList().transferPlayerToDimension(player, 0, new TeleporterCandy(player.mcServer.worldServerForDimension(0)));
+				player.server.getPlayerList().transferPlayerToDimension(player, 0, new TeleporterCandy(player.server.getWorld(0)));
 			}
 			return;
 		}
-		else if (par5Entity.getRidingEntity() == null && !par5Entity.isBeingRidden() && par5Entity instanceof EntityLivingBase)
+		else if (entityIn.getRidingEntity() == null && !entityIn.isBeingRidden() && entityIn instanceof EntityLivingBase)
 		{
-			travelToDimension(par1World.provider.getDimension() != CandyCraft.getCandyDimensionID() ? CandyCraft.getCandyDimensionID() : 0, par5Entity, par1World);
+			entityIn.changeDimension(worldIn.provider.getDimension() != CandyCraft.getCandyDimensionID() ? CandyCraft.getCandyDimensionID() : 0, new TeleporterCandy(worldIn.getMinecraftServer().getWorld(CandyCraft.getCandyDimensionID())));
 			return;
 		}
 	}
-
+	
 	@Override
-	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
 	{
 		EnumFacing.Axis axis = state.getValue(AXIS);
 		BlockCandyPortal.Size size;

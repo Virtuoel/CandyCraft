@@ -5,10 +5,12 @@ import java.util.List;
 import com.valentin4311.candycraftmod.entity.CCEntities;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityList;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -19,29 +21,31 @@ public class ItemCandyMonsterPlacer extends ItemMonsterPlacer
 	{
 		super();
 	}
-
+	/*
 	@Override
 	public String getItemStackDisplayName(ItemStack stack)
 	{
-		String s1 = getEntityIdFromItem(stack);
+		String s1 = EntityList.getTranslationName(getNamedIdFrom(stack));
 		if (s1 != null)
 		{
 			return I18n.translateToLocal("item.candy_spawn_egg." + s1 + ".name");
 		}
 		return "Empty Egg";
 	}
-
+	*/
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item itemIn, CreativeTabs tab, List subItems)
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
 	{
-		for (String name : CCEntities.CANDYCRAFT_EGGS.keySet())
+		if(this.isInCreativeTab(tab))
 		{
-			ItemStack stack = new ItemStack(itemIn);
-			NBTTagCompound nbt = new NBTTagCompound();
-			nbt.setString("entity_name", name);
-			stack.setTagCompound(nbt);
-			subItems.add(stack);
+			for(String name : CCEntities.CANDYCRAFT_EGGS.keySet())
+			{
+				ItemStack stack = new ItemStack(this);
+				NBTTagCompound nbt = new NBTTagCompound();
+				nbt.setString("entity_name", name);
+				stack.setTagCompound(nbt);
+				items.add(stack);
+			}
 		}
 	}
 	/*

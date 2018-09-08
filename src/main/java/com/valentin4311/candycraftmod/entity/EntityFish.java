@@ -6,6 +6,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -29,18 +30,17 @@ public class EntityFish extends EntityWaterMob
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
 		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(2.0D);
 	}
-
+	
 	@Override
-	public void moveEntityWithHeading(float par1, float par2)
+	public void travel(float strafe, float vertical, float forward)
 	{
 		if (isInWater())
 		{
 			motionY -= 0.002D;
 		}
-		super.moveEntityWithHeading(par1, par2);
-
+		super.travel(strafe, vertical, forward);
 	}
-
+	
 	@Override
 	public boolean getCanSpawnHere()
 	{
@@ -54,7 +54,7 @@ public class EntityFish extends EntityWaterMob
 	}
 
 	@Override
-	protected SoundEvent getHurtSound()
+	protected SoundEvent getHurtSound(DamageSource damageSource)
 	{
 		return null;
 	}
@@ -113,7 +113,7 @@ public class EntityFish extends EntityWaterMob
 
 		if (isInWater())
 		{
-			if (currentFlightTarget != null && (!(worldObj.getBlockState(new BlockPos(currentFlightTarget.getX(), currentFlightTarget.getY(), currentFlightTarget.getZ())).getMaterial() == Material.WATER) || currentFlightTarget.getY() < 1))
+			if (currentFlightTarget != null && (!(world.getBlockState(new BlockPos(currentFlightTarget.getX(), currentFlightTarget.getY(), currentFlightTarget.getZ())).getMaterial() == Material.WATER) || currentFlightTarget.getY() < 1))
 			{
 				currentFlightTarget = null;
 			}

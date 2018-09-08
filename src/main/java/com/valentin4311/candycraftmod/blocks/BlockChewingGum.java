@@ -30,20 +30,20 @@ public class BlockChewingGum extends Block
 	{
 		return GUM_AABB;
 	}
-
+	
 	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entity)
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
-		if (!(entity instanceof EntityBeetle) && !(entity instanceof EntityBossBeetle) && !(entity instanceof EntityKingBeetle))
+		if (!(entityIn instanceof EntityBeetle) && !(entityIn instanceof EntityBossBeetle) && !(entityIn instanceof EntityKingBeetle))
 		{
-			if (entity instanceof EntityPlayer && ((EntityPlayer) entity).inventory.hasItemStack(new ItemStack(CCItems.chewingGumEmblem)))
+			if (entityIn instanceof EntityPlayer && ((EntityPlayer) entityIn).inventory.hasItemStack(new ItemStack(CCItems.chewingGumEmblem)))
 			{
 				return;
 			}
 
-			entity.motionX *= 0.2D;
-			entity.motionZ *= 0.2D;
-			entity.motionY = 0;
+			entityIn.motionX *= 0.2D;
+			entityIn.motionZ *= 0.2D;
+			entityIn.motionY = 0;
 		}
 	}
 }

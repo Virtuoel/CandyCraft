@@ -11,18 +11,25 @@ import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class EntityJellyQueen extends EntityJelly implements IBossDisplayData, IMob, ICandyBoss
+public class EntityJellyQueen extends EntityJelly implements IMob, ICandyBoss
 {
-	public boolean isAwake = false;
-
+	private static final DataParameter<Boolean> IS_AWAKE = EntityDataManager.<Boolean>createKey(EntityJellyQueen.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Integer> STATS = EntityDataManager.<Integer>createKey(EntityJellyQueen.class, DataSerializers.VARINT);
+	
+	// TODO Boss Bar
+	
 	public EntityJellyQueen(World par1World)
 	{
 		super(par1World);
@@ -41,7 +48,7 @@ public class EntityJellyQueen extends EntityJelly implements IBossDisplayData, I
 	@Override
 	protected void jump()
 	{
-		if (isAwake)
+		if (isAwake())
 		{
 			super.jump();
 		}
@@ -50,27 +57,27 @@ public class EntityJellyQueen extends EntityJelly implements IBossDisplayData, I
 	@Override
 	public boolean isAwake()
 	{
-		return getAwake() != 0;
+		return getAwake();
 	}
 
-	public byte getAwake()
+	public boolean getAwake()
 	{
-		return dataWatcher.getWatchableObjectByte(21);
+		return this.dataManager.get(IS_AWAKE).booleanValue();
 	}
 
-	public void setAwake()
+	public void setAwake(boolean p)
 	{
-		dataWatcher.updateObject(21, isAwake ? (byte) 1 : (byte) 0);
+		this.dataManager.set(IS_AWAKE, p);
 	}
 
 	public int getStats()
 	{
-		return dataWatcher.getWatchableObjectInt(19);
+		return dataManager.get(STATS);
 	}
 
 	public void setStats(int par1)
 	{
-		dataWatcher.updateObject(19, par1);
+		dataManager.set(STATS, par1);
 	}
 
 	@Override
@@ -109,8 +116,7 @@ public class EntityJellyQueen extends EntityJelly implements IBossDisplayData, I
 	{
 		super.writeEntityToNBT(par1NBTTagCompound);
 		par1NBTTagCompound.setInteger("CurrentStat", getStats());
-		par1NBTTagCompound.setBoolean("Awake", isAwake);
-		setAwake();
+		par1NBTTagCompound.setBoolean("Awake", isAwake());
 	}
 
 	@Override
@@ -118,17 +124,15 @@ public class EntityJellyQueen extends EntityJelly implements IBossDisplayData, I
 	{
 		super.readEntityFromNBT(par1NBTTagCompound);
 		setStats(par1NBTTagCompound.getInteger("CurrentStat"));
-		isAwake = par1NBTTagCompound.getBoolean("Awake");
-		setAwake();
+		setAwake(par1NBTTagCompound.getBoolean("Awake"));
 	}
 
 	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
-		dataWatcher.addObject(19, new Integer(0));
-		dataWatcher.addObject(20, new Integer(300));
-		dataWatcher.addObject(21, new Byte((byte) 0));
+		dataManager.register(IS_AWAKE, false);
+		dataManager.register(STATS, 0);
 	}
 
 	@Override
@@ -138,9 +142,9 @@ public class EntityJellyQueen extends EntityJelly implements IBossDisplayData, I
 		{
 			int i = getJellySize();
 
-			if (canEntityBeSeen(par1EntityPlayer) && getDistanceSqToEntity(par1EntityPlayer) < 0.6D * i * 0.6D * i && par1EntityPlayer.attackEntityFrom(DamageSource.causeMobDamage(this), (float) getJellySize() * 2))
+			if (canEntityBeSeen(par1EntityPlayer) && getDistanceSq(par1EntityPlayer) < 0.6D * i * 0.6D * i && par1EntityPlayer.attackEntityFrom(DamageSource.causeMobDamage(this), (float) getJellySize() * 2))
 			{
-				playSound("mob.attack", 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+				playSound(SoundEvents.ENTITY_PLAYER_HURT, 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
 			}
 		}
 	}
@@ -152,7 +156,7 @@ public class EntityJellyQueen extends EntityJelly implements IBossDisplayData, I
 	@Override
 	public void onLivingUpdate()
 	{
-		if (!isAwake)
+		if (!isAwake())
 		{
 			getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
 		}
@@ -169,7 +173,7 @@ public class EntityJellyQueen extends EntityJelly implements IBossDisplayData, I
 				motionY = 4F;
 			}
 		}
-		if (!worldObj.isRemote)
+		if (!world.isRemote)
 		{
 			if (getHealth() <= getMaxHealth() / 2.0F && getHealth() > getMaxHealth() / 4.0F)
 			{
@@ -191,7 +195,7 @@ public class EntityJellyQueen extends EntityJelly implements IBossDisplayData, I
 	public void onUpdate()
 	{
 		super.onUpdate();
-		if (!isAwake && !worldObj.isRemote)
+		if (!isAwake() && !world.isRemote)
 		{
 			heal(5.0f);
 		}
@@ -204,23 +208,22 @@ public class EntityJellyQueen extends EntityJelly implements IBossDisplayData, I
 		{
 			return false;
 		}
-		if (!isAwake && !worldObj.isRemote && par1DamageSource.getEntity() != null)
+		if (!isAwake() && !world.isRemote && par1DamageSource.getTrueSource() != null)
 		{
 			motionY = 2;
-			isAwake = true;
-			setAwake();
+			setAwake(true);
 
 		}
-		if (par1DamageSource.getEntity() != null && par1DamageSource.getEntity() instanceof EntityPlayer && par2 > 1 && !((EntityPlayer) par1DamageSource.getEntity()).capabilities.isCreativeMode)
+		if (par1DamageSource.getTrueSource() != null && par1DamageSource.getTrueSource() instanceof EntityPlayer && par2 > 1 && !((EntityPlayer) par1DamageSource.getTrueSource()).capabilities.isCreativeMode)
 		{
-			double d0 = par1DamageSource.getEntity().posX - posX;
+			double d0 = par1DamageSource.getTrueSource().posX - posX;
 			double d1;
 
-			for (d1 = par1DamageSource.getEntity().posZ - posZ; d0 * d0 + d1 * d1 < 1.0E-4D; d1 = (Math.random() - Math.random()) * 0.01D)
+			for (d1 = par1DamageSource.getTrueSource().posZ - posZ; d0 * d0 + d1 * d1 < 1.0E-4D; d1 = (Math.random() - Math.random()) * 0.01D)
 			{
 				d0 = (Math.random() - Math.random()) * 0.01D;
 			}
-			((EntityPlayer) par1DamageSource.getEntity()).knockBack(this, 2.0F, -d0, -d1);
+			((EntityPlayer) par1DamageSource.getTrueSource()).knockBack(this, 2.0F, -d0, -d1);
 		}
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
@@ -228,14 +231,14 @@ public class EntityJellyQueen extends EntityJelly implements IBossDisplayData, I
 	@Override
 	protected void updateAITasks()
 	{
-		if (!isAwake)
+		if (!isAwake())
 		{
 			motionX = 0;
 			motionZ = 0;
 		}
-		EntityPlayer entityplayer = EntityUtil.getClosestVulnerablePlayerToEntity(worldObj, this, 48.0D);
+		EntityPlayer entityplayer = EntityUtil.getClosestVulnerablePlayerToEntity(world, this, 48.0D);
 
-		if (entityplayer != null && isAwake)
+		if (entityplayer != null && isAwake())
 		{
 			faceEntity(entityplayer, 10.0F, 20.0F);
 
@@ -249,11 +252,11 @@ public class EntityJellyQueen extends EntityJelly implements IBossDisplayData, I
 				}
 
 				isJumping = true;
-				boolean var2 = worldObj.getGameRules().getBoolean("mobGriefing");
+				boolean var2 = world.getGameRules().getBoolean("mobGriefing");
 				if (getStats() == 2)
 				{
-					worldObj.createExplosion(this, posX, posY, posZ, (3), var2);
-					worldObj.createExplosion(this, posX, posY + 2, posZ, (3), var2);
+					world.createExplosion(this, posX, posY, posZ, (3), var2);
+					world.createExplosion(this, posX, posY + 2, posZ, (3), var2);
 				}
 
 				if (makesSoundOnJump())
@@ -274,12 +277,11 @@ public class EntityJellyQueen extends EntityJelly implements IBossDisplayData, I
 				}
 			}
 		}
-		else if (!worldObj.isRemote && entityplayer == null && (worldObj.getClosestPlayerToEntity(this, 48.0D) == null || (worldObj.getClosestPlayerToEntity(this, 48.0D) != null && worldObj.getClosestPlayerToEntity(this, 48.0D) == getAttackTarget())))
+		else if (!world.isRemote && entityplayer == null && (world.getClosestPlayerToEntity(this, 48.0D) == null || (world.getClosestPlayerToEntity(this, 48.0D) != null && world.getClosestPlayerToEntity(this, 48.0D) == getAttackTarget())))
 		{
 			motionX = 0;
 			motionZ = 0;
-			isAwake = false;
-			setAwake();
+			setAwake(false);
 		}
 	}
 

@@ -30,8 +30,8 @@ public class ItemDynamite extends Item
 			{
 				Vec3d vec31 = new Vec3d((Item.itemRand.nextFloat() - 0.5D) * 0.3D, (-Item.itemRand.nextFloat()) * 0.6D - 0.3D, 0.6D);
 				vec31 = vec31.rotateYaw(-(player.rotationYaw + 25) * (float) Math.PI / 180.0F);
-				vec31 = vec31.addVector(player.posX, player.posY + player.getEyeHeight() + 0.5, player.posZ);
-				player.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, vec31.xCoord, vec31.yCoord, vec31.zCoord, 0.0F, 0.1F, 0.0F);
+				vec31 = vec31.add(player.posX, player.posY + player.getEyeHeight() + 0.5, player.posZ);
+				player.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, vec31.x, vec31.y, vec31.z, 0.0F, 0.1F, 0.0F);
 			}
 		}
 	}
@@ -42,12 +42,12 @@ public class ItemDynamite extends Item
 		if (entity instanceof EntityPlayer && getMaxItemUseDuration(stack) - count == 80)
 		{
 			EntityPlayer player = (EntityPlayer) entity;
-			if (!player.worldObj.isRemote)
+			if (!player.world.isRemote)
 			{
-				player.worldObj.createExplosion(null, player.posX, player.posY, player.posZ, 3, player.worldObj.getGameRules().getBoolean("mobGriefing"));
+				player.world.createExplosion(null, player.posX, player.posY, player.posZ, 3, player.world.getGameRules().getBoolean("mobGriefing"));
 				if (!player.capabilities.isCreativeMode)
 				{
-					stack.stackSize--;
+					stack.shrink(1);;
 				}
 			}
 			player.resetActiveHand();
@@ -60,12 +60,13 @@ public class ItemDynamite extends Item
 	{
 		return true;
 	}
-
+	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemstack, World world, EntityPlayer player, EnumHand hand)
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
-		player.setActiveHand(hand);
-		renderItemUse(itemstack, player);
+		ItemStack itemstack = playerIn.getHeldItem(handIn);
+		playerIn.setActiveHand(handIn);
+		renderItemUse(itemstack, playerIn);
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 	}
 
@@ -81,7 +82,7 @@ public class ItemDynamite extends Item
 			{
 				if (!player.capabilities.isCreativeMode)
 				{
-					--itemstack.stackSize;
+					itemstack.shrink(1);
 				}
 
 				world.playSound((EntityPlayer) null, player.posX + 0.5F, player.posY + 0.5F, player.posZ + 0.5F, SoundEvents.ENTITY_CREEPER_PRIMED, SoundCategory.PLAYERS, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
@@ -92,13 +93,13 @@ public class ItemDynamite extends Item
 					{
 						EntityDynamite dynamite = new EntityDynamite(world, player);
 						dynamite.fuse = 80 - var6;
-						world.spawnEntityInWorld(dynamite);
+						world.spawnEntity(dynamite);
 					}
 					else
 					{
 						EntityGlueDynamite dynamite = new EntityGlueDynamite(world, player);
 						dynamite.fuse = 80 - var6;
-						world.spawnEntityInWorld(dynamite);
+						world.spawnEntity(dynamite);
 					}
 				}
 			}

@@ -23,6 +23,6 @@ public class RenderGummyBall extends RenderSnowball
 	public ItemStack getStackToRender(Entity entity)
 	{
 		EntityGummyBall gm = (EntityGummyBall) entity;
-		return new ItemStack(item, 1, gm.getPowerful() == 2 ? 1 : gm.getPowerful() == 3 ? 2 : 0);
+		return new ItemStack(item, 1, gm.getPower() == 2 ? 1 : gm.getPower() == 3 ? 2 : 0);
 	}
 }

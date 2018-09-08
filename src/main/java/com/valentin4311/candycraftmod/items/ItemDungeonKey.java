@@ -9,6 +9,7 @@ import com.valentin4311.candycraftmod.world.generator.ThreadCheckDungeon;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -41,8 +42,9 @@ public class ItemDungeonKey extends Item
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, BlockPos pos, EnumHand hand, EnumFacing side, float par8, float par9, float par10)
+	public EnumActionResult onItemUse(EntityPlayer par2EntityPlayer, World par3World, BlockPos pos, EnumHand hand, EnumFacing side, float par8, float par9, float par10)
 	{
+		ItemStack par1ItemStack = par2EntityPlayer.getHeldItem(hand);
 		if (keyId <= 1)
 		{
 			if (!par2EntityPlayer.canPlayerEdit(pos.offset(side), side, par1ItemStack) || !CandyCraftPreferences.canGenerateDungeon)
@@ -56,7 +58,7 @@ public class ItemDungeonKey extends Item
 				{
 					par3World.setBlockState(pos.up(), CCBlocks.blockTeleporter.getStateFromMeta(keyId));
 					par2EntityPlayer.setHeldItem(hand, null);
-					par2EntityPlayer.addChatComponentMessage(new TextComponentString("\247e" + new TextComponentTranslation("chat.generating").getUnformattedText()));
+					par2EntityPlayer.sendMessage(new TextComponentString("\247e" + new TextComponentTranslation("chat.generating").getUnformattedText()));
 					ThreadCheckDungeon d = new ThreadCheckDungeon(keyId);
 					d.teleport = (TileEntityTeleporter) par3World.getTileEntity(pos.up());
 					d.player = par2EntityPlayer;
@@ -72,13 +74,14 @@ public class ItemDungeonKey extends Item
 		}
 		return EnumActionResult.FAIL;
 	}
-
+	
+	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
 		if (this == CCItems.orangeKey || this == CCItems.blueKey)
 		{
-			par3List.add("\247a" + I18n.format("Desc.key"));
+			tooltip.add("\247a" + I18n.format("Desc.key"));
 		}
 	}
 }

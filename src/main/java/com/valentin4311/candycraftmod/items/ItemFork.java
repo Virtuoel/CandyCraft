@@ -38,33 +38,35 @@ public class ItemFork extends Item
 	@Override
 	public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player)
 	{
-		Block i = player.worldObj.getBlockState(pos).getBlock();
+		Block i = player.world.getBlockState(pos).getBlock();
 		if (i != null)
 		{
 			ItemStack block = new ItemStack(i);
 			if (EnchantmentHelper.getEnchantmentLevel(CCEnchantments.devourer, itemstack) > 0 && TileEntitySugarFactory.isItemValid(block))
 			{
-				player.worldObj.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, player.worldObj.rand.nextFloat() * 0.1F + 0.9F);
-				player.worldObj.setBlockToAir(pos);
+				player.world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, player.world.rand.nextFloat() * 0.1F + 0.9F);
+				player.world.setBlockToAir(pos);
 				itemstack.setItemDamage(itemstack.getItemDamage() - 1);
 				player.getFoodStats().addStats(1, 0.0F);
-				player.addStat(CCAchievements.eatBlock);
+				// TOOD advancements
+			//	player.addStat(CCAchievements.eatBlock);
 			}
 			return false;
 		}
 		return false;
 	}
-
+	
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
+		ItemStack stack = player.getHeldItem(hand);
 		if (!player.canPlayerEdit(pos, facing, stack))
 		{
 			return EnumActionResult.FAIL;
 		}
 		else
 		{
-			Block i1 = world.getBlockState(pos).getBlock();
+			Block i1 = worldIn.getBlockState(pos).getBlock();
 
 			if (i1 != CCBlocks.pudding && i1 != CCBlocks.flour)
 			{
@@ -73,15 +75,15 @@ public class ItemFork extends Item
 			else
 			{
 				Block block = CCBlocks.candySoil;
-				world.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				worldIn.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
-				if (world.isRemote)
+				if (worldIn.isRemote)
 				{
 					return EnumActionResult.SUCCESS;
 				}
 				else
 				{
-					world.setBlockState(pos, block.getDefaultState());
+					worldIn.setBlockState(pos, block.getDefaultState());
 					stack.damageItem(1, player);
 					return EnumActionResult.SUCCESS;
 				}

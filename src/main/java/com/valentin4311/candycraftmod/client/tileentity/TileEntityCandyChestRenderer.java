@@ -52,7 +52,7 @@ public class TileEntityCandyChestRenderer extends TileEntityChestRenderer
 	{
 		int j;
 
-		if (!p_180538_1_.hasWorldObj())
+		if (!p_180538_1_.hasWorld())
 		{
 			j = 0;
 		}
@@ -213,7 +213,7 @@ public class TileEntityCandyChestRenderer extends TileEntityChestRenderer
 	}
 
 	@Override
-	public void renderTileEntityAt(TileEntityChest par1TileEntity, double par2, double par4, double par6, float par8, int destroyStage)
+	public void render(TileEntityChest par1TileEntity, double par2, double par4, double par6, float par8, int destroyStage, float alpha)
 	{
 		renderTileEntityChestAt2((TileEntityCandyChest) par1TileEntity, par2, par4, par6, par8, destroyStage);
 	}

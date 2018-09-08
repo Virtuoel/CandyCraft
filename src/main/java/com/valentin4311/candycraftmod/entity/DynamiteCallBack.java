@@ -29,7 +29,7 @@ public class DynamiteCallBack
 		{
 			explode(index);
 		}
-		if (fuseTime <= 0 && entity != null && !entity.worldObj.isRemote)
+		if (fuseTime <= 0 && entity != null && !entity.world.isRemote)
 		{
 			explode(index);
 		}
@@ -37,8 +37,8 @@ public class DynamiteCallBack
 
 	public void explode(int index)
 	{
-		boolean var2 = entity.worldObj.getGameRules().getBoolean("mobGriefing");
-		entity.worldObj.createExplosion(null, entity.posX, entity.posY, entity.posZ, 3, var2);
+		boolean var2 = entity.world.getGameRules().getBoolean("mobGriefing");
+		entity.world.createExplosion(null, entity.posX, entity.posY, entity.posZ, 3, var2);
 		ServerTick.dynamiteCallBack.remove(index);
 	}
 }

@@ -95,9 +95,9 @@ public class EntityBeetle extends EntityMob
 	@Override
 	public void onDeath(DamageSource par1DamageSource)
 	{
-		if (isChild() && par1DamageSource.getSourceOfDamage() != null && par1DamageSource.getSourceOfDamage() instanceof EntityPlayer)
+		if (isChild() && par1DamageSource.getImmediateSource() != null && par1DamageSource.getImmediateSource() instanceof EntityPlayer)
 		{
-			List list = worldObj.getEntitiesWithinAABBExcludingEntity(this, getEntityBoundingBox().expand(32.0D, 32.0D, 32.0D));
+			List list = world.getEntitiesWithinAABBExcludingEntity(this, getEntityBoundingBox().expand(32.0D, 32.0D, 32.0D));
 
 			for (int i = 0; i < list.size(); ++i)
 			{
@@ -122,14 +122,14 @@ public class EntityBeetle extends EntityMob
 	@Override
 	public void onLivingUpdate()
 	{
-		if (worldObj.isRemote && isAngry() && rand.nextInt(20) == 0)
+		if (world.isRemote && isAngry() && rand.nextInt(20) == 0)
 		{
 			for (int i = 0; i < 2; ++i)
 			{
 				double d0 = rand.nextGaussian() * 0.02D;
 				double d1 = rand.nextGaussian() * 0.02D;
 				double d2 = rand.nextGaussian() * 0.02D;
-				worldObj.spawnParticle(EnumParticleTypes.VILLAGER_ANGRY, posX + rand.nextFloat() * width * 2.0F - width, posY + rand.nextFloat() * height, posZ + rand.nextFloat() * width * 2.0F - width, d0, d1, d2);
+				world.spawnParticle(EnumParticleTypes.VILLAGER_ANGRY, posX + rand.nextFloat() * width * 2.0F - width, posY + rand.nextFloat() * height, posZ + rand.nextFloat() * width * 2.0F - width, d0, d1, d2);
 			}
 		}
 		if (getRidingEntity() != null)
@@ -141,16 +141,16 @@ public class EntityBeetle extends EntityMob
 			prevRotationPitch = getRidingEntity().prevRotationPitch;
 			setSize(0.5F, 0.4F);
 		}
-		if (!isChild() && !worldObj.isRemote && getAttackTarget() != null && rand.nextInt(500) == 0)
+		if (!isChild() && !world.isRemote && getAttackTarget() != null && rand.nextInt(500) == 0)
 		{
 			for (int x = -1; x < 2; x++)
 			{
 				for (int z = -1; z < 2; z++)
 				{
 					BlockPos pos = new BlockPos((int) posX + x, (int) posY, (int) posZ + z);
-					if (rand.nextBoolean() && (worldObj.getBlockState(pos)).getBlock() == CCBlocks.tallCandyGrass || worldObj.isAirBlock(pos) && CCBlocks.chewingGumPuddle.canPlaceBlockAt(worldObj, pos))
+					if (rand.nextBoolean() && (world.getBlockState(pos)).getBlock() == CCBlocks.tallCandyGrass || world.isAirBlock(pos) && CCBlocks.chewingGumPuddle.canPlaceBlockAt(world, pos))
 					{
-						worldObj.setBlockState(new BlockPos((int) posX + x, (int) posY, (int) posZ + z), CCBlocks.chewingGumPuddle.getDefaultState());
+						world.setBlockState(new BlockPos((int) posX + x, (int) posY, (int) posZ + z), CCBlocks.chewingGumPuddle.getDefaultState());
 					}
 				}
 			}
@@ -180,10 +180,10 @@ public class EntityBeetle extends EntityMob
 	{
 		if (rand.nextInt(10) == 0)
 		{
-			EntityBeetle child = new EntityBeetle(worldObj);
+			EntityBeetle child = new EntityBeetle(world);
 			child.setPosition(posX, posY, posZ);
 			child.setChild(true);
-			worldObj.spawnEntityInWorld(child);
+			world.spawnEntity(child);
 			child.startRiding(this);
 			child.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.5D);
 		}
@@ -227,7 +227,7 @@ public class EntityBeetle extends EntityMob
 	}
 
 	@Override
-	protected SoundEvent getHurtSound()
+	protected SoundEvent getHurtSound(DamageSource damageSource)
 	{
 		return null;
 	}

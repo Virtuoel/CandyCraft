@@ -1,7 +1,7 @@
 package com.valentin4311.candycraftmod.client.entity;
 
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -32,16 +32,15 @@ public class EntityCandyPortalFX extends Particle
 		particleMaxAge = (int) (Math.random() * 10.0D) + 40;
 		setParticleTextureIndex((int) (Math.random() * 8.0D));
 	}
-
 	@Override
-	public void moveEntity(double x, double y, double z)
+	public void move(double x, double y, double z)
 	{
-		setEntityBoundingBox(getEntityBoundingBox().offset(x, y, z));
+		setBoundingBox(getBoundingBox().offset(x, y, z));
 		resetPositionToBB();
 	}
 
 	@Override
-	public void renderParticle(VertexBuffer renderer, Entity entity, float par2, float par3, float par4, float par5, float par6, float par7)
+	public void renderParticle(BufferBuilder renderer, Entity entity, float par2, float par3, float par4, float par5, float par6, float par7)
 	{
 		float f6 = (particleAge + par2) / particleMaxAge;
 		f6 = 1.0F - f6;

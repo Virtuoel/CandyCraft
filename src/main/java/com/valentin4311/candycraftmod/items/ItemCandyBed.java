@@ -5,6 +5,7 @@ import com.valentin4311.candycraftmod.blocks.CCBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -24,7 +25,7 @@ public class ItemCandyBed extends Item
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		if (worldIn.isRemote)
 		{
@@ -45,19 +46,19 @@ public class ItemCandyBed extends Item
 				pos = pos.up();
 			}
 
-			int i = MathHelper.floor_double(playerIn.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-			EnumFacing enumfacing1 = EnumFacing.getHorizontal(i);
+			int i = MathHelper.floor(playerIn.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+			EnumFacing enumfacing1 = EnumFacing.byHorizontalIndex(i);
 			BlockPos blockpos1 = pos.offset(enumfacing1);
 			boolean flag1 = block.isReplaceable(worldIn, blockpos1);
 			boolean flag2 = worldIn.isAirBlock(pos) || flag;
 			boolean flag3 = worldIn.isAirBlock(blockpos1) || flag1;
 
-			if (playerIn.canPlayerEdit(pos, side, stack) && playerIn.canPlayerEdit(blockpos1, side, stack))
+			if (playerIn.canPlayerEdit(pos, side, playerIn.getHeldItem(hand)) && playerIn.canPlayerEdit(blockpos1, side, playerIn.getHeldItem(hand)))
 			{
 				if (flag2 && flag3 && worldIn.getBlockState(pos.down()).isSideSolid(worldIn, pos, EnumFacing.UP) && worldIn.getBlockState(blockpos1.down()).isSideSolid(worldIn, blockpos1, EnumFacing.UP))
 				{
 					int j = enumfacing1.getHorizontalIndex();
-					IBlockState iblockstate1 = CCBlocks.cottonCandyBedBlock.getDefaultState().withProperty(BlockBed.OCCUPIED, Boolean.valueOf(false)).withProperty(BlockDirectional.FACING, enumfacing1).withProperty(BlockBed.PART, BlockBed.EnumPartType.FOOT);
+					IBlockState iblockstate1 = CCBlocks.cottonCandyBedBlock.getDefaultState().withProperty(BlockBed.OCCUPIED, Boolean.valueOf(false)).withProperty(BlockHorizontal.FACING, enumfacing1).withProperty(BlockBed.PART, BlockBed.EnumPartType.FOOT);
 
 					if (worldIn.setBlockState(pos, iblockstate1, 3))
 					{
@@ -65,7 +66,7 @@ public class ItemCandyBed extends Item
 						worldIn.setBlockState(blockpos1, iblockstate2, 3);
 					}
 
-					--stack.stackSize;
+					playerIn.getHeldItem(hand).shrink(1);
 					return EnumActionResult.SUCCESS;
 				}
 				else

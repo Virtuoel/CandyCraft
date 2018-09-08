@@ -23,6 +23,6 @@ public class RenderKingJelly extends RenderJelly
 	@Override
 	protected ResourceLocation getJellyTexture(EntityLiving par1EntityKingSlime)
 	{
-		return ((EntityKingSlime) par1EntityKingSlime).getAwake() == 0 ? sleepTexture : slimeTexture;
+		return ((EntityKingSlime) par1EntityKingSlime).getAwake() ? sleepTexture : slimeTexture;
 	}
 }

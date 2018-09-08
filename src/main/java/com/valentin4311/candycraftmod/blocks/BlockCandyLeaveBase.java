@@ -19,7 +19,7 @@ public abstract class BlockCandyLeaveBase extends BlockLeaves
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
+	public BlockRenderLayer getRenderLayer()
 	{
 		setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
 		return leavesFancy ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;

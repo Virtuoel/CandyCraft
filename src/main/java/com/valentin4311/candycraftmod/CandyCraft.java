@@ -86,20 +86,21 @@ public class CandyCraft
 		CCFluids.postInit();
 
 		addContentFromConfig(isClient, event.getModConfigurationDirectory());
+		
+		CCBlocks.registerBlocks(event.getSide());
+		CCBlocks.doMiningLevel();
+
+		CCItems.registerItems(event.getSide());
 	}
 
 	@EventHandler
 	public void initMod(FMLInitializationEvent event)
 	{
-		CCBlocks.registerBlocks(event.getSide());
-		CCBlocks.doMiningLevel();
-
-		CCItems.registerItems(event.getSide());
 
 		proxy.init();
 
 		CCRecipes.init();
-		CCAchievements.init();
+	//	CCAchievements.init(); // TODO Advancements
 	}
 
 	public void addContentFromConfig(boolean client, File configDirectory)

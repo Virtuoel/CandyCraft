@@ -3,7 +3,7 @@ package com.valentin4311.candycraftmod.misc;
 import com.valentin4311.candycraftmod.blocks.CCBlocks;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class CCCreativeTabs extends CreativeTabs
 {
@@ -14,14 +14,8 @@ public class CCCreativeTabs extends CreativeTabs
 	}
 
 	@Override
-	public String getTranslatedTabLabel()
+	public ItemStack createIcon()
 	{
-		return "CandyCraft";
-	}
-
-	@Override
-	public Item getTabIconItem()
-	{
-		return Item.getItemFromBlock(CCBlocks.marshmallowWorkbench);
+		return new ItemStack(CCBlocks.marshmallowWorkbench);
 	}
 }

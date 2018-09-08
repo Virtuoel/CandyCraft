@@ -49,7 +49,7 @@ public class EntityAIExplode extends EntityAIBase
 	public EntityAIExplode(EntityCreature par1EntityCreature, double par2, boolean par4)
 	{
 		attacker = par1EntityCreature;
-		worldObj = par1EntityCreature.worldObj;
+		worldObj = par1EntityCreature.world;
 		speedTowardsTarget = par2;
 		longMemory = par4;
 		setMutexBits(3);
@@ -94,7 +94,7 @@ public class EntityAIExplode extends EntityAIBase
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
 	@Override
-	public boolean continueExecuting()
+	public boolean shouldContinueExecuting()
 	{
 		EntityLivingBase entitylivingbase = attacker.getAttackTarget();
 		return entitylivingbase == null ? false : (!entitylivingbase.isEntityAlive() ? false : (!longMemory ? !attacker.getNavigator().noPath() : true));
@@ -116,7 +116,7 @@ public class EntityAIExplode extends EntityAIBase
 	@Override
 	public void resetTask()
 	{
-		attacker.getNavigator().clearPathEntity();
+		attacker.getNavigator().clearPath();
 	}
 
 	/**
@@ -141,7 +141,7 @@ public class EntityAIExplode extends EntityAIBase
 			if (attacker.getNavigator().getPath() != null)
 			{
 				PathPoint finalPathPoint = attacker.getNavigator().getPath().getFinalPathPoint();
-				if (finalPathPoint != null && entitylivingbase.getDistanceSq(finalPathPoint.xCoord, finalPathPoint.yCoord, finalPathPoint.zCoord) < 1)
+				if (finalPathPoint != null && entitylivingbase.getDistanceSq(finalPathPoint.x, finalPathPoint.y, finalPathPoint.z) < 1)
 				{
 					failedPathFindingPenalty = 0;
 				}
@@ -179,16 +179,16 @@ public class EntityAIExplode extends EntityAIBase
 			attackTick = 20;
 
 			EntityNougatGolem last = (EntityNougatGolem) attacker;
-			attacker.worldObj.createExplosion(attacker, last.posX, last.posY, last.posZ, 2, var2);
+			attacker.world.createExplosion(attacker, last.posX, last.posY, last.posZ, 2, var2);
 			while (!last.isTop())
 			{
 				if (last != attacker)
 				{
-					attacker.worldObj.createExplosion(attacker, last.posX, last.posY, last.posZ, 2, var2);
+					attacker.world.createExplosion(attacker, last.posX, last.posY, last.posZ, 2, var2);
 				}
-				if (last.riddenByEntity != null)
+				if (last.getControllingPassenger() instanceof EntityNougatGolem)
 				{
-					last = (EntityNougatGolem) last.riddenByEntity;
+					last = (EntityNougatGolem) last.getControllingPassenger();
 				}
 				else
 				{

@@ -61,18 +61,18 @@ public class BlockCandyFurnace extends BlockFurnace
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (world.isRemote)
+		if (worldIn.isRemote)
 		{
 			return true;
 		}
 		else
 		{
-			TileEntitySugarFurnace tileentityfurnace = (TileEntitySugarFurnace) world.getTileEntity(pos);
+			TileEntitySugarFurnace tileentityfurnace = (TileEntitySugarFurnace) worldIn.getTileEntity(pos);
 			if (tileentityfurnace != null)
 			{
-				player.openGui(CandyCraft.getInstance(), 1, world, pos.getX(), pos.getY(), pos.getZ());
+				playerIn.openGui(CandyCraft.getInstance(), 1, worldIn, pos.getX(), pos.getY(), pos.getZ());
 			}
 			return true;
 		}

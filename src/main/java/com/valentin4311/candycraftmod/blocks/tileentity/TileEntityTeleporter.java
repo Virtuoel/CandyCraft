@@ -34,16 +34,16 @@ public class TileEntityTeleporter extends TileEntity implements ITickable
 	{
 		if (keyId == 0)
 		{
-			new WorldGenSlimeDungeon(oX, oY, oZ, dim).generate(world.getMinecraftServer().worldServerForDimension(CandyCraft.getDungeonDimensionID()), world.rand, new BlockPos(dungeonID * 1000, 64, 0));
+			new WorldGenSlimeDungeon(oX, oY, oZ, dim).generate(world.getMinecraftServer().getWorld(CandyCraft.getDungeonDimensionID()), world.rand, new BlockPos(dungeonID * 1000, 64, 0));
 		}
 		else if (keyId == 1)
 		{
-			new WorldGenSuguardDungeon(oX, oY, oZ, dim).generate(world.getMinecraftServer().worldServerForDimension(CandyCraft.getDungeonDimensionID()), world.rand, new BlockPos(dungeonID * 1000, 64, 10000));
+			new WorldGenSuguardDungeon(oX, oY, oZ, dim).generate(world.getMinecraftServer().getWorld(CandyCraft.getDungeonDimensionID()), world.rand, new BlockPos(dungeonID * 1000, 64, 10000));
 		}
 
 		if (player != null)
 		{
-			player.addChatComponentMessage(new TextComponentString("\247e" + new TextComponentTranslation("chat.generated").getUnformattedText()));
+			player.sendMessage(new TextComponentString("\247e" + new TextComponentTranslation("chat.generated").getUnformattedText()));
 		}
 	}
 
@@ -79,7 +79,7 @@ public class TileEntityTeleporter extends TileEntity implements ITickable
 		if (dungeonID != -1 && !generated)
 		{
 			generated = true;
-			genDungeon(worldObj);
+			genDungeon(world);
 		}
 		tickExisted++;
 	}

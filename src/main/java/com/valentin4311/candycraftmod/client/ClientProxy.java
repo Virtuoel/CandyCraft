@@ -166,9 +166,7 @@ public class ClientProxy extends CommonProxy
 		rm.entityRenderMap.put(EntityKingBeetle.class, new RenderKingBeetle(rm, new ModelBeetle(), 0.5F));
 		rm.entityRenderMap.put(EntityMermaid.class, new RenderMermaid(rm));
 
-		TileEntityCandyChestRenderer render = new TileEntityCandyChestRenderer();
-		TileEntityRendererDispatcher.instance.mapSpecialRenderers.put(TileEntityCandyChest.class, render);
-		render.setRendererDispatcher(TileEntityRendererDispatcher.instance);
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCandyChest.class, new TileEntityCandyChestRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAlchemy.class, new TileEntityAlchemyRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTeleporter.class, new TileEntityRendererTeleporter());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEgg.class, new RenderEgg());
@@ -219,7 +217,7 @@ public class ClientProxy extends CommonProxy
 			@Override
 			public ModelResourceLocation getModelLocation(ItemStack stack)
 			{
-				return new ModelResourceLocation("candycraftmod:" + CCItems.candyPlacer.getUnlocalizedName().substring(5), "inventory");
+				return new ModelResourceLocation("candycraftmod:" + CCItems.candyPlacer.getTranslationKey().substring(5), "inventory");
 			}
 		});
 
@@ -247,7 +245,7 @@ public class ClientProxy extends CommonProxy
 			@Override
 			public ModelResourceLocation getModelLocation(ItemStack stack)
 			{
-				return new ModelResourceLocation("candycraftmod:" + CCItems.sugarPill.getUnlocalizedName().substring(5), "inventory");
+				return new ModelResourceLocation("candycraftmod:" + CCItems.sugarPill.getTranslationKey().substring(5), "inventory");
 			}
 		});
 	}

@@ -26,7 +26,7 @@ public class EntityTornadoJelly extends EntityJelly implements IMob
 
 	protected EntityTornadoJelly createInstance()
 	{
-		return new EntityTornadoJelly(worldObj);
+		return new EntityTornadoJelly(world);
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class EntityTornadoJelly extends EntityJelly implements IMob
 	{
 		int i = getJellySize();
 
-		if (!worldObj.isRemote && i > 1 && getHealth() <= 0.0F)
+		if (!world.isRemote && i > 1 && getHealth() <= 0.0F)
 		{
 			int j = 2 + rand.nextInt(3);
 
@@ -59,7 +59,7 @@ public class EntityTornadoJelly extends EntityJelly implements IMob
 				EntityTornadoJelly entityslime = createInstance();
 				entityslime.setJellySize(i / 2);
 				entityslime.setLocationAndAngles(posX + f, posY + 0.5D, posZ + f1, rand.nextFloat() * 360.0F, 0.0F);
-				worldObj.spawnEntityInWorld(entityslime);
+				world.spawnEntity(entityslime);
 			}
 		}
 
@@ -71,9 +71,9 @@ public class EntityTornadoJelly extends EntityJelly implements IMob
 	{
 		if (par1EntityPlayer.attackEntityFrom(DamageSource.causeMobDamage(this), 6))
 		{
-			if (!worldObj.isRemote)
+			if (!world.isRemote)
 			{
-				worldObj.newExplosion(this, posX, posY, posZ, 1, true, false);
+				world.newExplosion(this, posX, posY, posZ, 1, true, false);
 				setDead();
 			}
 		}

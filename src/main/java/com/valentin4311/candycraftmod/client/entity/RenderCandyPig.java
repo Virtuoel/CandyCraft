@@ -1,6 +1,7 @@
 package com.valentin4311.candycraftmod.client.entity;
 
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderPig;
 import net.minecraft.entity.passive.EntityPig;
@@ -9,7 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderCandyPig extends RenderPig
+public class RenderCandyPig extends RenderLiving<EntityPig>
 {
 	private static final ResourceLocation texture = new ResourceLocation("candycraftmod:textures/entity/CandyPig.png");
 

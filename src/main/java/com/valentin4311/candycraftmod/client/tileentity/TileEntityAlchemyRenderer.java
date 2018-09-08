@@ -22,7 +22,7 @@ public class TileEntityAlchemyRenderer extends TileEntitySpecialRenderer
 	}
 
 	@Override
-	public void renderTileEntityAt(TileEntity var1, double var2, double var4, double var6, float var8, int var9)
+	public void render(TileEntity var1, double var2, double var4, double var6, float var8, int var9, float aalpha)
 	{
 		TileEntityAlchemy table = (TileEntityAlchemy) var1;
 		GL11.glPushMatrix();
@@ -30,7 +30,7 @@ public class TileEntityAlchemyRenderer extends TileEntitySpecialRenderer
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glTranslatef((float) var2, (float) var4 + 2.0F, (float) var6 + 1.0F);
 		GL11.glScalef(1.0F, -1.0F, -1.0F);
-		if (var1.hasWorldObj())
+		if (var1.hasWorld())
 		{
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);

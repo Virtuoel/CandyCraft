@@ -1,5 +1,6 @@
 package com.valentin4311.candycraftmod.client.entity;
 
+import com.valentin4311.candycraftmod.entity.EntitySuguard;
 import com.valentin4311.candycraftmod.items.CCItems;
 
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -11,7 +12,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderSuguard extends RenderLiving
+public class RenderSuguard extends RenderLiving<EntitySuguard>
 {
 	private static final ResourceLocation suguard = new ResourceLocation("candycraftmod:textures/entity/SuGarde.png");
 	private static final ResourceLocation orangeSuguard = new ResourceLocation("candycraftmod:textures/entity/SuguardeSoldier.png");
@@ -24,9 +25,9 @@ public class RenderSuguard extends RenderLiving
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(Entity entity)
+	protected ResourceLocation getEntityTexture(EntitySuguard entity)
 	{
 		EntityLivingBase b = (EntityLivingBase) entity;
-		return b.getEquipmentInSlot(0) != null && b.getEquipmentInSlot(0).getItem() == CCItems.dynamite ? RenderSuguard.orangeSuguard : RenderSuguard.suguard;
+		return b.getHeldItemMainhand().getItem() == CCItems.dynamite ? RenderSuguard.orangeSuguard : RenderSuguard.suguard;
 	}
 }

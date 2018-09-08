@@ -10,6 +10,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -43,16 +44,15 @@ public class BlockCandyBase extends Block
 	@Override
 	protected boolean canSilkHarvest()
 	{
-		return defaultSilkTouch ? getDefaultState().isFullCube() && !isBlockContainer : canSilkHarvest;
+		return defaultSilkTouch ? getDefaultState().isFullCube() : canSilkHarvest;
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item par1, CreativeTabs tab, List par3List)
+    public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
 	{
 		for (int i : metadataList)
 		{
-			par3List.add(new ItemStack(par1, 1, i));
+			items.add(new ItemStack(this, 1, i));
 		}
 	}
 

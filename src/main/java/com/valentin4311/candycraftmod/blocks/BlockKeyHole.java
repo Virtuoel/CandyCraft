@@ -21,22 +21,22 @@ public class BlockKeyHole extends Block
 		super(par2Material);
 		keyId = id;
 	}
-
+	
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (!world.isRemote && heldItem != null && heldItem.getItem() instanceof ItemBossKey && ((ItemBossKey) heldItem.getItem()).keyId == keyId)
+		if (!worldIn.isRemote && playerIn.getHeldItem(hand).getItem() instanceof ItemBossKey && ((ItemBossKey) playerIn.getHeldItem(hand).getItem()).keyId == keyId)
 		{
-			world.setBlockToAir(pos);
-			if (world.getBlockState(pos.up()).getBlock() == this)
+			worldIn.setBlockToAir(pos);
+			if (worldIn.getBlockState(pos.up()).getBlock() == this)
 			{
-				world.setBlockToAir(pos.up());
+				worldIn.setBlockToAir(pos.up());
 			}
-			if (world.getBlockState(pos.down()).getBlock() == this)
+			if (worldIn.getBlockState(pos.down()).getBlock() == this)
 			{
-				world.setBlockToAir(pos.down());
+				worldIn.setBlockToAir(pos.down());
 			}
-			heldItem.stackSize--;
+			playerIn.getHeldItem(hand).shrink(1);
 
 			return true;
 		}

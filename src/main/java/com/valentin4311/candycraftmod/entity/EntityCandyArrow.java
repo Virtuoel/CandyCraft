@@ -40,7 +40,13 @@ public class EntityCandyArrow extends EntityArrow implements IProjectile
 	{
 		dataManager.set(IS_BOLT, isBolt);
 	}
-
+	
+	@Override
+	public double getDamage()
+	{
+		return super.getDamage() + (isBolt() ? 0.0D : 8.0D);
+	}
+	
 	@Override
 	protected ItemStack getArrowStack()
 	{

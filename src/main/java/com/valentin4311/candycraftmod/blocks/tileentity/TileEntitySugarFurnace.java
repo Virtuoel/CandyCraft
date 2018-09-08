@@ -30,7 +30,7 @@ public class TileEntitySugarFurnace extends TileEntityLockable implements ITicka
 	private static final int[] slotsTop = new int[] { 0 };
 	private static final int[] slotsBottom = new int[] { 2, 1 };
 	private static final int[] slotsSides = new int[] { 1 };
-	private ItemStack[] furnaceItemStacks = new ItemStack[3];
+	private ItemStack[] furnaceItemStacks = new ItemStack[] {ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY};
 	private int furnaceBurnTime;
 	private int currentItemBurnTime;
 	private int field_174906_k;
@@ -61,11 +61,11 @@ public class TileEntitySugarFurnace extends TileEntityLockable implements ITicka
 		else
 		{
 			ItemStack itemstack = CCFurnaceRecipe.smelting().getSmeltingResult(furnaceItemStacks[0]);
-			if (itemstack == null)
+			if (itemstack == ItemStack.EMPTY)
 			{
 				return false;
 			}
-			if (furnaceItemStacks[2] == null)
+			if (furnaceItemStacks[2] == ItemStack.EMPTY)
 			{
 				return true;
 			}
@@ -73,7 +73,7 @@ public class TileEntitySugarFurnace extends TileEntityLockable implements ITicka
 			{
 				return false;
 			}
-			int result = furnaceItemStacks[2].stackSize + itemstack.stackSize;
+			int result = furnaceItemStacks[2].getCount() + itemstack.getCount();
 			return result <= getInventoryStackLimit() && result <= furnaceItemStacks[2].getMaxStackSize();
 		}
 	}
@@ -90,7 +90,7 @@ public class TileEntitySugarFurnace extends TileEntityLockable implements ITicka
 			}
 			else if (furnaceItemStacks[2].getItem() == itemstack.getItem())
 			{
-				furnaceItemStacks[2].stackSize += itemstack.stackSize;
+				furnaceItemStacks[2].grow(itemstack.getCount());
 			}
 
 			if (furnaceItemStacks[0].getItem() == CCItems.caramelBucket)
@@ -99,10 +99,10 @@ public class TileEntitySugarFurnace extends TileEntityLockable implements ITicka
 			}
 			else
 			{
-				--furnaceItemStacks[0].stackSize;
+				furnaceItemStacks[0].shrink(1);
 			}
 
-			if (furnaceItemStacks[0].stackSize <= 0)
+			if (furnaceItemStacks[0].getCount() <= 0)
 			{
 				furnaceItemStacks[0] = null;
 			}
@@ -162,19 +162,19 @@ public class TileEntitySugarFurnace extends TileEntityLockable implements ITicka
 		{
 			ItemStack itemstack;
 
-			if (furnaceItemStacks[index].stackSize <= count)
+			if (furnaceItemStacks[index].getCount() <= count)
 			{
 				itemstack = furnaceItemStacks[index];
-				furnaceItemStacks[index] = null;
+				furnaceItemStacks[index] = ItemStack.EMPTY;
 				return itemstack;
 			}
 			else
 			{
 				itemstack = furnaceItemStacks[index].splitStack(count);
 
-				if (furnaceItemStacks[index].stackSize == 0)
+				if (furnaceItemStacks[index].getCount() == 0)
 				{
-					furnaceItemStacks[index] = null;
+					furnaceItemStacks[index] = ItemStack.EMPTY;
 				}
 
 				return itemstack;
@@ -182,22 +182,22 @@ public class TileEntitySugarFurnace extends TileEntityLockable implements ITicka
 		}
 		else
 		{
-			return null;
+			return ItemStack.EMPTY;
 		}
 	}
 
 	@Override
 	public ItemStack removeStackFromSlot(int index)
 	{
-		if (furnaceItemStacks[index] != null)
+		if (furnaceItemStacks[index] != ItemStack.EMPTY)
 		{
 			ItemStack itemstack = furnaceItemStacks[index];
-			furnaceItemStacks[index] = null;
+			furnaceItemStacks[index] = ItemStack.EMPTY;
 			return itemstack;
 		}
 		else
 		{
-			return null;
+			return ItemStack.EMPTY;
 		}
 	}
 
@@ -207,9 +207,9 @@ public class TileEntitySugarFurnace extends TileEntityLockable implements ITicka
 		boolean flag = stack != null && stack.isItemEqual(furnaceItemStacks[index]) && ItemStack.areItemStackTagsEqual(stack, furnaceItemStacks[index]);
 		furnaceItemStacks[index] = stack;
 
-		if (stack != null && stack.stackSize > getInventoryStackLimit())
+		if (stack != null && stack.getCount() > getInventoryStackLimit())
 		{
-			stack.stackSize = getInventoryStackLimit();
+			stack.setCount(getInventoryStackLimit());
 		}
 
 		if (index == 0 && !flag)
@@ -240,7 +240,7 @@ public class TileEntitySugarFurnace extends TileEntityLockable implements ITicka
 
 			if (b0 >= 0 && b0 < furnaceItemStacks.length)
 			{
-				furnaceItemStacks[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+				furnaceItemStacks[b0] = new ItemStack(nbttagcompound1);
 			}
 		}
 
@@ -301,13 +301,13 @@ public class TileEntitySugarFurnace extends TileEntityLockable implements ITicka
 			--furnaceBurnTime;
 		}
 
-		if (!worldObj.isRemote)
+		if (!world.isRemote)
 		{
 			if (!isBurning() && (furnaceItemStacks[1] == null || furnaceItemStacks[0] == null))
 			{
 				if (!isBurning() && field_174906_k > 0)
 				{
-					field_174906_k = MathHelper.clamp_int(field_174906_k - 2, 0, field_174905_l);
+					field_174906_k = MathHelper.clamp(field_174906_k - 2, 0, field_174905_l);
 				}
 			}
 			else
@@ -322,9 +322,9 @@ public class TileEntitySugarFurnace extends TileEntityLockable implements ITicka
 
 						if (furnaceItemStacks[1] != null)
 						{
-							--furnaceItemStacks[1].stackSize;
+							furnaceItemStacks[1].shrink(1);;
 
-							if (furnaceItemStacks[1].stackSize == 0)
+							if (furnaceItemStacks[1].getCount() == 0)
 							{
 								furnaceItemStacks[1] = furnaceItemStacks[1].getItem().getContainerItem(furnaceItemStacks[1]);
 							}
@@ -353,7 +353,7 @@ public class TileEntitySugarFurnace extends TileEntityLockable implements ITicka
 			if (flag != isBurning())
 			{
 				flag1 = true;
-				BlockCandyFurnace.setState(isBurning(), worldObj, pos);
+				BlockCandyFurnace.setState(isBurning(), world, pos);
 			}
 		}
 
@@ -364,9 +364,9 @@ public class TileEntitySugarFurnace extends TileEntityLockable implements ITicka
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer playerIn)
+	public boolean isUsableByPlayer(EntityPlayer playerIn)
 	{
-		return worldObj.getTileEntity(pos) != this ? false : playerIn.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64.0D;
+		return world.getTileEntity(pos) != this ? false : playerIn.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64.0D;
 	}
 
 	@Override
@@ -479,5 +479,19 @@ public class TileEntitySugarFurnace extends TileEntityLockable implements ITicka
 	public String getName()
 	{
 		return hasCustomName() ? furnaceCustomName : I18n.format("Block.SugarFurnace");
+	}
+
+	@Override
+	public boolean isEmpty()
+	{
+		for(ItemStack itemstack : this.furnaceItemStacks)
+		{
+			if(itemstack != null && !itemstack.isEmpty())
+			{
+				return false;
+			}
+		}
+		
+		return true;
 	}
 }

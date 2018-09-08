@@ -29,7 +29,7 @@ public class BlockSugar extends Block
 	@Override
 	public int quantityDroppedWithBonus(int par1, Random par2Random)
 	{
-		return MathHelper.clamp_int(this.quantityDropped(par2Random) + par2Random.nextInt(par1 + 1), 1, 4);
+		return MathHelper.clamp(this.quantityDropped(par2Random) + par2Random.nextInt(par1 + 1), 1, 4);
 	}
 
 	@Override
@@ -43,11 +43,11 @@ public class BlockSugar extends Block
 	{
 		return Items.SUGAR;
 	}
-
+	
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if ((heldItem != null && heldItem.getItem() != null && ((heldItem.getItem() == Items.LAVA_BUCKET && CandyCraftPreferences.canOpenPortalWithLava) || (heldItem.getItem() == CCItems.caramelBucket && CandyCraftPreferences.canOpenPortalWithCaramel)) && (world.provider.getDimension() == 0 || world.provider.getDimension() == CandyCraft.getCandyDimensionID())))
+		if ((playerIn.getHeldItem(hand).getItem() == Items.LAVA_BUCKET && CandyCraftPreferences.canOpenPortalWithLava) || (playerIn.getHeldItem(hand).getItem() == CCItems.caramelBucket && CandyCraftPreferences.canOpenPortalWithCaramel) && (worldIn.provider.getDimension() == 0 || worldIn.provider.getDimension() == CandyCraft.getCandyDimensionID()))
 		{
 			boolean isActivated = false;
 			enable: for (int x = -1; x < 2; x++)
@@ -56,10 +56,10 @@ public class BlockSugar extends Block
 				{
 					for (int z = -1; z < 2; z++)
 					{
-						isActivated = CCBlocks.candyPortal.trySpawnPortal(world, new BlockPos(pos.getX() + x, pos.getY() + y, pos.getZ() + z));
+						isActivated = CCBlocks.candyPortal.trySpawnPortal(worldIn, new BlockPos(pos.getX() + x, pos.getY() + y, pos.getZ() + z));
 						if (isActivated)
 						{
-							player.setHeldItem(hand, new ItemStack(Items.BUCKET));
+							playerIn.setHeldItem(hand, new ItemStack(Items.BUCKET));
 							break enable;
 						}
 					}

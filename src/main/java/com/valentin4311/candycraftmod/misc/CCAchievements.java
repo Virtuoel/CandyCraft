@@ -1,20 +1,7 @@
 package com.valentin4311.candycraftmod.misc;
 
-import java.util.ArrayList;
-
-import com.valentin4311.candycraftmod.blocks.CCBlocks;
-import com.valentin4311.candycraftmod.items.CCItems;
-
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Achievement;
-import net.minecraftforge.common.AchievementPage;
-
 public class CCAchievements
-{
+{/*// TODO Advancements!
 	private static ArrayList<Achievement> achievementList = new ArrayList<Achievement>();
 	public static AchievementPage achievementPage;
 	public static Achievement craftSugarBlock;
@@ -162,5 +149,5 @@ public class CCAchievements
 		{
 			player.addStat(CCAchievements.gettingCandyCaneSugar);
 		}
-	}
+	}*/
 }

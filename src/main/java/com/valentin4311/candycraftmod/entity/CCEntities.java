@@ -14,6 +14,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class CCEntities
@@ -59,12 +60,12 @@ public class CCEntities
 
 	public static void registerEntity(Class<? extends Entity> entity, String entityName, int id, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates)
 	{
-		EntityRegistry.registerModEntity(entity, entityName, id, CandyCraft.getInstance(), trackingRange, updateFrequency, sendsVelocityUpdates);
+		EntityRegistry.registerModEntity(new ResourceLocation("candycraftmod", entityName), entity, entityName, id, CandyCraft.getInstance(), trackingRange, updateFrequency, sendsVelocityUpdates);
 	}
 
 	public static void registerEntity(Class<? extends Entity> entity, String entityName, int id, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int primary, int secondary)
 	{
-		EntityRegistry.registerModEntity(entity, entityName, id, CandyCraft.getInstance(), trackingRange, updateFrequency, sendsVelocityUpdates);
-		CANDYCRAFT_EGGS.put("candycraftmod." + entityName, new EntityList.EntityEggInfo("candycraftmod." + entityName, primary, secondary));
+		registerEntity(entity, entityName, id, trackingRange, updateFrequency, sendsVelocityUpdates);
+		CANDYCRAFT_EGGS.put("candycraftmod:" + entityName, new EntityList.EntityEggInfo(new ResourceLocation("candycraft", entityName), primary, secondary));
 	}
 }

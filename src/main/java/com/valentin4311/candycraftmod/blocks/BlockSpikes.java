@@ -36,9 +36,9 @@ public class BlockSpikes extends Block
 	{
 		return SPIKES_AABB;
 	}
-
+	
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World par1World, BlockPos pos)
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
 		return null;
 	}
@@ -60,28 +60,28 @@ public class BlockSpikes extends Block
 	{
 		return canBlockStay(par1World, pos);
 	}
-
+	
 	@Override
-	public void onEntityCollidedWithBlock(World par1World, BlockPos pos, IBlockState state, Entity par5Entity)
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
-		if (par5Entity instanceof EntityLivingBase)
+		if (entityIn instanceof EntityLivingBase)
 		{
-			par5Entity.attackEntityFrom(DamageSource.generic, damage / 2);
+			entityIn.attackEntityFrom(DamageSource.GENERIC, damage / 2);
 		}
 	}
 
 	@Override
-	public void neighborChanged(IBlockState state, World par1World, BlockPos pos, Block bl)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
 	{
-		if (!canBlockStay(par1World, pos))
+		if (!canBlockStay(worldIn, pos))
 		{
-			par1World.setBlockToAir(pos);
+			worldIn.setBlockToAir(pos);
 		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
+	public BlockRenderLayer getRenderLayer()
 	{
 		return BlockRenderLayer.CUTOUT;
 	}

@@ -29,7 +29,7 @@ public class ThreadCheckUpdate extends Thread
 		{
 			if (CandyCraftPreferences.checkForUpdates)
 			{
-				File file = new File(Minecraft.getMinecraft().mcDataDir + "/config/CandyCraft/");
+				File file = new File(Minecraft.getMinecraft().gameDir + "/config/CandyCraft/");
 				file.mkdirs();
 
 				downloadFile("http://candyversion.tumblr.com/", file.getAbsolutePath() + "/version.txt");

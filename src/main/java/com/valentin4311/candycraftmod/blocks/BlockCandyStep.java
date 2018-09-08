@@ -1,6 +1,5 @@
 package com.valentin4311.candycraftmod.blocks;
 
-import java.util.List;
 import java.util.Random;
 
 import com.valentin4311.candycraftmod.items.ItemCandySlab;
@@ -16,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -45,13 +45,7 @@ public class BlockCandyStep extends BlockSlab
 	}
 
 	@Override
-	protected ItemStack createStackedBlock(IBlockState state)
-	{
-		return new ItemStack(ItemCandySlab.slabList[dropped], 2, 0);
-	}
-
-	@Override
-	public String getUnlocalizedName(int meta)
+	public String getTranslationKey(int meta)
 	{
 		return "CandySlabFull-" + dropped;
 	}
@@ -94,11 +88,11 @@ public class BlockCandyStep extends BlockSlab
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item par1, CreativeTabs tab, List par3List)
+	public void getSubBlocks(CreativeTabs tab, NonNullList par3List)
 	{
 		if (!isFullSlab)
 		{
-			par3List.add(new ItemStack(par1, 1, 0));
+			par3List.add(new ItemStack(this, 1, 0));
 		}
 	}
 

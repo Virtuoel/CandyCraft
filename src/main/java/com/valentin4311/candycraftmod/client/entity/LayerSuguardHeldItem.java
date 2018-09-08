@@ -1,23 +1,24 @@
 package com.valentin4311.candycraftmod.client.entity;
 
+import com.valentin4311.candycraftmod.entity.EntitySuguard;
 import com.valentin4311.candycraftmod.items.CCItems;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.entity.RenderEntity;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
+import net.minecraft.client.renderer.entity.RenderLivingBase;
+import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 
-public class LayerSuguardHeldItem<RendererLiving> implements LayerRenderer
+// TODO change to how e.g. Vindicator renders held items
+public class LayerSuguardHeldItem extends LayerHeldItem
 {
-	private final RendererLivingEntity entityRenderer;
-
-	public LayerSuguardHeldItem(RendererLiving renderer)
+	public LayerSuguardHeldItem(RenderLivingBase<EntitySuguard> livingEntityRendererIn)
 	{
-		entityRenderer = renderer;
+		super(livingEntityRendererIn);
 	}
 
 	float rX, rY, rZ, tX, tY, tZ;
@@ -25,16 +26,15 @@ public class LayerSuguardHeldItem<RendererLiving> implements LayerRenderer
 	@Override
 	public void doRenderLayer(EntityLivingBase entity, float p_177141_2_, float p_177141_3_, float p_177141_4_, float p_177141_5_, float p_177141_6_, float p_177141_7_, float p_177141_8_)
 	{
-		ItemStack itemstack = entity.getHeldItem();
+		ItemStack itemstack = entity.getHeldItem(EnumHand.MAIN_HAND);
 
 		if (itemstack != null)
 		{
 			GlStateManager.pushMatrix();
 
-			((ModelSuguard) entityRenderer.getMainModel()).rightArm.postRender(0.0625F);
+			((ModelSuguard) livingEntityRenderer.getMainModel()).rightArm.postRender(0.0625F);
 			GlStateManager.translate(0.0275F, 0.1225F, 0.1425F);
 
-			Item item = itemstack.getItem();
 			Minecraft minecraft = Minecraft.getMinecraft();
 
 			if (itemstack.getItem() == CCItems.caramelBow)

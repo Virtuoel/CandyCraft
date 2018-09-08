@@ -69,7 +69,7 @@ public class CCFurnaceRecipe
 		{
 			if (!iterator.hasNext())
 			{
-				return null;
+				return ItemStack.EMPTY;
 			}
 
 			entry = (Entry) iterator.next();

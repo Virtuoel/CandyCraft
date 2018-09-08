@@ -80,13 +80,13 @@ public class BlockCandyFarmland extends BlockFarmland
 	}
 
 	@Override
-	public void neighborChanged(IBlockState state, World par1World, BlockPos pos, Block par5)
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
 	{
-		Material material = par1World.getBlockState(pos.up()).getMaterial();
+		Material material = worldIn.getBlockState(pos.up()).getMaterial();
 
 		if (material.isSolid())
 		{
-			par1World.setBlockState(pos, CCBlocks.flour.getDefaultState());
+			worldIn.setBlockState(pos, CCBlocks.flour.getDefaultState());
 		}
 	}
 

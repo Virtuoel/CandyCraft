@@ -14,9 +14,12 @@ import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -48,7 +51,7 @@ public class EntityMermaid extends EntityGolem implements IMob, IRangedAttackMob
 	@Override
 	public boolean isNotColliding()
 	{
-		return worldObj.checkNoEntityCollision(getEntityBoundingBox(), this);
+		return world.checkNoEntityCollision(getEntityBoundingBox(), this);
 	}
 
 	@Override
@@ -66,13 +69,13 @@ public class EntityMermaid extends EntityGolem implements IMob, IRangedAttackMob
 	}
 
 	@Override
-	public void moveEntityWithHeading(float par1, float par2)
+	public void travel(float par1, float vertical, float par2)
 	{
 		if (isInWater())
 		{
 			motionY -= 0.002D;
 		}
-		super.moveEntityWithHeading(par1, par2);
+		super.travel(par1, vertical, par2);
 
 	}
 
@@ -83,7 +86,7 @@ public class EntityMermaid extends EntityGolem implements IMob, IRangedAttackMob
 	}
 
 	@Override
-	protected SoundEvent getHurtSound()
+	protected SoundEvent getHurtSound(DamageSource damageSource)
 	{
 		return null;
 	}
@@ -107,7 +110,7 @@ public class EntityMermaid extends EntityGolem implements IMob, IRangedAttackMob
 
 		if (!isInWater() && onGround && ticksExisted % 10 == 0)
 		{
-			worldObj.playSound(posX, posY, posZ, "mob.guardian.flop", 1.0F, 1.0F, false);
+			world.playSound(posX, posY, posZ, SoundEvents.ENTITY_GUARDIAN_FLOP, SoundCategory.HOSTILE, 1.0F, 1.0F, false);
 			motionX = rand.nextFloat() - 0.5F;
 			motionY += 0.34F;
 			motionZ = rand.nextFloat() - 0.5F;
@@ -115,7 +118,7 @@ public class EntityMermaid extends EntityGolem implements IMob, IRangedAttackMob
 			prevRotationYaw = rotationYaw;
 			for (int i = 0; i < 10; i++)
 			{
-				worldObj.spawnParticle(EnumParticleTypes.WATER_DROP, posX + (rand.nextDouble() - 0.5D) * width, posY + rand.nextDouble() * height, posZ + (rand.nextDouble() - 0.5D) * width, 0.0D, 0.0D, 0.0D);
+				world.spawnParticle(EnumParticleTypes.WATER_DROP, posX + (rand.nextDouble() - 0.5D) * width, posY + rand.nextDouble() * height, posZ + (rand.nextDouble() - 0.5D) * width, 0.0D, 0.0D, 0.0D);
 			}
 		}
 
@@ -134,7 +137,7 @@ public class EntityMermaid extends EntityGolem implements IMob, IRangedAttackMob
 		super.updateAITasks();
 		if (isInWater())
 		{
-			if (currentFlightTarget != null && (!(worldObj.getBlockState(new BlockPos(currentFlightTarget.getX(), currentFlightTarget.getY(), currentFlightTarget.getZ())).getMaterial() == Material.WATER) || currentFlightTarget.getY() < 1))
+			if (currentFlightTarget != null && (!(world.getBlockState(new BlockPos(currentFlightTarget.getX(), currentFlightTarget.getY(), currentFlightTarget.getZ())).getMaterial() == Material.WATER) || currentFlightTarget.getY() < 1))
 			{
 				currentFlightTarget = null;
 			}
@@ -165,13 +168,21 @@ public class EntityMermaid extends EntityGolem implements IMob, IRangedAttackMob
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
 	{
-		EntityCandyArrow entityarrow = new EntityCandyArrow(worldObj, this, p_82196_1_, 1.6F, 14 - worldObj.getDifficulty().getDifficultyId() * 4);
-		entityarrow.maxTick = 80;
+		EntityCandyArrow entityarrow = new EntityCandyArrow(world, this);
+		entityarrow.shoot(p_82196_1_, rotationPitch, rotationYaw, 0.0F, 1.6F, 14 - world.getDifficulty().getId() * 4);
+		// TODO Candy Arrow ???
+	//	entityarrow.maxTick = 80;
 		int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, getHeldItem(EnumHand.MAIN_HAND));
 		int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, getHeldItem(EnumHand.MAIN_HAND));
-		entityarrow.setDamage(p_82196_2_ * 3.0F + rand.nextGaussian() * 0.25D + worldObj.getDifficulty().getDifficultyId() * 0.11F);
+		entityarrow.setDamage(p_82196_2_ * 3.0F + rand.nextGaussian() * 0.25D + world.getDifficulty().getId() * 0.11F);
 
-		playSound("random.bow", 1.0F, 1.0F / (getRNG().nextFloat() * 0.4F + 0.8F));
-		worldObj.spawnEntityInWorld(entityarrow);
+		playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1.0F, 1.0F / (getRNG().nextFloat() * 0.4F + 0.8F));
+		world.spawnEntity(entityarrow);
+	}
+
+	@Override
+	public void setSwingingArms(boolean swingingArms)
+	{
+		
 	}
 }

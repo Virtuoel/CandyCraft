@@ -3,15 +3,17 @@ package com.valentin4311.candycraftmod.client.entity;
 import com.valentin4311.candycraftmod.entity.EntityCandyWolf;
 
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderWolf;
+import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderCandyWolf extends RenderWolf
+public class RenderCandyWolf extends RenderLiving<EntityWolf>
 {
 	private static final ResourceLocation wolfTexture = new ResourceLocation("candycraftmod:textures/entity/wolfCandy.png");
 	private static final ResourceLocation tameTexture = new ResourceLocation("candycraftmod:textures/entity/wolf_tameCandy.png");

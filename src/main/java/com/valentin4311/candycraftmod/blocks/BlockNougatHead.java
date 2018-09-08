@@ -10,6 +10,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -22,9 +23,9 @@ public class BlockNougatHead extends Block
 		super(Material.IRON);
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
-
+	
 	@Override
-	public IBlockState onBlockPlaced(World par1, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
 	{
 		return getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
 	}
@@ -83,7 +84,7 @@ public class BlockNougatHead extends Block
 
 			if (j == 0)
 			{
-				golem.setLenght(0.8F);
+				golem.setHeight(0.8F);
 			}
 			golemList[j] = golem;
 
@@ -91,14 +92,14 @@ public class BlockNougatHead extends Block
 			{
 				golem.startRiding(golemList[j - 1]);
 			}
-			par1.spawnEntityInWorld(golem);
+			par1.spawnEntity(golem);
 		}
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		EnumFacing enumfacing = EnumFacing.getFront(meta);
+		EnumFacing enumfacing = EnumFacing.byHorizontalIndex(meta);
 
 		if (enumfacing.getAxis() == EnumFacing.Axis.Y)
 		{
@@ -111,7 +112,7 @@ public class BlockNougatHead extends Block
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return state.getValue(FACING).getIndex();
+		return state.getValue(FACING).getHorizontalIndex();
 	}
 
 	@Override

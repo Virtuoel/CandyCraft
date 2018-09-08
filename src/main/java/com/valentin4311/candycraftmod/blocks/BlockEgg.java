@@ -53,9 +53,9 @@ public class BlockEgg extends BlockDragonEgg implements ITileEntityProvider
 	@Override
 	public void onBlockClicked(World world, BlockPos pos, EntityPlayer player)
 	{}
-
+	
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		return false;
 	}
@@ -67,12 +67,12 @@ public class BlockEgg extends BlockDragonEgg implements ITileEntityProvider
 	@Override
 	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
 	{}
-
+	
 	@Override
-	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block bl)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
 	{
-		super.neighborChanged(state, world, pos, bl);
-		checkAndDropBlock(world, pos, state);
+		super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
+		checkAndDropBlock(worldIn, pos, state);
 	}
 
 	@Override

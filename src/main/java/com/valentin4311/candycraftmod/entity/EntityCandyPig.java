@@ -131,6 +131,6 @@ public class EntityCandyPig extends EntityPig
 	@Override
 	public EntityPig createChild(EntityAgeable par1EntityAgeable)
 	{
-		return new EntityCandyPig(worldObj);
+		return new EntityCandyPig(world);
 	}
 }

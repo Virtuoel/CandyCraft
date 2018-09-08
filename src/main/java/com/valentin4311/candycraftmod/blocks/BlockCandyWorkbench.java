@@ -16,15 +16,15 @@ import net.minecraft.world.World;
 public class BlockCandyWorkbench extends BlockWorkbench
 {
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (world.isRemote)
+		if (worldIn.isRemote)
 		{
 			return true;
 		}
 		else
 		{
-			player.displayGui(new BlockCandyWorkbench.InterfaceCraftingTable(world, pos));
+			playerIn.displayGui(new BlockCandyWorkbench.InterfaceCraftingTable(worldIn, pos));
 			return true;
 		}
 	}

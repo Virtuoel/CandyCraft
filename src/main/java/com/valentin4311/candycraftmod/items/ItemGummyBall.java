@@ -19,20 +19,21 @@ public class ItemGummyBall extends Item
 		super();
 		maxStackSize = 16;
 	}
-
+	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemstack, World world, EntityPlayer player, EnumHand hand)
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
-		if (!player.capabilities.isCreativeMode)
+		ItemStack itemstack = playerIn.getHeldItem(handIn);
+		if (!playerIn.capabilities.isCreativeMode)
 		{
-			--itemstack.stackSize;
+			itemstack.shrink(1);
 		}
 
-		world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+		worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
-		if (!world.isRemote)
+		if (!worldIn.isRemote)
 		{
-			world.spawnEntityInWorld(new EntityGummyBall(world, player, 0));
+			worldIn.spawnEntity(new EntityGummyBall(worldIn, playerIn, 0));
 		}
 
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);

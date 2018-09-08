@@ -46,14 +46,14 @@ public class BlockCherry extends Block
 		Block i = par1World.getBlockState(pos.up()).getBlock();
 		return i == CCBlocks.candyLeave;
 	}
-
+	
 	@Override
-	public void neighborChanged(IBlockState state, World par1World, BlockPos pos, Block par5)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
 	{
-		if (!canPlaceBlockAt(par1World, pos))
+		if (!canPlaceBlockAt(worldIn, pos))
 		{
-			par1World.setBlockToAir(pos);
-			dropBlockAsItem(par1World, pos, state, 0);
+			worldIn.setBlockToAir(pos);
+			dropBlockAsItem(worldIn, pos, state, 0);
 		}
 	}
 

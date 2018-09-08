@@ -17,6 +17,7 @@ import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityMobSpawner;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -485,7 +486,7 @@ public class WorldGenSlimeDungeon extends WorldGenerator
 						Entity slime;
 						slime = new EntityTornadoJelly(world);
 						slime.setLocationAndAngles((double) x + i - 12 + 0.5, (double) y + j + 0.5, (double) z - k - 1 + 0.5, MathHelper.wrapDegrees(random.nextFloat() * 360.0F), 0.0F);
-						world.spawnEntityInWorld(slime);
+						world.spawnEntity(slime);
 					}
 				}
 				water = !water;
@@ -628,7 +629,7 @@ public class WorldGenSlimeDungeon extends WorldGenerator
 		int mob = random.nextInt(3);
 		if (spawner != null)
 		{
-			spawner.getSpawnerBaseLogic().setEntityName(mob == 0 ? "candycraftmod.SprinterSlime" : mob == 1 ? "candycraftmod.KamikazeSlime" : "candycraftmod.TornadoSlime");
+			spawner.getSpawnerBaseLogic().setEntityId(new ResourceLocation(mob == 0 ? "candycraft:sprinter_slime" : mob == 1 ? "candycraft:kamikaze_slime" : "candycraft:tornado_slime"));
 		}
 		this.setBlock(x, y + 1, z, CCBlocks.licoriceBlock);
 		this.setBlock(x, y + 5, z, CCBlocks.licoriceBlock);
@@ -721,7 +722,7 @@ public class WorldGenSlimeDungeon extends WorldGenerator
 		EntityPEZJelly slime = new EntityPEZJelly(world);
 		slime.setPosition(x + 1, y + 2, z - 12);
 		slime.setJellySize(10);
-		world.spawnEntityInWorld(slime);
+		world.spawnEntity(slime);
 		posX += 24;
 	}
 
@@ -776,7 +777,7 @@ public class WorldGenSlimeDungeon extends WorldGenerator
 		slime.sY = y + 2;
 		slime.sZ = z - 25;
 		slime.setPosition(x + 1, y + 2, z - 25);
-		world.spawnEntityInWorld(slime);
+		world.spawnEntity(slime);
 		posX += 49;
 	}
 

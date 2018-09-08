@@ -37,9 +37,9 @@ public class BlockChewingGumPlate extends BlockChewingGum
 	{
 		return GUM_PLATE_AABB;
 	}
-
+	
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
 		return null;
 	}
@@ -50,19 +50,19 @@ public class BlockChewingGumPlate extends BlockChewingGum
 		IBlockState i = par1World.getBlockState(pos.down());
 		return i.isOpaqueCube();
 	}
-
+	
 	@Override
-	public void neighborChanged(IBlockState state, World par1World, BlockPos pos, Block par5)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
 	{
-		if (!canPlaceBlockAt(par1World, pos))
+		if (!canPlaceBlockAt(worldIn, pos))
 		{
-			par1World.setBlockToAir(pos);
+			worldIn.setBlockToAir(pos);
 		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
+	public BlockRenderLayer getRenderLayer()
 	{
 		return BlockRenderLayer.CUTOUT;
 	}

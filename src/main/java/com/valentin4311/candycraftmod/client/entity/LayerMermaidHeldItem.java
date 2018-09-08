@@ -5,19 +5,20 @@ import com.valentin4311.candycraftmod.items.CCItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.entity.RenderLivingBase;
+import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 
-public class LayerMermaidHeldItem<RendererLivingEntity> implements LayerRenderer
+//TODO change to how e.g. Vindicator renders held items
+public class LayerMermaidHeldItem extends LayerHeldItem
 {
-	private final RendererLivingEntity entityRenderer;
-
-	public LayerMermaidHeldItem(RendererLivingEntity renderer)
+	public LayerMermaidHeldItem(RenderLivingBase<?> livingEntityRendererIn)
 	{
-		entityRenderer = renderer;
+		super(livingEntityRendererIn);
 	}
 
 	float rX, rY, rZ, tX, tY, tZ;
@@ -31,10 +32,9 @@ public class LayerMermaidHeldItem<RendererLivingEntity> implements LayerRenderer
 		{
 			GlStateManager.pushMatrix();
 
-			((ModelMermaid) entityRenderer.getMainModel()).Shape41.postRender(0.0625F);
+			((ModelMermaid) livingEntityRenderer.getMainModel()).Shape41.postRender(0.0625F);
 			GlStateManager.translate(0.0275F, 0.1225F, 0.1425F);
 
-			Item item = itemstack.getItem();
 			Minecraft minecraft = Minecraft.getMinecraft();
 
 			if (itemstack.getItem() == CCItems.caramelBow)
