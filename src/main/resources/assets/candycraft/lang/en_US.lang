@@ -338,6 +338,7 @@ gingerbread.job.citizen=Citizen
 gingerbread.job.elder=The elder
 enchantment.Devourer=Devourer
 enchantment.HoneyGlue=Honey Glue
+itemGroup.candycraft=CandyCraft
 chat.NoUpdate=[CandyCraft]No update found.
 chat.UpdateFound=[CandyCraft]Update found: CandyCraft *version* for Minecraft *mcVersion*
 chat.UpdateFound2=Main features: *features*

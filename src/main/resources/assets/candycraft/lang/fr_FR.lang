@@ -337,6 +337,7 @@ gingerbread.job.citizen=Citoyen
 gingerbread.job.elder=The elder
 enchantment.Devourer=Devoreur
 enchantment.HoneyGlue=Colle Mielleuse
+itemGroup.candycraft=CandyCraft
 chat.checkingUpdate=[CandyCraft]Recherche de mise à jour...
 chat.NoUpdate=[CandyCraft]Pas de mise à jour trouvée.
 chat.UpdateFound=[CandyCraft]Mise à jour trouvée: CandyCraft *version* pour Minecraft *mcVersion*

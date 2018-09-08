@@ -13,9 +13,6 @@ import com.valentin4311.candycraft.event.ClientTick;
 import com.valentin4311.candycraft.event.ServerEventCatcher;
 import com.valentin4311.candycraft.event.ServerTick;
 import com.valentin4311.candycraft.items.CCItems;
-import com.valentin4311.candycraft.misc.CCAchievements;
-import com.valentin4311.candycraft.misc.CCCreativeTabs;
-import com.valentin4311.candycraft.misc.CCEnchantments;
 import com.valentin4311.candycraft.misc.CCRecipes;
 import com.valentin4311.candycraft.world.TerrainCatcher;
 import com.valentin4311.candycraft.world.WorldProviderCandy;
@@ -25,6 +22,7 @@ import com.valentin4311.candycraft.world.biomes.CCBiomes;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -56,7 +54,14 @@ public class CandyCraft
 	private static ClientTick clientTicker;
 	private static ServerTick serverTicker;
 
-	private static CreativeTabs creativeTab = new CCCreativeTabs("CandyCraft");
+	private static CreativeTabs creativeTab = new CreativeTabs(MODID)
+	{
+		@Override
+		public ItemStack createIcon()
+		{
+			return new ItemStack(CCBlocks.marshmallowWorkbench);
+		}
+	};
 	private static GuiHandlerCandyCraft guiHandler = new GuiHandlerCandyCraft();
 	private static ArrayList<Item> itemList = new ArrayList<Item>();
 	// Dimension
